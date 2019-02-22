@@ -18,5 +18,25 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AVLTree\AVLTree.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedHashMap\LinkedHashMap.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RBTree\RBTree.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AVLTree\AVLTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedHashMap\LinkedHashMap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RBTree\RBTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
