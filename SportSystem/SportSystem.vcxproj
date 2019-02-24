@@ -128,6 +128,7 @@
     <ClCompile Include="LinkedList\DualCycleLinkedList.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="RBTree\RBTree.c" />
+    <ClCompile Include="Vector\Vector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree\AVLTree.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="LinkedHashMap\LinkedHashMap.h" />
     <ClInclude Include="LinkedList\DualCycleLinkedList.h" />
     <ClInclude Include="RBTree\RBTree.h" />
+    <ClInclude Include="Vector\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

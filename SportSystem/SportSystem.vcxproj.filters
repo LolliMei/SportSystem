@@ -30,6 +30,9 @@
     <ClCompile Include="LinkedList\DualCycleLinkedList.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Vector\Vector.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree\AVLTree.h">
@@ -45,6 +48,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector\Vector.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
