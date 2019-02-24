@@ -34,7 +34,7 @@ ValueType AVLTreeGet(AVLTree tree,KeyType key);
 
 bool AVLTreeContains(AVLTree tree,KeyType key);
 
-AVLTreeNode* remove(const AVLTree tree, AVLTreeNode* node, KeyType key);
+AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key);
 
 AVLTree InitAVLTree();
 

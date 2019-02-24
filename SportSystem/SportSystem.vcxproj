@@ -125,12 +125,14 @@
   <ItemGroup>
     <ClCompile Include="AVLTree\AVLTree.c" />
     <ClCompile Include="LinkedHashMap\LinkedHashMap.c" />
+    <ClCompile Include="LinkedList\DualCycleLinkedList.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="RBTree\RBTree.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree\AVLTree.h" />
     <ClInclude Include="LinkedHashMap\LinkedHashMap.h" />
+    <ClInclude Include="LinkedList\DualCycleLinkedList.h" />
     <ClInclude Include="RBTree\RBTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

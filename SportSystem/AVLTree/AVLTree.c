@@ -200,18 +200,18 @@ AVLTreeNode* minimum(AVLTreeNode* node)
 }
 
 //实现树节点的删除
-AVLTreeNode* remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
+AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
 {
 	if (node == NULL) return NULL;
 	AVLTreeNode* retNode;
 	if (key < node->key)
 	{
-		node->left = remove(tree, node->left, key);
+		node->left = _remove(tree, node->left, key);
 		retNode = node;
 	}
 	else if (key > node->key)
 	{
-		node->right = remove(tree, node->right, key);
+		node->right = _remove(tree, node->right, key);
 		retNode = node;
 	}
 	else
@@ -236,7 +236,7 @@ AVLTreeNode* remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
 		else
 		{
 			AVLTreeNode* succ = minimum(node->right);
-			succ->right = remove(tree, node->right, succ->key);
+			succ->right = _remove(tree, node->right, succ->key);
 			succ->left = node->left;
 
 			node->left = node->right = NULL;

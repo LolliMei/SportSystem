@@ -141,13 +141,14 @@ bool HashMapContains(LinkedHashMap map,KeyType key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType HashMapSet(LinkedHashMap map,KeyType key,ValueType value)
+ValueType HashMapSet(LinkedHashMap map, KeyType key, ValueType value)
 {
-	int index = map->hashIndex((void*)key, map);
+	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
-	Entry* node = (Entry*)malloc(sizeof(Entry));
-	node->next = map->table[index];
-	while (node->next != NULL)
+	Entry* dummyHead = (Entry*)malloc(sizeof(Entry));
+	dummyHead->next = map->table[index];
+	Entry* node = dummyHead;
+	while (node != NULL)
 	{
 		//如果匹配key，则记录旧值
 		if (node->key == key)
@@ -159,8 +160,37 @@ ValueType HashMapSet(LinkedHashMap map,KeyType key,ValueType value)
 		node = node->next;
 
 	}
-	
+	free(dummyHead);
+
 	return NULL;
 }
 
+//移除哈希表中的元素
+void HashMapRemove(LinkedHashMap map, KeyType key)
+{
+	int index = map->hashIndex((void*)key, map);
+	Entry* list = map->table[index];
+	Entry* dummyHead = (Entry*)malloc(sizeof(struct Entry));
+	dummyHead->next = list;
+	Entry* node = dummyHead;
+	Entry* prev = node, *delNode;
+
+	while (node != NULL)
+	{
+		if (node->next->key == key)
+		{
+			prev = node;
+			delNode = prev->next;
+			prev->next = delNode->next;
+			delNode->next = NULL;
+			free(delNode);
+
+		}
+		node = node->next;
+	}
+	map->table[index] = dummyHead->next;
+	free(dummyHead);
+
+
+}
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H
