@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree\AVLTree.h" />
+    <ClInclude Include="def.h" />
     <ClInclude Include="LinkedHashMap\LinkedHashMap.h" />
     <ClInclude Include="LinkedList\DualCycleLinkedList.h" />
     <ClInclude Include="RBTree\RBTree.h" />

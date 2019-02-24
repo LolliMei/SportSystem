@@ -8,7 +8,5 @@
 
 int main(int argc, char** argv)
 {
-	AVLTree avl = InitAVLTree();
-	RedBlackTree rb = InitializeTreeMap();
-	LinkedHashMap hash = InitHashMap(100);
+	
 }
