@@ -92,6 +92,36 @@ void ContestScore(){
     // 按运动员查看成绩
 }
 
+// 按比赛项目查看成绩(田赛)
+void FieldCheckProgramScore(){
+    
+}
+
+// 按参赛书院查看成绩(田赛)
+void FieldCheckSeowonScore(){
+    
+}
+
+// 按运动员查看成绩(田赛)
+void FieldCheckAthleteScore(){
+    
+}
+
+// 按比赛项目查看成绩(竞赛)
+void ContestCheckProgramScore(){
+    
+}
+
+// 按参赛书院查看成绩(竞赛)
+void ContestCheckSeowonScore(){
+    
+}
+
+// 按运动员查看成绩(竞赛)
+void ContestCheckAthleteScore(){
+    
+}
+
 // 查看得分界面
 void CheckGoal(){
     // 查看书院得分情况
@@ -125,7 +155,7 @@ void Setting(){
 
 int main(){
     int choose;
-    printf("Who you are?");
+    printf("Who you are? 1:SuperAdministrator 2:Administrator 3:visitor\n");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
     while(choose<1 || choose>3){
