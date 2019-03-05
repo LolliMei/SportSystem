@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{65C51167-DE6E-407A-B040-BA2163384074}</ProjectGuid>
     <RootNamespace>SportSystem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,9 +84,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -123,20 +123,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AVLTree\AVLTree.c" />
-    <ClCompile Include="LinkedHashMap\LinkedHashMap.c" />
-    <ClCompile Include="LinkedList\DualCycleLinkedList.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="RBTree\RBTree.c" />
-    <ClCompile Include="Vector\Vector.c" />
+    <ClCompile Include="AthHashMap\AthleteTable.c" />
+    <ClCompile Include="AthleteMap\org_ath_map.c" />
+    <ClCompile Include="def.c" />
+    <ClCompile Include="file.c" />
+    <ClCompile Include="forlogin.c" />
+    <ClCompile Include="Interface.c" />
+    <ClCompile Include="Org\OrgTable.c" />
+    <ClCompile Include="RaceHashMap\RaceHashMap.c" />
+    <ClCompile Include="TrackHashMap\TrackHashMap.c" />
+    <ClCompile Include="Vector_ath\Vector.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AVLTree\AVLTree.h" />
+    <ClInclude Include="AthHashMap\AthleteTable.h" />
+    <ClInclude Include="Athlete.h" />
+    <ClInclude Include="AthleteMap\org_ath_map.h" />
     <ClInclude Include="def.h" />
-    <ClInclude Include="LinkedHashMap\LinkedHashMap.h" />
-    <ClInclude Include="LinkedList\DualCycleLinkedList.h" />
-    <ClInclude Include="RBTree\RBTree.h" />
-    <ClInclude Include="Vector\Vector.h" />
+    <ClInclude Include="forlogin.h" />
+    <ClInclude Include="Org\OrgTable.h" />
+    <ClInclude Include="RaceHashMap\RaceHashMap.h" />
+    <ClInclude Include="TrackHashMap\TrackHashMap.h" />
+    <ClInclude Include="Vector_ath\AthVector.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

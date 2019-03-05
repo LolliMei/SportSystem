@@ -12,9 +12,10 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <assert.h>
+#include "../def.h"
 
 #define KeyType int
-#define ValueType int
+#define ValueType RaceItem*
 
 typedef struct Entry
 {
@@ -24,7 +25,7 @@ typedef struct Entry
     struct Entry* next;
 }Entry;
 
-typedef struct __HashMap
+typedef struct __RHashMap
 {
     //array of Entry
     Entry* table[1048576];
@@ -32,7 +33,7 @@ typedef struct __HashMap
     int size;
     int capacity;
     int (*hashIndex)(void* key,void* map);
-}*LinkedHashMap;
+}*RaceItemHashMap;
 
 //获取指定数值后的最小2的幂
 int minTwoPow(const int n)
@@ -41,16 +42,15 @@ int minTwoPow(const int n)
 }
 
 //得到对象在哈希表中的存储索引
-int getHashIndex(void* obj, void* map)
+int getHashIndex(RaceItem* obj, RaceItemHashMap* map)
 {
-    LinkedHashMap hashMap = (LinkedHashMap)map;
-    return abs((int)(obj)&(hashMap->capacity - 1));
+    return obj->eventsID;
 }
 
 //初始化哈希表
-LinkedHashMap InitHashMap(int capacity)
+RaceItemHashMap InitHashMap(int capacity)
 {
-    LinkedHashMap map = (LinkedHashMap)malloc(sizeof(struct __HashMap));
+    RaceItemHashMap map = (RaceItemHashMap)malloc(sizeof(struct __RHashMap));
     map->size = 0;
     map->capacity = minTwoPow(capacity);
     map->hashIndex = getHashIndex;
@@ -74,7 +74,7 @@ Entry* createEntry(int hash,KeyType key,ValueType value)
 }
 
 // 把一个元素放入Hash表中
-void HashMapPut(LinkedHashMap map,KeyType key,ValueType value)
+void HashMapPut(RaceItemHashMap map,KeyType key,ValueType value)
 {
     //通过绑定的hash函数计算出Hash值
     int index = 0;
@@ -97,7 +97,7 @@ void HashMapPut(LinkedHashMap map,KeyType key,ValueType value)
 }
 
 //根据键查找HashMap中的值
-ValueType HashMapGet(LinkedHashMap map,KeyType key)
+ValueType HashMapGet(RaceItemHashMap map,KeyType key)
 {
     //计算并得到哈希链表的入口
     int index = map->hashIndex((void*)key,map);
@@ -120,7 +120,7 @@ ValueType HashMapGet(LinkedHashMap map,KeyType key)
 }
 
 //查看表中是否有对应的Key
-bool HashMapContains(LinkedHashMap map,KeyType key)
+bool HashMapContains(RaceItemHashMap map,KeyType key)
 {
     int index = map->hashIndex((void*)key,map);
     Entry* node = map->table[index];
@@ -141,7 +141,7 @@ bool HashMapContains(LinkedHashMap map,KeyType key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType HashMapSet(LinkedHashMap map, KeyType key, ValueType value)
+ValueType HashMapSet(RaceItemHashMap map, KeyType key, ValueType value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
@@ -166,7 +166,7 @@ ValueType HashMapSet(LinkedHashMap map, KeyType key, ValueType value)
 }
 
 //移除哈希表中的元素
-void HashMapRemove(LinkedHashMap map, KeyType key)
+void HashMapRemove(RaceItemHashMap map, KeyType key)
 {
 	int index = map->hashIndex((void*)key, map);
 	Entry* list = map->table[index];

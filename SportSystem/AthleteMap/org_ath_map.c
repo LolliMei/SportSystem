@@ -2,26 +2,30 @@
 // Created by 黎钰晖 on 2019-02-16->
 //
 
-#include "AVLTree.h"
+#include "../AthleteMap/org_ath_map.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define max(a,b) ((a>b?a:b))
-#define min(a,b) ((a>b?b:a))
-
 //基础函数
-AVLTree InitAVLTree()
+org_ath_map InitAthMap()
 {
-	AVLTree tree = (AVLTree)malloc(sizeof(struct __AVLT));
+	org_ath_map tree = (org_ath_map)malloc(sizeof(struct __AMTree));
 	tree->root = NULL;
 	tree->size = 0;
 	return tree;
 }
 
-//创建一个节点
-AVLTreeNode* CreateNode(KeyType key, ValueType value) {
+void for_all(AthNode* node, void (* Visit)(AthNode* visitnode))
+{
+	Visit(node);
+	for_all(node->left, Visit);
+	for_all(node->right, Visit);
+}
 
-	AVLTreeNode* newNode = (AVLTreeNode*)malloc(sizeof(struct AVLTreeNode));
+//创建一个节点
+AthNode* CreateNode(int key, Athlete* value) {
+
+	AthNode* newNode = (AthNode*)malloc(sizeof(struct AthNode));
 	newNode->key = key;
 	newNode->value = value;
 	newNode->height = 1;
@@ -32,25 +36,25 @@ AVLTreeNode* CreateNode(KeyType key, ValueType value) {
 }
 
 //获取节点高度值
-int getHeight(AVLTreeNode* node)
+int getHeight(AthNode* node)
 {
 	if (node == NULL) return 0;
 	return node->height;
 }
 
 //获取节点的平衡因子
-int getBalanceFactor(AVLTreeNode* node)
+int getBalanceFactor(AthNode* node)
 {
 	if (node == NULL) return 0;
 	return getHeight(node->left) - getHeight(node->right);
 }
 
 //RR旋转
-AVLTreeNode* rightRotate(struct AVLTreeNode* y)
+AthNode* rightRotate(struct AthNode* y)
 {
 	//右旋转
-	struct AVLTreeNode* x = y->left;
-	struct AVLTreeNode* T3 = x->right;
+	struct AthNode* x = y->left;
+	struct AthNode* T3 = x->right;
 	x->right = y;
 	y->left = T3;
 
@@ -64,11 +68,11 @@ AVLTreeNode* rightRotate(struct AVLTreeNode* y)
 }
 
 //LL旋转
-static inline AVLTreeNode* leftRotate(struct AVLTreeNode* y)
+static inline AthNode* leftRotate(struct AthNode* y)
 {
 	//左旋转
-	AVLTreeNode* x = y->right;
-	AVLTreeNode* t3 = x->left;
+	AthNode* x = y->right;
+	AthNode* t3 = x->left;
 
 	x->left = y;
 	y->right = t3;
@@ -83,7 +87,7 @@ static inline AVLTreeNode* leftRotate(struct AVLTreeNode* y)
 }
 
 //向树中添加一个元素的内部方法
-AVLTreeNode* add(const AVLTree tree, AVLTreeNode* node, KeyType key, ValueType value)
+AthNode* add(const org_ath_map tree, AthNode* node, int key, Athlete* value)
 {
 	//如果节点为空，则直接插入
 	if (node == NULL)
@@ -144,14 +148,14 @@ AVLTreeNode* add(const AVLTree tree, AVLTreeNode* node, KeyType key, ValueType v
 }
 
 //向树中添加Key-Value对
-void AVLTreePut(AVLTree tree, KeyType key, ValueType value) {
+void AthMapPut(org_ath_map tree, int key, Athlete* value) {
 	tree->root = add(tree, tree->root, key, value);
 }
 
 //查找是否存在对应的Key
-bool AVLTreeContains(AVLTree tree, KeyType key)
+bool AthMapContains(org_ath_map tree, int key)
 {
-	AVLTreeNode* node = tree->root;
+	AthNode* node = tree->root;
 	while (node != NULL)
 	{
 		if (node->key == key) return true;
@@ -162,9 +166,9 @@ bool AVLTreeContains(AVLTree tree, KeyType key)
 }
 
 //从树中获取对应Key的值
-ValueType AVLTreeGet(AVLTree tree, KeyType key)
+Athlete* get_org_ath(org_ath_map tree, int key)
 {
-	AVLTreeNode* node = tree->root;
+	AthNode* node = tree->root;
 	while (node != NULL)
 	{
 		if (node->key == key) return node->value;
@@ -175,14 +179,14 @@ ValueType AVLTreeGet(AVLTree tree, KeyType key)
 }
 
 //向树中设置对应Key的值,返回旧的Key对应的值
-ValueType AVLTreeSet(AVLTree tree, KeyType key, ValueType value)
+Athlete* set_org_ath(org_ath_map tree, int key, Athlete* value)
 {
-	AVLTreeNode* node = tree->root;
+	AthNode* node = tree->root;
 	while (node != NULL)
 	{
 		if (node->key == key)
 		{
-			int oldVal = node->value;
+			Athlete* oldVal = node->value;
 			node->value = value;
 			return oldVal;
 		}
@@ -193,17 +197,17 @@ ValueType AVLTreeSet(AVLTree tree, KeyType key, ValueType value)
 }
 
 //子树的最小节点
-AVLTreeNode* minimum(AVLTreeNode* node)
+AthNode* minimum(AthNode* node)
 {
 	if (node->left == NULL) return node;
 	return minimum(node->left);
 }
 
 //实现树节点的删除
-AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
+AthNode* _remove(const org_ath_map tree, AthNode* node, int key)
 {
 	if (node == NULL) return NULL;
-	AVLTreeNode* retNode;
+	AthNode* retNode;
 	if (key < node->key)
 	{
 		node->left = _remove(tree, node->left, key);
@@ -219,7 +223,7 @@ AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
 		//其中一边节点为空
 		if (node->left == NULL)
 		{
-			AVLTreeNode* right = node->right;
+			AthNode* right = node->right;
 			node->right = NULL;
 			tree->size--;
 			retNode = right;
@@ -227,7 +231,7 @@ AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
 
 		else if (node->right == NULL)
 		{
-			AVLTreeNode* left = node->left;
+			AthNode* left = node->left;
 			node->left = NULL;
 			tree->size--;
 			retNode = left;
@@ -235,7 +239,7 @@ AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
 		//左右子树均不为空
 		else
 		{
-			AVLTreeNode* succ = minimum(node->right);
+			AthNode* succ = minimum(node->right);
 			succ->right = _remove(tree, node->right, succ->key);
 			succ->left = node->left;
 
@@ -284,7 +288,7 @@ AVLTreeNode* _remove(const AVLTree tree, AVLTreeNode* node, KeyType key)
 }
 
 //查找到对应的节点
-AVLTreeNode* getNode(AVLTreeNode* node, KeyType key)
+AthNode* getNode(AthNode* node, int key)
 {
 
 	if (node == NULL)
@@ -298,12 +302,12 @@ AVLTreeNode* getNode(AVLTreeNode* node, KeyType key)
 }
 
 //删除树中的节点,并返回Key的旧值Value
-ValueType AVLTreeRemove(AVLTree tree, KeyType key)
+Athlete* remove_org_ath(org_ath_map tree, int key)
 {
-	AVLTreeNode* node = getNode(tree->root, key);
+	AthNode* node = getNode(tree->root, key);
 	if (node != NULL)
 	{
-		tree->root = remove(tree, tree->root, key);
+		tree->root = _remove(tree, tree->root, key);
 		return node->value;
 	}
 	return NULL;

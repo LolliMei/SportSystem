@@ -1,7 +1,7 @@
 //
 // Created by 黎钰晖 on 2019-02-23.
 //
-#include "Vector.h"
+#include "../Vector_ath/Vector.h"
 #include <memory.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -32,7 +32,7 @@ bool VectorEmpty(Vector vector)
 }
 
 //数组扩容
-void internalResize(Vector vector,int newCapacity)
+void _resize(Vector vector,int newCapacity)
 {
     //翻倍扩容
     ElementType* newData =(ElementType*)malloc(sizeof(ElementType) * newCapacity);
@@ -45,7 +45,7 @@ void internalResize(Vector vector,int newCapacity)
     free(oldData);
 }
 
-void internalRangeCheck(Vector vector,int index)
+void _range_check(Vector vector,int index)
 {
     assert(!(index < 0 || index > vector->size));
 }
@@ -53,9 +53,9 @@ void internalRangeCheck(Vector vector,int index)
 //插入指定位置
 void VectorAddAt(Vector vector, int index, ElementType element)
 {
-    internalRangeCheck(vector,index);
+    _range_check(vector,index);
     if(vector->size == vector->capacity)
-        internalResize(vector,2 * vector->size);
+        _resize(vector,2 * vector->size);
 
     for (int i = vector->size - 1; i >= index; --i) {
         vector->data[i + 1] = vector->data[i];
@@ -80,14 +80,14 @@ void VectorAddFirst(Vector vector,ElementType element)
 //获取指定索引位置的元素
 ElementType VectorGet(Vector vector,int index)
 {
-    internalRangeCheck(vector,index);
+    _range_check(vector,index);
     return vector->data[index];
 }
 
 //设置指定索引位置的元素,返回旧值
 ElementType VectorSet(Vector vector,int index,ElementType element)
 {
-    internalRangeCheck(vector,index);
+    _range_check(vector,index);
     ElementType oldVal = vector->data[index];
     vector->data[index] = element;
     return oldVal;
@@ -114,7 +114,7 @@ int VectorFind(Vector vector,ElementType element)
 //删除指定位置的存储对象
 ElementType VectorRemoveAt(Vector vector, int index)
 {
-    internalRangeCheck(vector,index);
+    _range_check(vector,index);
     ElementType delVal = vector->data[index];
     for (int i = index + 1; i < vector->size; ++i) {
         vector->data[i - 1] = vector->data[i];
