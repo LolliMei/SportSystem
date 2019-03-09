@@ -223,7 +223,7 @@ int main() {
 	int forprintPrompt;
 	initFileData();
 	printPrompt();
-	scanf_s("%d", &forprintPrompt);
+	scanf("%d", &forprintPrompt);
 	setbuf(stdin, NULL);
 	while (forprintPrompt < 0 || forprintPrompt>1) {
 		printf("输入错误，请重新输入:");
