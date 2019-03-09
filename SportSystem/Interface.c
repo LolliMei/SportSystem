@@ -7,10 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void StartInterface(void);
 void SuperAdministrator(void);
 void Administrator(void);
-void visitor(void);
+void Visitor(void);
 void Announcement(void);
 int Apply(int flag);
 int AthleteApply(int flag);
@@ -29,34 +28,6 @@ void SetCompetition(void);
 void Setting(void);
 
 
-//开始界面
-void StartInterface(){
-    int choose;
-    printf("欢迎进入汕头大学校运会系统\n");
-    printf("请输入你的身份:");
-    printf("1.超级管理员  2.管理员  3.游客");
-    scanf("%d",&choose);
-    setbuf(stdin, NULL);
-    while(choose<1 || choose>3){
-        printf("输入错误，请重新输入:");
-        scanf("%d",&choose);
-        setbuf(stdin, NULL);
-    }
-    switch (choose) {
-        case 1:
-            SuperAdministrator();
-            break;
-        case 2:
-            Administrator();
-            break;
-        case 3:
-            visitor();
-            break;
-        default:
-            break;
-    }
-}
-
 // 超级管理员界面
 void SuperAdministrator(){
     // 1.参赛项目发布(全部项目发布)
@@ -67,10 +38,10 @@ void SuperAdministrator(){
     // 6.查看成绩
     // 7.查看得分
     // 8.系统设置
-    // 0.返回主界面
+    // 0.退出
     int SAChoose;
     printf("\n");
-    printf("0.返回主界面  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
+    printf("0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
     printf("请输入你的选择:");
     scanf("%d",&SAChoose);
     setbuf(stdin, NULL);
@@ -81,7 +52,7 @@ void SuperAdministrator(){
     }
     switch (SAChoose) {                         // 功能选择，0～8为界面之间的跳转，用flag=1来记录超管界面
         case 0:
-            StartInterface();
+            exit(0);
             break;
         case 1:
             Announcement();
@@ -123,9 +94,9 @@ void Administrator(){
     // 4.参赛信息查询
     // 4.查看成绩
     // 5.查看得分
-    // 0.返回主界面
+    // 0.退出
     int AChoose;
-    printf("0.返回主界面  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
+    printf("0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
     printf("请输入你的选择:");
     scanf("%d",&AChoose);
     setbuf(stdin, NULL);
@@ -136,7 +107,7 @@ void Administrator(){
     }
     switch (AChoose) {                              // 功能选择，0～6为界面之间的跳转，用flag=2来记录管理员界面
         case 0:
-            StartInterface();
+            exit(0);();
             break;
         case 1:
             Apply(2);
@@ -162,12 +133,12 @@ void Administrator(){
 }
 
 // 游客界面
-void visitor(){
+void Visitor(){
     // 1.查看成绩
     // 2.查看得分
-    // 0.返回主界面
+    // 0.退出
     int VChoose;
-    printf("0.返回主界面  1.查看成绩  2.查看得分\n");
+    printf("0.退出  1.查看成绩  2.查看得分\n");
     printf("请输入你的选择:");
     scanf("%d",&VChoose);
     setbuf(stdin, NULL);
@@ -178,7 +149,7 @@ void visitor(){
     }
     switch (VChoose) {                      // 功能选择，0～2为界面之间的跳转，用flag=3记录游客界面
         case 0:
-            StartInterface();
+            exit(0);();
             break;
         case 1:
             CheckScore(3);
@@ -656,7 +627,7 @@ int CheckScore(int flag){
                 Administrator();
             }
             else if(flag==3){
-                visitor();
+                Visitor();
             }
             break;
         case 1:
@@ -798,7 +769,7 @@ int CheckGoal(int flag){
                 Administrator();
             }
             else if(flag==3){
-                visitor();
+                Visitor();
             }
             break;
         case 1:
@@ -1030,7 +1001,6 @@ void Setting(){
 }
 
 int main(){
-    StartInterface();
     return 0;
 }
 
