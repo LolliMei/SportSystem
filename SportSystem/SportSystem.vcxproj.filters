@@ -81,6 +81,9 @@
     <ClCompile Include="Vector_ath\AthVector.c">
       <Filter>源文件\AthVector</Filter>
     </ClCompile>
+    <ClCompile Include="Athlete.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h">

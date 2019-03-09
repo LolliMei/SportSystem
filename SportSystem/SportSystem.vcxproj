@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AthHashMap\AthleteTable.c" />
+    <ClCompile Include="Athlete.c" />
     <ClCompile Include="AthleteMap\org_ath_map.c" />
     <ClCompile Include="def.c" />
     <ClCompile Include="file.c" />
