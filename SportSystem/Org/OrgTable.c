@@ -94,7 +94,6 @@ Organization OrgTableSet(OrgTable OrgTable,int index,Organization element)
     return oldVal;
 }
 
-
 int OrgTableFind(OrgTable table, Organization element)
 {
 	for (size_t i = 0; i < table->size; i++)
@@ -135,14 +134,4 @@ void OrgTableRemoveFirst(OrgTable OrgTable)
 void OrgTableRemoveLast(OrgTable OrgTable)
 {
     OrgTableRemoveAt(OrgTable,OrgTable->size - 1);
-}
-
-void OrgTableToString(OrgTable OrgTable)
-{
-    printf("[");
-    printf("%d",OrgTable->data[0]);
-    for (int i = 1; i < OrgTable->size; ++i) {
-        printf(", %d",OrgTable->data[i]);
-    }
-    printf("]\n");
 }

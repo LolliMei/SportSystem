@@ -54,4 +54,7 @@ Athlete* set_athlete(AthHashMap map, int key, Athlete* value);
 
 //移除哈希表中的元素
 void remove_athlete(AthHashMap map, int key);
+
+//遍历整个哈希表
+void forall_athlete(AthHashMap map, void (*func)(Athlete ath));
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H

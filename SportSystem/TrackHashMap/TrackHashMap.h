@@ -49,7 +49,7 @@ int trackitem_hash_index(TrackItem* obj, TrackHashMap* map)
 }
 
 //³õÊ¼»¯¹þÏ£±í
-TrackHashMap init_athlete_table(int capacity)
+TrackHashMap init_track_table(int capacity)
 {
     TrackHashMap map = (TrackHashMap)malloc(sizeof(struct __THashMap));
     map->size = 0;
