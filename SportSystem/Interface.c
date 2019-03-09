@@ -107,7 +107,7 @@ void Administrator(){
     }
     switch (AChoose) {                              // 功能选择，0～6为界面之间的跳转，用flag=2来记录管理员界面
         case 0:
-            exit(0);();
+            exit(0);
             break;
         case 1:
             Apply(2);
@@ -149,7 +149,7 @@ void Visitor(){
     }
     switch (VChoose) {                      // 功能选择，0～2为界面之间的跳转，用flag=3记录游客界面
         case 0:
-            exit(0);();
+            exit(0);
             break;
         case 1:
             CheckScore(3);
