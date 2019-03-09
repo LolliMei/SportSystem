@@ -126,6 +126,7 @@
     <ClCompile Include="AthHashMap\AthleteTable.c" />
     <ClCompile Include="Athlete.c" />
     <ClCompile Include="AthleteMap\org_ath_map.c" />
+    <ClCompile Include="converge.c" />
     <ClCompile Include="def.c" />
     <ClCompile Include="file.c" />
     <ClCompile Include="forlogin.c" />
@@ -139,6 +140,7 @@
     <ClInclude Include="AthHashMap\AthleteTable.h" />
     <ClInclude Include="Athlete.h" />
     <ClInclude Include="AthleteMap\org_ath_map.h" />
+    <ClInclude Include="converger.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="forlogin.h" />
     <ClInclude Include="Interface.h" />
