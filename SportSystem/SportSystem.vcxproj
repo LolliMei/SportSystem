@@ -143,6 +143,7 @@
     <ClInclude Include="AthleteMap\org_ath_map.h" />
     <ClInclude Include="converger.h" />
     <ClInclude Include="def.h" />
+    <ClInclude Include="file.h" />
     <ClInclude Include="forlogin.h" />
     <ClInclude Include="InitTracRaceItem.h" />
     <ClInclude Include="Interface.h" />

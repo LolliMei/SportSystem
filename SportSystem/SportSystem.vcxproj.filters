@@ -125,7 +125,10 @@
     <ClInclude Include="converger.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="InitTracRaceItem.h">
+    <ClInclude Include="file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+	    <ClInclude Include="InitTracRaceItem.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

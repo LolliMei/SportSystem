@@ -9,7 +9,7 @@ extern OrgTable organization;
 
 
 
-void InitAthlete(){
+void InitAthlete(int ID){
 	char id[20], name[30];
 	int i;
 	scanf("%s",&id);
@@ -67,5 +67,5 @@ void InitAthlete(){
 			break;
 	}
 
-
+	return 0;
 }
