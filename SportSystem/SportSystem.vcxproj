@@ -145,6 +145,9 @@
     <ClInclude Include="TrackHashMap\TrackHashMap.h" />
     <ClInclude Include="Vector_ath\AthVector.c" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Interface\Gai.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

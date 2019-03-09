@@ -111,4 +111,9 @@
       <Filter>头文件\AthVector</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Interface\Gai.c">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
 </Project>
