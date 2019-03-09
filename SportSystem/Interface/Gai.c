@@ -1,3 +1,5 @@
+
+// 界面
 // 查看田赛成绩和竞赛成绩未完成
 // 比赛项目设置以及系统设置未完成
 // 比赛项目设置由人工输入项目，通过SuperAdmin发布查看
@@ -637,6 +639,7 @@ int CheckScore(int flag){
     // 2.查看竞赛成绩
     // 0.返回上一层
     int choose;
+    printf("0.返回上一层  1.查看田赛成绩  2.查看竞赛成绩\n");
     printf("请输入你的选择:");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
@@ -693,6 +696,7 @@ int TrackItemScore(int flag){
     // 3.按运动员查看成绩
     // 0.返回上一层
     int choose;
+    printf("0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
     printf("请输入你的选择:");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
@@ -735,6 +739,7 @@ int RaceItemScore(int flag){
     // 3.按运动员查看成绩
     // 0.返回上一层
     int choose;
+    printf("0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
     printf("请输入你的选择:");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
@@ -776,6 +781,7 @@ int CheckGoal(int flag){
     // 2.查看运动员得分
     // 0.返回上一层
     int choose;
+    printf("0.返回上一层  1.查看组织得分情况  2.查看运动员得分\n");
     printf("请输入你的选择:");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
@@ -830,6 +836,7 @@ int CheckOrganizationGoal(int flag){
     // 2.倒序输出
     // 0.返回上一层
     int choose;
+    printf("0.返回上一层  1.正序输出  2.倒序输出\n");
     printf("请输入你的选择:");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
@@ -924,6 +931,7 @@ int CheckAthleteGoal(int flag){
     // 2.倒序输出
     // 0.返回上一层
     int choose;
+    printf("0.返回上一层  1.正序输出  2.倒序输出\n");
     printf("请输入你的选择:");
     scanf("%d",&choose);
     setbuf(stdin, NULL);
@@ -1026,3 +1034,6 @@ int main(){
     StartInterface();
     return 0;
 }
+
+
+
