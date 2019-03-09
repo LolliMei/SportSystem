@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <cassert>
 
-void save_vector(Vector vector,char* filename)
+void save_vector(Vector vector, char* filename)
 {
 	FILE* vectorFile;
 	int flag = fopen_s(&vectorFile, filename, "w+");
@@ -25,7 +25,7 @@ void load_vector(Vector vector, char* filename)
 	{
 		int data;
 		fscanf_s(vectorFile, "%d#", &data);
-		VectorAddLast(vector, data);
+			VectorAddLast(vector, data);
 	}
 	fflush(vectorFile);
 	fclose(vectorFile);
