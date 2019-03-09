@@ -233,10 +233,10 @@ int main() {
 	switch (forprintPrompt)
 	{
 	case 0:
-		mLogin();
+		mSignUp();
 		break;
 	case 1:
-		mSignUp();
+		mLogin();
 	default:
 		break;
 	}
