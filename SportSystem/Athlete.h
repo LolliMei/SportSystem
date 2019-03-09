@@ -11,4 +11,7 @@ typedef struct __Athlete
 	int events[3][2];//fill in with eventsID and rank
 }Athlete;
 
+//根据id，name，org创建一个运动员实例
+Athlete* init_athlete(char* id, char* name, char* org);
+
 #endif // ATHLETE_H
