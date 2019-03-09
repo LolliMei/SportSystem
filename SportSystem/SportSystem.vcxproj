@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{65C51167-DE6E-407A-B040-BA2163384074}</ProjectGuid>
     <RootNamespace>SportSystem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -124,7 +124,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AthHashMap\AthleteTable.c" />
+    <ClCompile Include="Athlete.c" />
     <ClCompile Include="AthleteMap\org_ath_map.c" />
+    <ClCompile Include="data.c" />
+    <ClCompile Include="converge.c" />
     <ClCompile Include="def.c" />
     <ClCompile Include="file.c" />
     <ClCompile Include="forlogin.c" />
@@ -132,21 +135,20 @@
     <ClCompile Include="Org\OrgTable.c" />
     <ClCompile Include="RaceHashMap\RaceHashMap.c" />
     <ClCompile Include="TrackHashMap\TrackHashMap.c" />
-    <ClCompile Include="Vector_ath\Vector.c" />
+    <ClCompile Include="Vector_ath\AthVector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AthHashMap\AthleteTable.h" />
     <ClInclude Include="Athlete.h" />
     <ClInclude Include="AthleteMap\org_ath_map.h" />
+    <ClInclude Include="converger.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="forlogin.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Org\OrgTable.h" />
     <ClInclude Include="RaceHashMap\RaceHashMap.h" />
     <ClInclude Include="TrackHashMap\TrackHashMap.h" />
-    <ClInclude Include="Vector_ath\AthVector.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Interface\Gai.c" />
+    <ClInclude Include="Vector_ath\AthVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

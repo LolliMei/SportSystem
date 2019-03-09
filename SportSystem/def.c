@@ -9,6 +9,6 @@ struct __AHashMap* AthletePool;
 //≥ı ºªØ
 inline void Init()
 {
-	AthletePool = InitHashMap(256);
+	AthletePool = init_athlete_table(256);
 
 }

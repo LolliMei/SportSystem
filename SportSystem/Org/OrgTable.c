@@ -117,8 +117,6 @@ void OrgTableRemoveAt(OrgTable OrgTable, int index)
     OrgTable->size --;
 }
 
-
-
 //删除指定的元素
 void OrgTableRemove(OrgTable OrgTable,Organization element)
 {
