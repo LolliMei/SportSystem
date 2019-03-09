@@ -14,7 +14,6 @@ TrackHashMap TrackItemTable;
 
 AthHashMap AthHashTable;
 
-
 void InitData()
 {
 	organization = InitOrgTable(20);
@@ -29,6 +28,9 @@ void InitData()
 	//从文件中加载所有的运动员
 	load_athlete(AthHashTable, "athlete.txt");
 
+	//从文件中加载组织
+	
+
 	//把运动员放入对应的组织中
 	for (int i = 0; i < AthHashTable->capacity; i++)
 	{
@@ -41,6 +43,7 @@ void InitData()
 		}
 	}
 
+	
 	
 
 }

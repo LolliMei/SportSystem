@@ -77,3 +77,25 @@ void load_athlete(AthHashMap map, char* filename)
 	fclose(vectorFile);
 }
 
+void save_organization(OrgTable table, char* filename)
+{
+	FILE* fp = fopen(filename, "w+");
+	for (size_t i = 1; i <=8; i++)
+	{
+		fprintf(fp, "%s\n", table->data[i].name);
+	}
+	fclose(fp);
+}
+
+void load_organization(OrgTable table, char* filename)
+{
+	FILE* fp = fopen(filename, "r+");
+	for (size_t i = 1; i <= 8; i++)
+	{
+		char name[50];
+		fscanf(fp, "%s\n", name);
+		strcpy(table->data[i].name, name);		
+	}
+	fclose(fp);
+}
+

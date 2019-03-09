@@ -32,8 +32,7 @@ typedef struct __AHashMap* AthHashMap;
 
 //获取指定数值后的最小2的幂
 int minTwoPow(const int n);
-//得到对象在哈希表中的存储索引
-int getHashIndex(int key, AthHashMap map);
+
 //初始化哈希表
 AthHashMap init_athlete_table(int capacity);
 
@@ -47,7 +46,7 @@ void add_athlete(AthHashMap map, int key, Athlete* value);
 Athlete* get_athlete(AthHashMap map, int key);
 
 //查看表中是否有对应的Key
-bool contains_raceitem(AthHashMap map, int key);
+bool contains_athlete(AthHashMap map, int key);
 
 //设置hash表中key的value，同时返回旧的value
 Athlete* set_athlete(AthHashMap map, int key, Athlete* value);
@@ -57,4 +56,5 @@ void remove_athlete(AthHashMap map, int key);
 
 //遍历整个哈希表
 void forall_athlete(AthHashMap map, void (*func)(Athlete ath));
+
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H

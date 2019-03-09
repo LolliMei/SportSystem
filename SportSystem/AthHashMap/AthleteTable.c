@@ -18,7 +18,7 @@ int minTwoPow(const int n)
 }
 
 //得到对象在哈希表中的存储索引
-int getHashIndex(int key, AthHashMap map)
+int index(int key, AthHashMap map)
 {
 	return key%map->capacity;
 }
@@ -95,7 +95,7 @@ Athlete* get_athlete(AthHashMap map, int key)
 }
 
 //查看表中是否有对应的Key
-bool contains_raceitem(AthHashMap map, int key)
+bool contains_athlete(AthHashMap map, int key)
 {
 	int index = getHashIndex(key, map);
 
