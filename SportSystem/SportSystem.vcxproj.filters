@@ -84,6 +84,9 @@
     <ClCompile Include="Athlete.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="data.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h">

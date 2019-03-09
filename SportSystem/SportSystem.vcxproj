@@ -126,6 +126,7 @@
     <ClCompile Include="AthHashMap\AthleteTable.c" />
     <ClCompile Include="Athlete.c" />
     <ClCompile Include="AthleteMap\org_ath_map.c" />
+    <ClCompile Include="data.c" />
     <ClCompile Include="def.c" />
     <ClCompile Include="file.c" />
     <ClCompile Include="forlogin.c" />
