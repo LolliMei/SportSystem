@@ -240,7 +240,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	scanf("%s", &org);
 	printf("请输入你的名字:");
 	scanf("%s", &name);
-	pritnf("请输入你参加的项目:");
+	printf("请输入你参加的项目:");
 	scanf("%d",&Item );
 	int choose;
 	printf("0.退出系统 1.返回主菜单\n");
