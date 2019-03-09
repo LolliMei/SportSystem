@@ -4,8 +4,8 @@
 //非自动扩容版本
 //
 
-#ifndef INC_2019SPRINGDSA_LINKEDHASHMAP_H
-#define INC_2019SPRINGDSA_LINKEDHASHMAP_H
+#ifndef INC_2019SPRINGDSA_TRACKHASHMAP_H
+#define INC_2019SPRINGDSA_TRACKHASHMAP_H
 
 #include <math.h>
 #include <stdbool.h>
@@ -18,26 +18,26 @@
 #define KeyType int
 #define ValueType TrackItem*
 
-typedef struct Entry
+typedef struct _TEntry
 {
     long hash;
     KeyType key;
     ValueType value;
     struct Entry* next;
-}Entry;
+}TEntry;
 
 typedef struct __THashMap
 {
-    //array of Entry
-    Entry* table[1048576];
-    //Entry** table;
+    //array of TEntry
+    TEntry* table[1048576];
+    //TEntry** table;
     int size;
     int capacity;
     int (*hashIndex)(void* key,void* map);
 }*TrackHashMap;
 
 //获取指定数值后的最小2的幂
-int minTwoPow(const int n)
+int get_capacity(const int n)
 {
     return (int)pow(2,ceil(log(n)/log(2)));
 }
@@ -53,9 +53,9 @@ TrackHashMap init_athlete_table(int capacity)
 {
     TrackHashMap map = (TrackHashMap)malloc(sizeof(struct __THashMap));
     map->size = 0;
-    map->capacity = minTwoPow(capacity);
+    map->capacity = get_capacity(capacity);
     map->hashIndex = trackitem_hash_index;
-    //map->table = malloc(sizeof(Entry)*capacity);
+    //map->table = malloc(sizeof(TEntry)*capacity);
     for (int i = 0; i < map->capacity; ++i) {
         map->table[i] = NULL;
     }
@@ -63,9 +63,9 @@ TrackHashMap init_athlete_table(int capacity)
 }
 
 //创建存储节点
-Entry* create_track_entry(int hash,KeyType key,ValueType value)
+TEntry* create_track_entry(int hash,KeyType key,ValueType value)
 {
-    Entry* entry = (Entry*)malloc(sizeof(struct Entry));
+    TEntry* entry = (TEntry*)malloc(sizeof(struct _TEntry));
     if(entry == NULL) exit(-1);
     entry->hash = hash;
     entry->key = key;
@@ -89,8 +89,8 @@ void add_athlete(TrackHashMap map,KeyType key,ValueType value)
     //如果hash值已经存在了
     else
     {
-        Entry* entry = map->table[index];
-        Entry* newNode = create_track_entry(index,key,value);
+        TEntry* entry = map->table[index];
+        TEntry* newNode = create_track_entry(index,key,value);
         newNode->next = entry;
         map->table[index] = newNode;
         map->size++;
@@ -102,7 +102,7 @@ ValueType get_raceitem(TrackHashMap map,KeyType key)
 {
     //计算并得到哈希链表的入口
     int index = map->hashIndex((void*)key,map);
-    Entry* entryList = map->table[index];
+    TEntry* entryList = map->table[index];
     //在链表中寻找
     while(entryList != NULL)
     {
@@ -124,7 +124,7 @@ ValueType get_raceitem(TrackHashMap map,KeyType key)
 bool contains_raceitem(TrackHashMap map,KeyType key)
 {
     int index = map->hashIndex((void*)key,map);
-    Entry* node = map->table[index];
+    TEntry* node = map->table[index];
     while(node != NULL)
     {
         if(key == node->key)
@@ -146,9 +146,9 @@ ValueType set_raceitem_map(TrackHashMap map, KeyType key, ValueType value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
-	Entry* dummyHead = (Entry*)malloc(sizeof(Entry));
+	TEntry* dummyHead = (TEntry*)malloc(sizeof(TEntry));
 	dummyHead->next = map->table[index];
-	Entry* node = dummyHead;
+	TEntry* node = dummyHead;
 	while (node != NULL)
 	{
 		//如果匹配key，则记录旧值
@@ -166,32 +166,4 @@ ValueType set_raceitem_map(TrackHashMap map, KeyType key, ValueType value)
 	return NULL;
 }
 
-//移除哈希表中的元素
-void remove_raceitem_map(TrackHashMap map, KeyType key)
-{
-	int index = map->hashIndex((void*)key, map);
-	Entry* list = map->table[index];
-	Entry* dummyHead = (Entry*)malloc(sizeof(struct Entry));
-	dummyHead->next = list;
-	Entry* node = dummyHead;
-	Entry* prev = node, *delNode;
-
-	while (node != NULL)
-	{
-		if (node->next->key == key)
-		{
-			prev = node;
-			delNode = prev->next;
-			prev->next = delNode->next;
-			delNode->next = NULL;
-			free(delNode);
-
-		}
-		node = node->next;
-	}
-	map->table[index] = dummyHead->next;
-	free(dummyHead);
-
-
-}
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H

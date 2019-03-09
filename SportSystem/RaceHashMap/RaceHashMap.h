@@ -4,8 +4,8 @@
 //非自动扩容版本
 //
 
-#ifndef INC_2019SPRINGDSA_LINKEDHASHMAP_H
-#define INC_2019SPRINGDSA_LINKEDHASHMAP_H
+#ifndef INC_2019SPRINGDSA_RACEHASHMAP_H
+#define INC_2019SPRINGDSA_RACEHASHMAP_H
 
 #include <math.h>
 #include <stdbool.h>
@@ -17,34 +17,34 @@
 #define KeyType int
 #define ValueType RaceItem*
 
-typedef struct Entry
+typedef struct _REntry
 {
     long hash;
     KeyType key;
     ValueType value;
-    struct Entry* next;
-}Entry;
+    struct REntry* next;
+}REntry;
 
 typedef struct __RHashMap
 {
-    //array of Entry
-    Entry* table[1048576];
-    //Entry** table;
+    //array of REntry
+    REntry* table[1048576];
+    //REntry** table;
     int size;
     int capacity;
     int (*hashIndex)(void* key,void* map);
 }*RaceItemHashMap;
 
 //获取指定数值后的最小2的幂
-int minTwoPow(const int n)
+int get_rcapacity(const int n)
 {
     return (int)pow(2,ceil(log(n)/log(2)));
 }
 
 //得到对象在哈希表中的存储索引
-int getHashIndex(RaceItem* obj, RaceItemHashMap* map)
+int getHashIndex(RaceItem* obj, RaceItemHashMap map)
 {
-    return obj->eventsID;
+    return obj->eventsID % map->capacity;
 }
 
 //初始化哈希表
@@ -52,9 +52,9 @@ RaceItemHashMap init_raceitem_map(int capacity)
 {
     RaceItemHashMap map = (RaceItemHashMap)malloc(sizeof(struct __RHashMap));
     map->size = 0;
-    map->capacity = minTwoPow(capacity);
+    map->capacity = get_rcapacity(capacity);
     map->hashIndex = getHashIndex;
-    //map->table = malloc(sizeof(Entry)*capacity);
+    //map->table = malloc(sizeof(REntry)*capacity);
     for (int i = 0; i < map->capacity; ++i) {
         map->table[i] = NULL;
     }
@@ -62,14 +62,14 @@ RaceItemHashMap init_raceitem_map(int capacity)
 }
 
 //创建存储节点
-Entry* create_race_entry(int hash,KeyType key,ValueType value)
+REntry* create_race_entry(int hash,KeyType key,ValueType value)
 {
-    Entry* entry = (Entry*)malloc(sizeof(struct Entry));
+    REntry* entry = (REntry*)malloc(sizeof(struct _REntry));
     if(entry == NULL) exit(-1);
-    entry->hash = hash;
-    entry->key = key;
-    entry->value = value;
-    entry->next = NULL;
+	entry->hash = hash;
+	entry->key = key;
+	entry->value = value;
+	entry->next = NULL;
     return entry;
 }
 
@@ -88,8 +88,8 @@ void add_raceitem_map(RaceItemHashMap map,KeyType key,ValueType value)
     //如果hash值已经存在了
     else
     {
-        Entry* entry = map->table[index];
-        Entry* newNode = create_race_entry(index,key,value);
+        REntry* entry = map->table[index];
+        REntry* newNode = create_race_entry(index,key,value);
         newNode->next = entry;
         map->table[index] = newNode;
         map->size++;
@@ -101,7 +101,7 @@ ValueType get_raceitem(RaceItemHashMap map,KeyType key)
 {
     //计算并得到哈希链表的入口
     int index = map->hashIndex((void*)key,map);
-    Entry* entryList = map->table[index];
+    REntry* entryList = map->table[index];
     //在链表中寻找
     while(entryList != NULL)
     {
@@ -123,7 +123,7 @@ ValueType get_raceitem(RaceItemHashMap map,KeyType key)
 bool contains_raceitem(RaceItemHashMap map,KeyType key)
 {
     int index = map->hashIndex((void*)key,map);
-    Entry* node = map->table[index];
+    REntry* node = map->table[index];
     while(node != NULL)
     {
         if(key == node->key)
@@ -145,9 +145,9 @@ ValueType set_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
-	Entry* dummyHead = (Entry*)malloc(sizeof(Entry));
+	REntry* dummyHead = (REntry*)malloc(sizeof(REntry));
 	dummyHead->next = map->table[index];
-	Entry* node = dummyHead;
+	REntry* node = dummyHead;
 	while (node != NULL)
 	{
 		//如果匹配key，则记录旧值
@@ -165,32 +165,4 @@ ValueType set_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
 	return NULL;
 }
 
-//移除哈希表中的元素
-void remove_raceitem_map(RaceItemHashMap map, KeyType key)
-{
-	int index = map->hashIndex((void*)key, map);
-	Entry* list = map->table[index];
-	Entry* dummyHead = (Entry*)malloc(sizeof(struct Entry));
-	dummyHead->next = list;
-	Entry* node = dummyHead;
-	Entry* prev = node, *delNode;
-
-	while (node != NULL)
-	{
-		if (node->next->key == key)
-		{
-			prev = node;
-			delNode = prev->next;
-			prev->next = delNode->next;
-			delNode->next = NULL;
-			free(delNode);
-
-		}
-		node = node->next;
-	}
-	map->table[index] = dummyHead->next;
-	free(dummyHead);
-
-
-}
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H
