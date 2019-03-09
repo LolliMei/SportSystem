@@ -216,14 +216,27 @@ void printPrompt() {
 	printf("   |         我是新用户——请按 1         |\n");
 	printf("   |______________________________________|\n");
 	printf("\t请输入\t\t");
+
 }
 
  int main() {
  	int forprintPrompt;
  	initFileData();
- 	printPrompt();
- 	scanf_s("%d", &forprintPrompt, 1);
- 	fflush(stdin);
+	printPrompt();
+
+	while (true)
+	{
+		scanf_s("%d", &forprintPrompt, 1);
+		fflush(stdin);
+		if (forprintPrompt == '1'&&forprintPrompt == '0') {
+			break;
+		}
+		else
+		{
+			printf_s("格式输入错误\n");
+		}
+	}
+ 	
 
  	switch (forprintPrompt)
 	{
@@ -233,7 +246,7 @@ void printPrompt() {
  	case 1:
 		mSignUp();
  	default:
- 		break;
+		break;
  	}
 
  	return 0;
