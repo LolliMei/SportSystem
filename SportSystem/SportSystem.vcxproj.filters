@@ -87,6 +87,9 @@
     <ClCompile Include="data.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="converge.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h">
@@ -117,6 +120,9 @@
       <Filter>头文件\AthVector</Filter>
     </ClInclude>
     <ClInclude Include="Interface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="converger.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="file.h">
