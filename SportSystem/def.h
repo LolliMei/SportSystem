@@ -5,10 +5,10 @@
 
 
 //define
-enum place
-{
-	track1,track2,race1,race2
-};
+#define track1 1;
+#define track2 2;
+#define race1 -1;
+#define race2 -2;
 
 typedef struct
 {
@@ -16,7 +16,7 @@ typedef struct
 	int Size;
 	Vector Athelte;
 	int raceturn;//区别是第几轮
-	enum place eventplace;//使用的场地
+	int eventplace;//使用的场地
 	float startime;//开始时间
 	float endtime;//结束时间
 }TrackItem;
@@ -27,7 +27,7 @@ typedef struct
 	int Size;
 	Vector Athlete;
 	int raceturn;//区别是第几轮
-	enum place eventplace;//使用的场地
+	int eventplace;//使用的场地
 	float startime;//开始时间
 	float endtime;//结束时间
 }RaceItem;
