@@ -23,12 +23,12 @@ int getHashIndex(int key, AthHashMap map)
 }
 
 //初始化哈希表
-AthHashMap InitHashMap(int capacity)
+AthHashMap init_athlete_table(int capacity)
 {
 	AthHashMap map = (AthHashMap)malloc(sizeof(struct __AHashMap));
 	map->size = 0;
 	map->capacity = minTwoPow(capacity);
-	//map->table = malloc(sizeof(Entry)*capacity);
+	map->table = malloc(sizeof(Entry)*capacity);
 	for (int i = 0; i < map->capacity; ++i) {
 		map->table[i] = NULL;
 	}
@@ -48,7 +48,7 @@ Entry* createEntry(int hash, int key, Athlete* value)
 }
 
 // 把一个元素放入Hash表中
-void HashMapPut(AthHashMap map, int key, Athlete* value)
+void add_athlete(AthHashMap map, int key, Athlete* value)
 {
 	//通过绑定的hash函数计算出Hash值
 	int index = 0;
@@ -94,7 +94,7 @@ Athlete* get_athlete(AthHashMap map, int key)
 }
 
 //查看表中是否有对应的Key
-bool HashMapContains(AthHashMap map, int key)
+bool contains_raceitem(AthHashMap map, int key)
 {
 	int index = getHashIndex(key, map);
 
@@ -142,7 +142,7 @@ Athlete* set_athlete(AthHashMap map, int key, Athlete* value)
 }
 
 //移除哈希表中的元素
-void HashMapRemove(AthHashMap map, int key)
+void remove_athlete(AthHashMap map, int key)
 {
 
 	int index = getHashIndex(key, map);

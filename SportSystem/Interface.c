@@ -5,6 +5,7 @@
 // 比赛项目设置由人工输入项目，通过SuperAdmin发布查看
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void StartInterface(void);
 void SuperAdministrator(void);
@@ -27,6 +28,34 @@ int CheckAthleteGoal(int flag);
 void SetCompetition(void);
 void Setting(void);
 
+
+//开始界面
+void StartInterface(){
+    int choose;
+    printf("欢迎进入汕头大学校运会系统\n");
+    printf("请输入你的身份:");
+    printf("1.超级管理员  2.管理员  3.游客");
+    scanf("%d",&choose);
+    setbuf(stdin, NULL);
+    while(choose<1 || choose>3){
+        printf("输入错误，请重新输入:");
+        scanf("%d",&choose);
+        setbuf(stdin, NULL);
+    }
+    switch (choose) {
+        case 1:
+            SuperAdministrator();
+            break;
+        case 2:
+            Administrator();
+            break;
+        case 3:
+            visitor();
+            break;
+        default:
+            break;
+    }
+}
 
 // 超级管理员界面
 void SuperAdministrator(){

@@ -239,15 +239,12 @@ void printPrompt() {
 // }
 void mSuperAdminEntrance() {
 	printf("超级管理员入口ok");
-	SuperAdministrator();
 };
 
 void mAdminEntrance() {
 	printf("管理员入口ok");
-	Administrator();
 };
 
 void mUserEntrance() {
 	printf("用户入口ok");
-	Visitor();
 };

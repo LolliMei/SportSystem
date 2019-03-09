@@ -5,7 +5,7 @@
 
 typedef struct __Athlete
 {
-	int id[20];
+	char id[20];
 	char name[20];
 	char organization[30];//departments or colleges
 	int events[3][2];//fill in with eventsID and rank

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AthleteMap/org_ath_map.h"
-#include "Vector_ath/Vector.h"
+#include "Vector_ath/AthVector.h"
 
 
 //define
@@ -46,7 +46,7 @@ typedef struct
 }Organization;
 
 //田赛连接表
-typedef struct 
+typedef struct
 {
 	Vector* raceitem1;
 	Vector* raceitem2;

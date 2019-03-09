@@ -78,7 +78,7 @@
     <ClCompile Include="AthleteMap\org_ath_map.c">
       <Filter>源文件\Org_AthMap</Filter>
     </ClCompile>
-    <ClCompile Include="Vector_ath\Vector.c">
+    <ClCompile Include="Vector_ath\AthVector.c">
       <Filter>源文件\AthVector</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,13 +107,8 @@
     <ClInclude Include="AthleteMap\org_ath_map.h">
       <Filter>头文件\Org_AthMap</Filter>
     </ClInclude>
-    <ClInclude Include="Vector_ath\AthVector.c">
+    <ClInclude Include="Vector_ath\AthVector.h">
       <Filter>头文件\AthVector</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Interface\Gai.c">
-      <Filter>源文件</Filter>
-    </None>
   </ItemGroup>
 </Project>

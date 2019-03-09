@@ -31,7 +31,7 @@ void AthMapPut(org_ath_map tree, int key, Athlete* value);
 
 Athlete* get_org_ath(org_ath_map tree, int key);
 
-bool AthMapContains(org_ath_map tree, int key);
+bool contains_org_ath(org_ath_map tree, int key);
 
 AthNode* _remove(const org_ath_map tree, AthNode* node, int key);
 

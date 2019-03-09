@@ -153,7 +153,7 @@ void AthMapPut(org_ath_map tree, int key, Athlete* value) {
 }
 
 //查找是否存在对应的Key
-bool AthMapContains(org_ath_map tree, int key)
+bool contains_org_ath(org_ath_map tree, int key)
 {
 	AthNode* node = tree->root;
 	while (node != NULL)

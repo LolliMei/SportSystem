@@ -48,7 +48,7 @@ int getHashIndex(RaceItem* obj, RaceItemHashMap* map)
 }
 
 //初始化哈希表
-RaceItemHashMap InitHashMap(int capacity)
+RaceItemHashMap init_raceitem_map(int capacity)
 {
     RaceItemHashMap map = (RaceItemHashMap)malloc(sizeof(struct __RHashMap));
     map->size = 0;
@@ -62,7 +62,7 @@ RaceItemHashMap InitHashMap(int capacity)
 }
 
 //创建存储节点
-Entry* createEntry(int hash,KeyType key,ValueType value)
+Entry* create_race_entry(int hash,KeyType key,ValueType value)
 {
     Entry* entry = (Entry*)malloc(sizeof(struct Entry));
     if(entry == NULL) exit(-1);
@@ -74,7 +74,7 @@ Entry* createEntry(int hash,KeyType key,ValueType value)
 }
 
 // 把一个元素放入Hash表中
-void HashMapPut(RaceItemHashMap map,KeyType key,ValueType value)
+void add_raceitem_map(RaceItemHashMap map,KeyType key,ValueType value)
 {
     //通过绑定的hash函数计算出Hash值
     int index = 0;
@@ -82,14 +82,14 @@ void HashMapPut(RaceItemHashMap map,KeyType key,ValueType value)
     //如果Hash表位置没有被占用,则添加进位置中
     if(map->table[index] == NULL )
     {
-        map->table[index] = createEntry(index,key,value);
+        map->table[index] = create_race_entry(index,key,value);
         map->size++;
     }
-    //如果hash值已经存在了，//todo::则找到最末尾，添加进Entry中
+    //如果hash值已经存在了
     else
     {
         Entry* entry = map->table[index];
-        Entry* newNode = createEntry(index,key,value);
+        Entry* newNode = create_race_entry(index,key,value);
         newNode->next = entry;
         map->table[index] = newNode;
         map->size++;
@@ -97,7 +97,7 @@ void HashMapPut(RaceItemHashMap map,KeyType key,ValueType value)
 }
 
 //根据键查找HashMap中的值
-ValueType HashMapGet(RaceItemHashMap map,KeyType key)
+ValueType get_raceitem(RaceItemHashMap map,KeyType key)
 {
     //计算并得到哈希链表的入口
     int index = map->hashIndex((void*)key,map);
@@ -120,7 +120,7 @@ ValueType HashMapGet(RaceItemHashMap map,KeyType key)
 }
 
 //查看表中是否有对应的Key
-bool HashMapContains(RaceItemHashMap map,KeyType key)
+bool contains_raceitem(RaceItemHashMap map,KeyType key)
 {
     int index = map->hashIndex((void*)key,map);
     Entry* node = map->table[index];
@@ -141,7 +141,7 @@ bool HashMapContains(RaceItemHashMap map,KeyType key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType HashMapSet(RaceItemHashMap map, KeyType key, ValueType value)
+ValueType set_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
@@ -166,7 +166,7 @@ ValueType HashMapSet(RaceItemHashMap map, KeyType key, ValueType value)
 }
 
 //移除哈希表中的元素
-void HashMapRemove(RaceItemHashMap map, KeyType key)
+void remove_raceitem_map(RaceItemHashMap map, KeyType key)
 {
 	int index = map->hashIndex((void*)key, map);
 	Entry* list = map->table[index];

@@ -43,18 +43,18 @@ int minTwoPow(const int n)
 }
 
 //得到对象在哈希表中的存储索引
-int getHashIndex(TrackItem* obj, TrackHashMap* map)
+int trackitem_hash_index(TrackItem* obj, TrackHashMap* map)
 {
 	return obj->eventsID;
 }
 
 //初始化哈希表
-TrackHashMap InitHashMap(int capacity)
+TrackHashMap init_athlete_table(int capacity)
 {
     TrackHashMap map = (TrackHashMap)malloc(sizeof(struct __THashMap));
     map->size = 0;
     map->capacity = minTwoPow(capacity);
-    map->hashIndex = getHashIndex;
+    map->hashIndex = trackitem_hash_index;
     //map->table = malloc(sizeof(Entry)*capacity);
     for (int i = 0; i < map->capacity; ++i) {
         map->table[i] = NULL;
@@ -63,7 +63,7 @@ TrackHashMap InitHashMap(int capacity)
 }
 
 //创建存储节点
-Entry* createEntry(int hash,KeyType key,ValueType value)
+Entry* create_track_entry(int hash,KeyType key,ValueType value)
 {
     Entry* entry = (Entry*)malloc(sizeof(struct Entry));
     if(entry == NULL) exit(-1);
@@ -75,7 +75,7 @@ Entry* createEntry(int hash,KeyType key,ValueType value)
 }
 
 // 把一个元素放入Hash表中
-void HashMapPut(TrackHashMap map,KeyType key,ValueType value)
+void add_athlete(TrackHashMap map,KeyType key,ValueType value)
 {
     //通过绑定的hash函数计算出Hash值
     int index = 0;
@@ -83,14 +83,14 @@ void HashMapPut(TrackHashMap map,KeyType key,ValueType value)
     //如果Hash表位置没有被占用,则添加进位置中
     if(map->table[index] == NULL )
     {
-        map->table[index] = createEntry(index,key,value);
+        map->table[index] = create_track_entry(index,key,value);
         map->size++;
     }
-    //如果hash值已经存在了，//todo::则找到最末尾，添加进Entry中
+    //如果hash值已经存在了
     else
     {
         Entry* entry = map->table[index];
-        Entry* newNode = createEntry(index,key,value);
+        Entry* newNode = create_track_entry(index,key,value);
         newNode->next = entry;
         map->table[index] = newNode;
         map->size++;
@@ -98,7 +98,7 @@ void HashMapPut(TrackHashMap map,KeyType key,ValueType value)
 }
 
 //根据键查找HashMap中的值
-ValueType HashMapGet(TrackHashMap map,KeyType key)
+ValueType get_raceitem(TrackHashMap map,KeyType key)
 {
     //计算并得到哈希链表的入口
     int index = map->hashIndex((void*)key,map);
@@ -121,7 +121,7 @@ ValueType HashMapGet(TrackHashMap map,KeyType key)
 }
 
 //查看表中是否有对应的Key
-bool HashMapContains(TrackHashMap map,KeyType key)
+bool contains_raceitem(TrackHashMap map,KeyType key)
 {
     int index = map->hashIndex((void*)key,map);
     Entry* node = map->table[index];
@@ -142,7 +142,7 @@ bool HashMapContains(TrackHashMap map,KeyType key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType HashMapSet(TrackHashMap map, KeyType key, ValueType value)
+ValueType set_raceitem_map(TrackHashMap map, KeyType key, ValueType value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
@@ -167,7 +167,7 @@ ValueType HashMapSet(TrackHashMap map, KeyType key, ValueType value)
 }
 
 //移除哈希表中的元素
-void HashMapRemove(TrackHashMap map, KeyType key)
+void remove_raceitem_map(TrackHashMap map, KeyType key)
 {
 	int index = map->hashIndex((void*)key, map);
 	Entry* list = map->table[index];

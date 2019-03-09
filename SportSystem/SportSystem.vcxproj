@@ -132,7 +132,7 @@
     <ClCompile Include="Org\OrgTable.c" />
     <ClCompile Include="RaceHashMap\RaceHashMap.c" />
     <ClCompile Include="TrackHashMap\TrackHashMap.c" />
-    <ClCompile Include="Vector_ath\Vector.c" />
+    <ClCompile Include="Vector_ath\AthVector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AthHashMap\AthleteTable.h" />
@@ -143,10 +143,7 @@
     <ClInclude Include="Org\OrgTable.h" />
     <ClInclude Include="RaceHashMap\RaceHashMap.h" />
     <ClInclude Include="TrackHashMap\TrackHashMap.h" />
-    <ClInclude Include="Vector_ath\AthVector.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Interface\Gai.c" />
+    <ClInclude Include="Vector_ath\AthVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
