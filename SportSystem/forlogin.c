@@ -4,6 +4,7 @@
 #include <string.h>
 #include <windows.h>
 #include "forlogin.h"
+#include "Interface.h"
 
 FILE *fp;
 
@@ -217,34 +218,38 @@ void printPrompt() {
 	printf("\t请输入\t\t");
 }
 
-// int main() {
-// 	int forprintPrompt;
-// 	initFileData();
-// 	printPrompt();
-// 	scanf_s("%d", &forprintPrompt, 1);
-// 	fflush(stdin);
-//
-// 	switch (forprintPrompt)
-// 	{
-// 	case 0:
-// 		mLogin();
-// 		break;
-// 	case 1:
-// 		mSignUp();
-// 	default:
-// 		break;
-// 	}
-//
-// 	return 0;
-// }
+ int main() {
+ 	int forprintPrompt;
+ 	initFileData();
+ 	printPrompt();
+ 	scanf_s("%d", &forprintPrompt, 1);
+ 	fflush(stdin);
+
+ 	switch (forprintPrompt)
+	{
+	case 0:
+ 		mLogin();
+ 		break;
+ 	case 1:
+		mSignUp();
+ 	default:
+ 		break;
+ 	}
+
+ 	return 0;
+ 
+ }
 void mSuperAdminEntrance() {
 	printf("超级管理员入口ok");
+	SuperAdministrator();
 };
 
 void mAdminEntrance() {
 	printf("管理员入口ok");
+	Administrator();
 };
 
 void mUserEntrance() {
 	printf("用户入口ok");
+	Visitor();
 };
