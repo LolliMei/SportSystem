@@ -234,8 +234,14 @@ int Apply(int flag) {
 
 // 运动员报名
 int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
+	char org[30], name[20];
+	int Item;
 	printf("请输入你的组织:");
+	scanf("%s", &org);
 	printf("请输入你的名字:");
+	scanf("%s", &name);
+	pritnf("请输入你参加的项目:");
+	scanf("%d",&Item );
 	int choose;
 	printf("0.退出系统 1.返回主菜单\n");
 	printf("输入你的选择:");
