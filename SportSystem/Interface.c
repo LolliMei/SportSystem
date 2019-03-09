@@ -241,9 +241,9 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	scanf_s("%s", &name);
 	printf("你需要参加几个项目:");
 	scanf_s("%d", &num);
-	pritnf("请输入你参加的项目的编号:");
+	printf("请输入你参加的项目的编号:");
 	for (int i = 0; i < num; i++) {
-		scanf_s_s("%d", &Item[i]);
+		scanf_s("%d", &Item[i]);
 	}
 	int choose;
 	printf("0.退出系统 1.返回主菜单\n");
