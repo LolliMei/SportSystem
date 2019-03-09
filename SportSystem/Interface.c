@@ -42,7 +42,8 @@ void SuperAdministrator() {
 	// 8.系统设置
 	// 0.退出
 	int SAChoose;
-	printf("\n0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
+	printf("\n");
+	printf("0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
 	printf("请输入你的选择:");
 	scanf("%d", &SAChoose);
 	setbuf(stdin, NULL);
@@ -97,7 +98,7 @@ void Administrator() {
 	// 5.查看得分
 	// 0.退出
 	int AChoose;
-	printf("\n0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
+	printf("0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
 	printf("请输入你的选择:");
 	scanf("%d", &AChoose);
 	setbuf(stdin, NULL);
@@ -139,7 +140,7 @@ void Visitor() {
 	// 2.查看得分
 	// 0.退出
 	int VChoose;
-	printf("\n0.退出  1.查看成绩  2.查看得分\n");
+	printf("0.退出  1.查看成绩  2.查看得分\n");
 	printf("请输入你的选择:");
 	scanf("%d", &VChoose);
 	setbuf(stdin, NULL);
