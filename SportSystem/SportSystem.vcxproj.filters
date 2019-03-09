@@ -110,5 +110,8 @@
     <ClInclude Include="Vector_ath\AthVector.h">
       <Filter>头文件\AthVector</Filter>
     </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
