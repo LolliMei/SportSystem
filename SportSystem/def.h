@@ -43,6 +43,7 @@ typedef struct
 {
 	char name[50];
 	struct __AMTree* ath_map;
+
 }Organization;
 
 //田赛连接表

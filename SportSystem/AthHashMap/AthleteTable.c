@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "AthleteTable.h"
+#include <stdio.h>
 
 
 //获取指定数值后的最小2的幂
@@ -19,7 +20,7 @@ int minTwoPow(const int n)
 //得到对象在哈希表中的存储索引
 int getHashIndex(int key, AthHashMap map)
 {
-	return key;
+	return key%map->capacity;
 }
 
 //初始化哈希表
@@ -168,5 +169,5 @@ void remove_athlete(AthHashMap map, int key)
 	map->table[index] = dummyHead->next;
 	free(dummyHead);
 
-
 }
+
