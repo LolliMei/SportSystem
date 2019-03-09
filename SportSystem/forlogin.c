@@ -51,8 +51,8 @@ int judgePasswordFormat(char Password[]) {
 
 
 void mSignUp() {
-	
-	fp=fopen("database.txt", "a");
+
+	fp = fopen("database.txt", "a");
 
 	if (fp == NULL) {
 		printf("文件写入失败！");
@@ -63,10 +63,10 @@ void mSignUp() {
 	while (true)
 	{
 		printf("请输入6-13位纯数字账号：  ");//这里还有一个账号可能相同的问题尚未解决.		
-		scanf_s("%s", &ID, 13);		
+		scanf_s("%s", &ID, 13);
 		fflush(stdin);
-		
-		
+
+
 
 		if (judgeNumsFormat() == 1) {
 			break;
@@ -81,12 +81,12 @@ void mSignUp() {
 		printf("请再次输入密码：  ");
 		scanf_s("%s", &Passwordb, 13);
 		fflush(stdin);
-		if (judgePasswordFormat(Passworda) == 1 && judgePasswordFormat(Passwordb)==1 &&strcmp(Passworda,Passwordb)==0){
+		if (judgePasswordFormat(Passworda) == 1 && judgePasswordFormat(Passwordb) == 1 && strcmp(Passworda, Passwordb) == 0) {
 			break;
 		}
 	}
 
-	while(true)
+	while (true)
 	{
 		printf("请输入1位数字代表权限：	（0为超级管理员，1为管理员，2为用户）");
 		getchar();
@@ -96,7 +96,7 @@ void mSignUp() {
 			break;
 		}
 	}
-	
+
 	//文件加入账号
 	fputs(ID, fp);
 	fputs("#", fp);
@@ -145,7 +145,7 @@ void initFileData() {
 
 		memset(temp, '\0', sizeof(temp));
 		memset(loginInformation[IDnums].login_Password, '\0', sizeof(loginInformation[IDnums].login_Password));
-		for (k=0,j = i + 1; strLine[j] != '#'; j++)
+		for (k = 0, j = i + 1; strLine[j] != '#'; j++)
 		{
 			temp[k] = strLine[j];
 			k++;
@@ -165,14 +165,14 @@ void initFileData() {
 void mLogin() {
 	char lID[13];
 	char lPassword[13];
-	
+
 	printf("账号：\t");
-	scanf_s("%s",&lID,13);
+	scanf_s("%s", &lID, 13);
 	fflush(stdin);
 	printf("密码：\t");
 	scanf_s("%s", &lPassword, 13);
 	fflush(stdin);
-	
+
 	int flag = -1;
 	for (int i = 0; i < IDnums; i++) {
 		if (strcmp(lID, loginInformation[i].login_ID) == 0 && strcmp(lPassword, loginInformation[i].login_Password) == 0) {
@@ -219,39 +219,31 @@ void printPrompt() {
 
 }
 
- int main() {
- 	int forprintPrompt;
- 	initFileData();
+int main() {
+	int forprintPrompt;
+	initFileData();
 	printPrompt();
-
-	while (true)
-	{
-		scanf_s("%d", &forprintPrompt, 1);
-		fflush(stdin);
-		if (forprintPrompt == '1'&&forprintPrompt == '0') {
-			break;
-		}
-		else
-		{
-			printf_s("格式输入错误\n");
-		}
+	scanf_s("%d", &forprintPrompt);
+	setbuf(stdin, NULL);
+	while (forprintPrompt < 0 || forprintPrompt>1) {
+		printf("输入错误，请重新输入:");
+		scanf_s("%d", &forprintPrompt);
+		setbuf(stdin, NULL);
 	}
- 	
-
- 	switch (forprintPrompt)
+	switch (forprintPrompt)
 	{
 	case 0:
- 		mLogin();
- 		break;
- 	case 1:
-		mSignUp();
- 	default:
+		mLogin();
 		break;
- 	}
+	case 1:
+		mSignUp();
+	default:
+		break;
+	}
 
- 	return 0;
- 
- }
+	return 0;
+
+}
 void mSuperAdminEntrance() {
 	printf("超级管理员入口ok");
 	SuperAdministrator();
