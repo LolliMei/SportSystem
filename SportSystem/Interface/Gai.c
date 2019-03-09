@@ -5,7 +5,6 @@
 // 比赛项目设置由人工输入项目，通过SuperAdmin发布查看
 
 #include <stdio.h>
-#include <stdlib.h>
 
 void StartInterface(void);
 void SuperAdministrator(void);
@@ -316,7 +315,7 @@ int Program(int flag){
             break;
         case 1:
             //打印出秩序册(函数)
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice;
             scanf("%d",&choice);
@@ -367,7 +366,6 @@ int Information(int flag){
     }
     switch (choose) {
         case 0:
-            system("clear");
             if(flag==1){
                 SuperAdministrator();
             }
@@ -429,7 +427,7 @@ int OrganizationInformation(int flag){
             break;
         case 1:
             // 打印文件
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice;
             scanf("%d",&choice);
@@ -486,7 +484,7 @@ int AthleteInformation(int flag){
             break;
         case 1:
             // 通过哈希表查找
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice;
             scanf("%d",&choice);
@@ -545,7 +543,7 @@ int CompetitionInformation(int flag){
             break;
         case 1:
             // 打印文件
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_1;
             scanf("%d",&choice_1);
@@ -573,7 +571,7 @@ int CompetitionInformation(int flag){
             break;
         case 2:
             // 打印田赛项目
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_2;
             scanf("%d",&choice_2);
@@ -601,7 +599,7 @@ int CompetitionInformation(int flag){
             break;
         case 3:
             // 打印竞赛项目
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_3;
             scanf("%d",&choice_3);
@@ -859,7 +857,7 @@ int CheckOrganizationGoal(int flag){
             break;
         case 1:
             // 正序输出数据
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_1;
             scanf("%d",&choice_1);
@@ -890,7 +888,7 @@ int CheckOrganizationGoal(int flag){
             break;
         case 2:
             // 倒序输出数据
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_2;
             scanf("%d",&choice_2);
@@ -954,7 +952,7 @@ int CheckAthleteGoal(int flag){
             break;
         case 1:
             // 正序输出数据
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_1;
             scanf("%d",&choice_1);
@@ -985,7 +983,7 @@ int CheckAthleteGoal(int flag){
             break;
         case 2:
             // 倒序输出数据
-            printf("\n0.退出系统  1.返回");
+            printf("\n0.退出系统  1.返回\n");
             printf("请输入你的选择:");
             int choice_2;
             scanf("%d",&choice_2);
