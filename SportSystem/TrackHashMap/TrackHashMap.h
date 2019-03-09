@@ -15,14 +15,14 @@
 #include "../def.h"
 
 
-#define KeyType int
-#define ValueType TrackItem*
+#define KeyType1 int
+#define ValueType1 TrackItem*
 
 typedef struct _TEntry
 {
     long hash;
-    KeyType key;
-    ValueType value;
+    KeyType1 key;
+    ValueType1 value;
     struct Entry* next;
 }TEntry;
 
@@ -63,7 +63,7 @@ TrackHashMap init_athlete_table(int capacity)
 }
 
 //创建存储节点
-TEntry* create_track_entry(int hash,KeyType key,ValueType value)
+TEntry* create_track_entry(int hash,KeyType1 key,ValueType1 value)
 {
     TEntry* entry = (TEntry*)malloc(sizeof(struct _TEntry));
     if(entry == NULL) exit(-1);
@@ -75,7 +75,7 @@ TEntry* create_track_entry(int hash,KeyType key,ValueType value)
 }
 
 // 把一个元素放入Hash表中
-void add_athlete(TrackHashMap map,KeyType key,ValueType value)
+void add_athlete(TrackHashMap map,KeyType1 key,ValueType1 value)
 {
     //通过绑定的hash函数计算出Hash值
     int index = 0;
@@ -98,7 +98,7 @@ void add_athlete(TrackHashMap map,KeyType key,ValueType value)
 }
 
 //根据键查找HashMap中的值
-ValueType get_raceitem(TrackHashMap map,KeyType key)
+ValueType1 get_raceitem(TrackHashMap map,KeyType1 key)
 {
     //计算并得到哈希链表的入口
     int index = map->hashIndex((void*)key,map);
@@ -121,7 +121,7 @@ ValueType get_raceitem(TrackHashMap map,KeyType key)
 }
 
 //查看表中是否有对应的Key
-bool contains_raceitem(TrackHashMap map,KeyType key)
+bool contains_raceitem(TrackHashMap map,KeyType1 key)
 {
     int index = map->hashIndex((void*)key,map);
     TEntry* node = map->table[index];
@@ -142,7 +142,7 @@ bool contains_raceitem(TrackHashMap map,KeyType key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType set_raceitem_map(TrackHashMap map, KeyType key, ValueType value)
+ValueType1 set_raceitem_map(TrackHashMap map, KeyType1 key, ValueType1 value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
@@ -154,7 +154,7 @@ ValueType set_raceitem_map(TrackHashMap map, KeyType key, ValueType value)
 		//如果匹配key，则记录旧值
 		if (node->key == key)
 		{
-			ValueType oldVal = node->value;
+			ValueType1 oldVal = node->value;
 			node->value = value;
 			return oldVal;
 		}

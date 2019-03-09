@@ -13,5 +13,6 @@ typedef struct __Athlete
 
 //根据id，name，org创建一个运动员实例
 Athlete* init_athlete(char* id, char* name, char* org);
+void init_atl_eve(int * eventarray, int athID);
 
 #endif // ATHLETE_H
