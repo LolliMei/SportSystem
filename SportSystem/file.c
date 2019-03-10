@@ -57,7 +57,7 @@ void load_athlete(AthHashMap map, char* filename)
 		char id[30];
 		char name[30];
 		char org[30];
-		fscanf(vectorFile, "%s,%s,%s", id, name, org);
+		fscanf(vectorFile, "%s%s%s", id, name, org);
 		strcpy(ath->id, id);
 		strcpy(ath->name, name);
 		strcpy(ath->organization, org);
@@ -89,7 +89,9 @@ void save_organization(OrgTable table, char* filename)
 
 void load_organization(OrgTable table, char* filename)
 {
-	FILE* fp = fopen(filename, "r+");
+	FILE* fp;
+	int flag = fopen_s(&fp,filename, "r+");
+	
 	for (size_t i = 1; i <= 8; i++)
 	{
 		char name[50];

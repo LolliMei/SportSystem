@@ -52,21 +52,20 @@ Entry* createEntry(int hash, int key, Athlete* value)
 void add_athlete(AthHashMap map, int key, Athlete* value)
 {
 	//通过绑定的hash函数计算出Hash值
-	int index = 0;
-	index = getHashIndex(key, map);
+	int i = index(key, map);
 	//如果Hash表位置没有被占用,则添加进位置中
-	if (map->table[index] == NULL)
+	if (map->table[i] == NULL)
 	{
-		map->table[index] = createEntry(index, key, value);
+		map->table[i] = createEntry(i, key, value);
 		map->size++;
 	}
 	//如果hash值已经存在了，//todo::则找到最末尾，添加进Entry中
 	else
 	{
-		Entry* entry = map->table[index];
-		Entry* newNode = createEntry(index, key, value);
+		Entry* entry = map->table[i];
+		Entry* newNode = createEntry(i, key, value);
 		newNode->next = entry;
-		map->table[index] = newNode;
+		map->table[i] = newNode;
 		map->size++;
 	}
 }

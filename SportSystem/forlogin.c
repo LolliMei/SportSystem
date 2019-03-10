@@ -5,7 +5,11 @@
 #include <windows.h>
 #include "forlogin.h"
 #include "Interface.h"
-
+#include "file.h"
+#include "data.h"
+#include "AthHashMap/AthleteTable.h"
+#include "TrackHashMap/TrackHashMap.h"
+#include "RaceHashMap/RaceHashMap.h"
 FILE *fp;
 
 char ID[13];//账号
@@ -13,6 +17,15 @@ char Passworda[13];//密码
 char Passwordb[13];//用于再次输入确认密码
 char thePermission;//权限等级
 int IDnums = 0;//用户个数
+
+extern OrgTable organization;
+
+extern RaceItemHashMap RaceItemTable;
+
+extern TrackHashMap TrackItemTable;
+
+extern AthHashMap AthHashTable;
+
 
 //函数返回值为1则代表格式正确。
 int judgeNumsFormat() {
@@ -31,6 +44,7 @@ int judgeNumsFormat() {
 	}
 	return 1;
 }
+
 int judgePasswordFormat(char Password[]) {
 	int i;
 	for (i = 0; Password[i] != '\0'; i++) {
@@ -47,8 +61,6 @@ int judgePasswordFormat(char Password[]) {
 	}
 	return 1;
 }
-
-
 
 void mSignUp() {
 
@@ -115,7 +127,6 @@ void mSignUp() {
 	initFileData();
 	mLogin();
 }
-
 
 void initFileData() {
 	char strLine[MAXLENGTH_PER_LINE];
@@ -205,7 +216,6 @@ void mLogin() {
 	system("pause");
 }
 
-
 void printPrompt() {
 	printf("   _______________________________________\n");
 	printf("   |                                      |\n");
@@ -220,6 +230,12 @@ void printPrompt() {
 }
 
 int main() {
+	InitData();
+	
+	// char* orgpath = "organization.txt";
+	// load_organization(organization, orgpath);
+	// char* athletepath = "all.txt";
+	// load_athlete(AthHashTable, athletepath);
 	int forprintPrompt;
 	initFileData();
 	printPrompt();

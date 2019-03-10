@@ -5,7 +5,7 @@
 #include "AthHashMap/AthleteTable.h"
 #include "../SportSystem/AthleteMap/org_ath_map.h"
 #include "file.h"
-
+#include "data.h"
 OrgTable organization;
 
 RaceItemHashMap RaceItemTable;
@@ -13,6 +13,7 @@ RaceItemHashMap RaceItemTable;
 TrackHashMap TrackItemTable;
 
 AthHashMap AthHashTable;
+
 
 void InitData()
 {
@@ -26,10 +27,10 @@ void InitData()
 	AthHashTable = init_athlete_table(1000);
 
 	//从文件中加载所有的运动员
-	load_athlete(AthHashTable, "athlete.txt");
+	load_athlete(AthHashTable, "all.txt");
 
 	//从文件中加载组织
-	
+	load_organization(organization, "organization.txt");
 
 	//把运动员放入对应的组织中
 	for (int i = 0; i < AthHashTable->capacity; i++)
@@ -40,6 +41,7 @@ void InitData()
 			Athlete* athlete = node->value;
 			int orgIndex = atoi(athlete->id) / 100;
 			AthMapPut(organization->data[orgIndex].ath_map, atoi(athlete->id), athlete);
+			node = node->next;
 		}
 	}
 

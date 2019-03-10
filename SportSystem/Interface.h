@@ -35,4 +35,4 @@ int CheckAthleteGoal(int flag);
 
 void SetCompetition(void);
 
-void Setting(void);
+void Settings(void);

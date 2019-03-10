@@ -1,132 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="头文件\Org">
-      <UniqueIdentifier>{64470a0b-4628-4083-a9de-55d588f328c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Org">
-      <UniqueIdentifier>{7f6ce713-5aa2-4818-8636-159d522e6b3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\TrackHashMap">
-      <UniqueIdentifier>{efbe950d-af92-45ab-ad1c-18ce2a383a73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\RaceHashMap">
-      <UniqueIdentifier>{b29ae20c-cdcb-4df8-a492-0c2b4dbc59eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\RaceHashMap">
-      <UniqueIdentifier>{0403ccbd-01d7-425c-ac4d-3ba2b0299532}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\TrackHashMap">
-      <UniqueIdentifier>{a3d35cd3-aac4-44eb-aaf0-0c9d59ff6334}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\AthHashMap">
-      <UniqueIdentifier>{fcb074fc-b374-4716-9baf-ddbb9609934e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\AthHashMap">
-      <UniqueIdentifier>{5e9a8e49-75a2-4107-826a-55fd2dc8fba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Org_AthMap">
-      <UniqueIdentifier>{21fb4c3c-7c2f-4f7c-8d98-85cea525adb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Org_AthMap">
-      <UniqueIdentifier>{ecb3eece-6e88-401c-bd4c-acadd18ec6d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\AthVector">
-      <UniqueIdentifier>{b3e51235-5c4e-4450-bd92-dfe25735a750}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\AthVector">
-      <UniqueIdentifier>{daadc3b1-1177-4b1f-9e6f-09b724a30d98}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="AthHashMap\AthleteTable.c" />
+    <ClCompile Include="Athlete.c" />
+    <ClCompile Include="AthleteMap\org_ath_map.c" />
+    <ClCompile Include="data.c" />
+    <ClCompile Include="converge.c" />
+    <ClCompile Include="def.c" />
+    <ClCompile Include="file.c" />
+    <ClCompile Include="forlogin.c" />
+    <ClCompile Include="Interface.c" />
+    <ClCompile Include="Org\OrgTable.c" />
+    <ClCompile Include="RaceHashMap\RaceHashMap.c" />
+    <ClCompile Include="TrackHashMap\TrackHashMap.c" />
+    <ClCompile Include="Vector_ath\AthVector.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Interface.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="forlogin.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="file.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Org\OrgTable.c">
-      <Filter>源文件\Org</Filter>
-    </ClCompile>
-    <ClCompile Include="RaceHashMap\RaceHashMap.c">
-      <Filter>源文件\RaceHashMap</Filter>
-    </ClCompile>
-    <ClCompile Include="TrackHashMap\TrackHashMap.c">
-      <Filter>源文件\TrackHashMap</Filter>
-    </ClCompile>
-    <ClCompile Include="AthHashMap\AthleteTable.c">
-      <Filter>源文件\AthHashMap</Filter>
-    </ClCompile>
-    <ClCompile Include="def.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="AthleteMap\org_ath_map.c">
-      <Filter>源文件\Org_AthMap</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector_ath\AthVector.c">
-      <Filter>源文件\AthVector</Filter>
-    </ClCompile>
-    <ClCompile Include="Athlete.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="data.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="converge.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="forlogin.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Org\OrgTable.h">
-      <Filter>头文件\Org</Filter>
-    </ClInclude>
-    <ClInclude Include="RaceHashMap\RaceHashMap.h">
-      <Filter>头文件\RaceHashMap</Filter>
-    </ClInclude>
-    <ClInclude Include="TrackHashMap\TrackHashMap.h">
-      <Filter>头文件\TrackHashMap</Filter>
-    </ClInclude>
-    <ClInclude Include="AthHashMap\AthleteTable.h">
-      <Filter>头文件\AthHashMap</Filter>
-    </ClInclude>
-    <ClInclude Include="Athlete.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AthleteMap\org_ath_map.h">
-      <Filter>头文件\Org_AthMap</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector_ath\AthVector.h">
-      <Filter>头文件\AthVector</Filter>
-    </ClInclude>
-    <ClInclude Include="Interface.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="converger.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="file.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClInclude Include="AthHashMap\AthleteTable.h" />
+    <ClInclude Include="Athlete.h" />
+    <ClInclude Include="AthleteMap\org_ath_map.h" />
+    <ClInclude Include="converger.h" />
+    <ClInclude Include="def.h" />
+    <ClInclude Include="file.h" />
+    <ClInclude Include="forlogin.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="Org\OrgTable.h" />
+    <ClInclude Include="RaceHashMap\RaceHashMap.h" />
+    <ClInclude Include="TrackHashMap\TrackHashMap.h" />
+    <ClInclude Include="Vector_ath\AthVector.h" />
+    <ClInclude Include="data.h" />
   </ItemGroup>
 </Project>
