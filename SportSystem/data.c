@@ -44,10 +44,6 @@ void InitData()
 			node = node->next;
 		}
 	}
-
-	
-	
-
 }
 
 void LoadData()
