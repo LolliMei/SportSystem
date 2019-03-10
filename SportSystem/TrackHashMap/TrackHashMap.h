@@ -46,18 +46,18 @@ int trackitem_hash_index(TrackItem* obj, TrackHashMap* map);
 TrackHashMap init_track_table(int capacity);
 
 //创建存储节点
-TEntry* create_track_entry(int hash, KeyType key, ValueType value);
+TEntry* create_track_entry(int hash, KeyType1 key, ValueType1 value);
 
 // 把一个元素放入Hash表中
-void add_track(TrackHashMap map, KeyType key, ValueType value);
+void add_track(TrackHashMap map, KeyType1 key, ValueType1 value);
 
 //根据键查找HashMap中的值
-ValueType get_trackitem(TrackHashMap map, KeyType key);
+ValueType1 get_trackitem(TrackHashMap map, KeyType1 key);
 
 //查看表中是否有对应的Key
-bool contains_trackitem(TrackHashMap map, KeyType key);
+bool contains_trackitem(TrackHashMap map, KeyType1 key);
 
 //设置hash表中key的value，同时返回旧的value
-ValueType set_trackitem_map(TrackHashMap map, KeyType key, ValueType value);
+ValueType1 set_trackitem_map(TrackHashMap map, KeyType1 key, ValueType1 value);
 
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H

@@ -31,7 +31,7 @@ RaceItemHashMap init_raceitem_map(int capacity)
 }
 
 //创建存储节点
-REntry* create_race_entry(int hash, KeyType key, ValueType value)
+REntry* create_race_entry(int hash, KeyType2 key, ValueType2 value)
 {
 	REntry* entry = (REntry*)malloc(sizeof(struct _REntry));
 	if (entry == NULL) exit(-1);
@@ -43,7 +43,7 @@ REntry* create_race_entry(int hash, KeyType key, ValueType value)
 }
 
 // 把一个元素放入Hash表中
-void add_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
+void add_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
 {
 	//通过绑定的hash函数计算出Hash值
 	int index = 0;
@@ -66,7 +66,7 @@ void add_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
 }
 
 //根据键查找HashMap中的值
-ValueType get_raceitem(RaceItemHashMap map, KeyType key)
+ValueType2 get_raceitem(RaceItemHashMap map, KeyType2 key)
 {
 	//计算并得到哈希链表的入口
 	int index = map->hashIndex((void*)key, map);
@@ -89,7 +89,7 @@ ValueType get_raceitem(RaceItemHashMap map, KeyType key)
 }
 
 //查看表中是否有对应的Key
-bool contains_raceitem(RaceItemHashMap map, KeyType key)
+bool contains_raceitem(RaceItemHashMap map, KeyType2 key)
 {
 	int index = map->hashIndex((void*)key, map);
 	REntry* node = map->table[index];
@@ -110,7 +110,7 @@ bool contains_raceitem(RaceItemHashMap map, KeyType key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType set_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
+ValueType2 set_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
@@ -122,7 +122,7 @@ ValueType set_raceitem_map(RaceItemHashMap map, KeyType key, ValueType value)
 		//如果匹配key，则记录旧值
 		if (node->key == key)
 		{
-			ValueType oldVal = node->value;
+			ValueType2 oldVal = node->value;
 			node->value = value;
 			return oldVal;
 		}

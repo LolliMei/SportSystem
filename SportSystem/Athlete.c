@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../SportSystem/AthHashMap/AthleteTable.h"
+#include "../SportSystem/RaceHashMap/RaceHashMap.h"
+#include "../SportSystem/TrackHashMap/TrackHashMap.h"
+#include "../SportSystem/Vector_ath/AthVector.h"
 Athlete* init_athlete(char* id,char* name,char* org)
 {
 	Athlete* ath = (Athlete*)malloc(sizeof(Athlete));
@@ -20,13 +23,27 @@ Athlete* init_athlete(char* id,char* name,char* org)
 
 }
 extern AthHashTable;
+extern RaceItemTable;
+extern TrackItemTable;
 void init_atl_eve(int * eventarray,int athID)
 {
 	Athlete * ath;
+	RaceItem* race;
+	TrackItem* track;
 	int i = 0;
 	ath= get_athlete(AthHashTable, athID);
 	for (i = 0; i < 3; i++)
 	{
 		ath->events[i][0] = eventarray[i];
+		if (eventarray[i]/100==1)
+		{
+			race=get_raceitem(RaceItemTable, eventarray);
+			push_front_ath_vector(race->Athlete, *ath);
+		}
+		else if (eventarray[i] / 100 == 2)
+		{
+			track = get_trackitem(TrackItemTable, eventarray);
+			push_front_ath_vector(track->Athelte, *ath);
+		}
 	}
 }
