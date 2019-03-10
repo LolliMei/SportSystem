@@ -12,6 +12,7 @@
 
 typedef struct
 {
+	char name[50];
 	int eventsID;
 	int Size;
 	AthVector Athelte;
@@ -23,6 +24,7 @@ typedef struct
 
 typedef struct
 {
+	char name[50];
 	int eventsID;
 	int Size;
 	AthVector Athlete;

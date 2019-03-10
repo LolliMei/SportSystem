@@ -328,7 +328,6 @@ int Program(int flag) {
 	return 0;
 }
 
-
 // 参赛信息查询
 int Information(int flag) {
 	// 1.查看参赛组织信息

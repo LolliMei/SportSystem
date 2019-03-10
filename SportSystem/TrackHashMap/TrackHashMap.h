@@ -33,14 +33,13 @@ typedef struct __THashMap
     //TEntry** table;
     int size;
     int capacity;
-    int (*hashIndex)(void* key,void* map);
 }*TrackHashMap;
 
 //获取指定数值后的最小2的幂
 int get_capacity(const int n);
 
 //得到对象在哈希表中的存储索引
-int trackitem_hash_index(TrackItem* obj, TrackHashMap* map);
+int trackitem_hash_index(int obj, TrackHashMap map);
 
 //初始化哈希表
 TrackHashMap init_track_table(int capacity);

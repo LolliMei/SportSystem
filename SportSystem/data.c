@@ -6,6 +6,8 @@
 #include "../SportSystem/AthleteMap/org_ath_map.h"
 #include "file.h"
 #include "data.h"
+#include "InitTracRaceItem.h"
+
 OrgTable organization;
 
 RaceItemHashMap RaceItemTable;
@@ -32,6 +34,12 @@ void InitData()
 	//从文件中加载组织
 	load_organization(organization, "organization.txt");
 
+	//加载田赛项目
+	load_raceitem(RaceItemTable, "raceitem.txt");
+
+	//加载径赛项目
+	load_trackitem(TrackItemTable, "trackitem.txt");
+
 	//把运动员放入对应的组织中
 	for (int i = 0; i < AthHashTable->capacity; i++)
 	{
@@ -46,10 +54,6 @@ void InitData()
 	}
 }
 
-void LoadData()
-{
-	
-}
 
 
 

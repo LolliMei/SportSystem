@@ -11,9 +11,9 @@ int get_rcapacity(const int n)
 }
 
 //得到对象在哈希表中的存储索引
-int getHashIndex(RaceItem* obj, RaceItemHashMap map)
+int getHashIndex(int key, RaceItemHashMap map)
 {
-	return obj->eventsID % map->capacity;
+	return key % map->capacity;
 }
 
 //初始化哈希表
@@ -22,7 +22,6 @@ RaceItemHashMap init_raceitem_map(int capacity)
 	RaceItemHashMap map = (RaceItemHashMap)malloc(sizeof(struct __RHashMap));
 	map->size = 0;
 	map->capacity = get_rcapacity(capacity);
-	map->hashIndex = getHashIndex;
 	//map->table = malloc(sizeof(REntry)*capacity);
 	for (int i = 0; i < map->capacity; ++i) {
 		map->table[i] = NULL;
@@ -47,7 +46,7 @@ void add_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
 {
 	//通过绑定的hash函数计算出Hash值
 	int index = 0;
-	index = map->hashIndex((void*)key, map);
+	index = getHashIndex(key, map);
 	//如果Hash表位置没有被占用,则添加进位置中
 	if (map->table[index] == NULL)
 	{
@@ -69,7 +68,8 @@ void add_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
 ValueType2 get_raceitem(RaceItemHashMap map, KeyType2 key)
 {
 	//计算并得到哈希链表的入口
-	int index = map->hashIndex((void*)key, map);
+	int index = getHashIndex(key, map);
+
 	REntry* entryList = map->table[index];
 	//在链表中寻找
 	while (entryList != NULL)
@@ -91,7 +91,8 @@ ValueType2 get_raceitem(RaceItemHashMap map, KeyType2 key)
 //查看表中是否有对应的Key
 bool contains_raceitem(RaceItemHashMap map, KeyType2 key)
 {
-	int index = map->hashIndex((void*)key, map);
+	int index = getHashIndex(key, map);
+
 	REntry* node = map->table[index];
 	while (node != NULL)
 	{
@@ -112,7 +113,8 @@ bool contains_raceitem(RaceItemHashMap map, KeyType2 key)
 //设置hash表中key的value，同时返回旧的value
 ValueType2 set_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
 {
-	int index = map->hashIndex(key, map);
+	int index = getHashIndex(key, map);
+
 	//创建虚拟头节点
 	REntry* dummyHead = (REntry*)malloc(sizeof(REntry));
 	dummyHead->next = map->table[index];

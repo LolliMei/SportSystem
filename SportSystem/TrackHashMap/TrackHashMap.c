@@ -6,7 +6,7 @@
 ValueType1 get_trackitem(TrackHashMap map, KeyType1 key)
 {
 	//计算并得到哈希链表的入口
-	int index = map->hashIndex((void*)key, map);
+	int index = trackitem_hash_index(key, map);
 	TEntry* entryList = map->table[index];
 	//在链表中寻找
 	while (entryList != NULL)
@@ -27,7 +27,8 @@ ValueType1 get_trackitem(TrackHashMap map, KeyType1 key)
 
 bool contains_trackitem(TrackHashMap map, KeyType1 key)
 {
-	int index = map->hashIndex((void*)key, map);
+	int index = trackitem_hash_index(key, map);
+
 	TEntry* node = map->table[index];
 	while (node != NULL)
 	{
@@ -47,7 +48,8 @@ bool contains_trackitem(TrackHashMap map, KeyType1 key)
 
 ValueType1 set_trackitem_map(TrackHashMap map, KeyType1 key, ValueType1 value)
 {
-	int index = map->hashIndex(key, map);
+	int index = trackitem_hash_index(key, map);
+
 	//创建虚拟头节点
 	TEntry* dummyHead = (TEntry*)malloc(sizeof(TEntry));
 	dummyHead->next = map->table[index];
@@ -72,8 +74,9 @@ ValueType1 set_trackitem_map(TrackHashMap map, KeyType1 key, ValueType1 value)
 void add_track(TrackHashMap map, KeyType1 key, ValueType1 value)
 {
 	//通过绑定的hash函数计算出Hash值
-	int index = 0;
-	index = map->hashIndex((void*)key, map);
+	
+	int index = trackitem_hash_index(key, map);
+
 	//如果Hash表位置没有被占用,则添加进位置中
 	if (map->table[index] == NULL)
 	{
@@ -107,7 +110,7 @@ TrackHashMap init_track_table(int capacity)
 	TrackHashMap map = (TrackHashMap)malloc(sizeof(struct __THashMap));
 	map->size = 0;
 	map->capacity = get_capacity(capacity);
-	map->hashIndex = trackitem_hash_index;
+	
 	//map->table = malloc(sizeof(TEntry)*capacity);
 	for (int i = 0; i < map->capacity; ++i) {
 		map->table[i] = NULL;
@@ -115,9 +118,9 @@ TrackHashMap init_track_table(int capacity)
 	return map;
 }
 
-int trackitem_hash_index(TrackItem* obj, TrackHashMap* map)
+int trackitem_hash_index(int key, TrackHashMap map)
 {
-	return obj->eventsID;
+	return key % map->capacity;
 }
 
 int get_capacity(const int n)

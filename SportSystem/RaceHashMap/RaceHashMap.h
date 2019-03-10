@@ -32,7 +32,6 @@ typedef struct __RHashMap
     //REntry** table;
     int size;
     int capacity;
-    int (*hashIndex)(void* key,void* map);
 }*RaceItemHashMap;
 
 //获取指定数值后的最小2的幂
