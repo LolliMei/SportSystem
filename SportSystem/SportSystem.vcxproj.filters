@@ -16,18 +16,85 @@
     <ClCompile Include="Vector_ath\AthVector.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AthHashMap\AthleteTable.h" />
-    <ClInclude Include="Athlete.h" />
-    <ClInclude Include="AthleteMap\org_ath_map.h" />
-    <ClInclude Include="converger.h" />
-    <ClInclude Include="def.h" />
-    <ClInclude Include="file.h" />
-    <ClInclude Include="forlogin.h" />
-    <ClInclude Include="Interface.h" />
-    <ClInclude Include="Org\OrgTable.h" />
-    <ClInclude Include="RaceHashMap\RaceHashMap.h" />
-    <ClInclude Include="TrackHashMap\TrackHashMap.h" />
-    <ClInclude Include="Vector_ath\AthVector.h" />
-    <ClInclude Include="data.h" />
+    <ClCompile Include="Interface.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="forlogin.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Org\OrgTable.c">
+      <Filter>源文件\Org</Filter>
+    </ClCompile>
+    <ClCompile Include="RaceHashMap\RaceHashMap.c">
+      <Filter>源文件\RaceHashMap</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackHashMap\TrackHashMap.c">
+      <Filter>源文件\TrackHashMap</Filter>
+    </ClCompile>
+    <ClCompile Include="AthHashMap\AthleteTable.c">
+      <Filter>源文件\AthHashMap</Filter>
+    </ClCompile>
+    <ClCompile Include="def.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AthleteMap\org_ath_map.c">
+      <Filter>源文件\Org_AthMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector_ath\AthVector.c">
+      <Filter>源文件\AthVector</Filter>
+    </ClCompile>
+    <ClCompile Include="Athlete.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="data.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="converge.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="forlogin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Org\OrgTable.h">
+      <Filter>头文件\Org</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceHashMap\RaceHashMap.h">
+      <Filter>头文件\RaceHashMap</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackHashMap\TrackHashMap.h">
+      <Filter>头文件\TrackHashMap</Filter>
+    </ClInclude>
+    <ClInclude Include="AthHashMap\AthleteTable.h">
+      <Filter>头文件\AthHashMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Athlete.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AthleteMap\org_ath_map.h">
+      <Filter>头文件\Org_AthMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector_ath\AthVector.h">
+      <Filter>头文件\AthVector</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="converger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+	    <ClInclude Include="InitTracRaceItem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

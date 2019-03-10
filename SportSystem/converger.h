@@ -1,3 +1,3 @@
 #pragma once
 
-void InitAthlete(void);
+void InitAthlete(void); 

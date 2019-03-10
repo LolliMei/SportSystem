@@ -41,8 +41,7 @@ void SuperAdministrator() {
 	// 8.系统设置
 	// 0.退出
 	int SAChoose;
-	printf("\n");
-	printf("0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
+	printf("\n0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &SAChoose);
 	setbuf(stdin, NULL);
@@ -97,7 +96,7 @@ void Administrator() {
 	// 5.查看得分
 	// 0.退出
 	int AChoose;
-	printf("0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
+	printf("\n0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &AChoose);
 	setbuf(stdin, NULL);
@@ -139,7 +138,7 @@ void Visitor() {
 	// 2.查看得分
 	// 0.退出
 	int VChoose;
-	printf("0.退出  1.查看成绩  2.查看得分\n");
+	printf("\n0.退出  1.查看成绩  2.查看得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &VChoose);
 	setbuf(stdin, NULL);
@@ -169,7 +168,7 @@ void Announcement() {
 	// 2.比赛项目设置
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.确认发布全部项目  2.比赛项目设置\n");
+	printf("\n0.返回上一层  1.确认发布全部项目  2.比赛项目设置\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -199,7 +198,7 @@ int Apply(int flag) {
 	// 1.运动员报名
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.运动员报名\n");
+	printf("\n0.返回上一层  1.运动员报名\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -245,7 +244,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 		scanf_s("%d", &Item[i]);
 	}
 	int choose;
-	printf("0.退出系统 1.返回主菜单\n");
+	printf("\n0.退出系统 1.返回主菜单\n");
 	printf("输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -277,7 +276,7 @@ int Program(int flag) {
 	// 1.查看秩序册
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看测序册\n");
+	printf("\n0.返回上一层  1.查看测序册\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -337,7 +336,7 @@ int Information(int flag) {
 	// 3.查看比赛项目
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看参赛组织信息  2.查看运动员信息  3.查看比赛项目\n");
+	printf("\n0.返回上一层  1.查看参赛组织信息  2.查看运动员信息  3.查看比赛项目\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -389,7 +388,7 @@ int OrganizationInformation(int flag) {
 	// 1.排序输出
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看\n");
+	printf("\n0.返回上一层  1.查看\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -446,7 +445,7 @@ int AthleteInformation(int flag) {
 	// 1.排序输出
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看\n");
+	printf("\n0.返回上一层  1.查看\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -505,7 +504,7 @@ int CompetitionInformation(int flag) {
 	// 3.查看竞赛
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看全部  2.查看田赛  3.查看竞赛\n");
+	printf("\n0.返回上一层  1.查看全部  2.查看田赛  3.查看竞赛\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -619,7 +618,7 @@ int CheckScore(int flag) {
 	// 2.查看竞赛成绩
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看田赛成绩  2.查看竞赛成绩\n");
+	printf("\n0.返回上一层  1.查看田赛成绩  2.查看竞赛成绩\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -676,7 +675,7 @@ int TrackItemScore(int flag) {
 	// 3.按运动员查看成绩
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
+	printf("\n0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -719,7 +718,7 @@ int RaceItemScore(int flag) {
 	// 3.按运动员查看成绩
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
+	printf("\n0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -761,7 +760,7 @@ int CheckGoal(int flag) {
 	// 2.查看运动员得分
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.查看组织得分情况  2.查看运动员得分\n");
+	printf("\n0.返回上一层  1.查看组织得分情况  2.查看运动员得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -816,7 +815,7 @@ int CheckOrganizationGoal(int flag) {
 	// 2.倒序输出
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.正序输出  2.倒序输出\n");
+	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -911,7 +910,7 @@ int CheckAthleteGoal(int flag) {
 	// 2.倒序输出
 	// 0.返回上一层
 	int choose;
-	printf("0.返回上一层  1.正序输出  2.倒序输出\n");
+	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);

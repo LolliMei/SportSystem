@@ -3,7 +3,7 @@
 //
 #include "TrackHashMap.h"
 
-ValueType get_trackitem(TrackHashMap map, KeyType key)
+ValueType1 get_trackitem(TrackHashMap map, KeyType1 key)
 {
 	//计算并得到哈希链表的入口
 	int index = map->hashIndex((void*)key, map);
@@ -25,7 +25,7 @@ ValueType get_trackitem(TrackHashMap map, KeyType key)
 	return NULL;
 }
 
-bool contains_trackitem(TrackHashMap map, KeyType key)
+bool contains_trackitem(TrackHashMap map, KeyType1 key)
 {
 	int index = map->hashIndex((void*)key, map);
 	TEntry* node = map->table[index];
@@ -45,7 +45,7 @@ bool contains_trackitem(TrackHashMap map, KeyType key)
 
 }
 
-ValueType set_trackitem_map(TrackHashMap map, KeyType key, ValueType value)
+ValueType1 set_trackitem_map(TrackHashMap map, KeyType1 key, ValueType1 value)
 {
 	int index = map->hashIndex(key, map);
 	//创建虚拟头节点
@@ -57,7 +57,7 @@ ValueType set_trackitem_map(TrackHashMap map, KeyType key, ValueType value)
 		//如果匹配key，则记录旧值
 		if (node->key == key)
 		{
-			ValueType oldVal = node->value;
+			ValueType1 oldVal = node->value;
 			node->value = value;
 			return oldVal;
 		}
@@ -69,7 +69,7 @@ ValueType set_trackitem_map(TrackHashMap map, KeyType key, ValueType value)
 	return NULL;
 }
 
-void add_track(TrackHashMap map, KeyType key, ValueType value)
+void add_track(TrackHashMap map, KeyType1 key, ValueType1 value)
 {
 	//通过绑定的hash函数计算出Hash值
 	int index = 0;
@@ -91,7 +91,7 @@ void add_track(TrackHashMap map, KeyType key, ValueType value)
 	}
 }
 
-TEntry* create_track_entry(int hash, KeyType key, ValueType value)
+TEntry* create_track_entry(int hash, KeyType1 key, ValueType1 value)
 {
 	TEntry* entry = (TEntry*)malloc(sizeof(struct _TEntry));
 	if (entry == NULL) exit(-1);
