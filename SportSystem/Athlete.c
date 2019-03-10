@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../SportSystem/AthHashMap/AthleteTable.h"
-#include "../SportSystem/RaceHashMap/RaceHashMap.h"
-#include "../SportSystem/TrackHashMap/TrackHashMap.h"
-#include "../SportSystem/Vector_ath/AthVector.h"
+#include "../SportSystem/RaceHashMap/race_item_map.h"
+#include "../SportSystem/TrackHashMap/track_item_map.h"
+#include "../SportSystem/Vector_ath/item_athlete.h"
 Athlete* init_athlete(char* id,char* name,char* org)
 {
 	Athlete* ath = (Athlete*)malloc(sizeof(Athlete));
@@ -22,9 +22,9 @@ Athlete* init_athlete(char* id,char* name,char* org)
 	return ath;
 
 }
-extern AthHashTable;
-extern RaceItemTable;
-extern TrackItemTable;
+extern athlete_table AthHashTable;
+extern race_item_map RaceItemTable;
+extern track_item_map TrackItemTable;
 void init_atl_eve(int * eventarray,int athID)
 {
 	Athlete * ath;

@@ -18,15 +18,15 @@ int minTwoPow(const int n)
 }
 
 //得到对象在哈希表中的存储索引
-int index(int key, AthHashMap map)
+int index(int key, athlete_table map)
 {
 	return key%map->capacity;
 }
 
 //初始化哈希表
-AthHashMap init_athlete_table(int capacity)
+athlete_table init_athlete_table(int capacity)
 {
-	AthHashMap map = (AthHashMap)malloc(sizeof(struct __AHashMap));
+	athlete_table map = (athlete_table)malloc(sizeof(struct __AHashMap));
 	map->size = 0;
 	map->capacity = minTwoPow(capacity);
 	map->table = malloc(sizeof(Entry)*capacity);
@@ -49,7 +49,7 @@ Entry* createEntry(int hash, int key, Athlete* value)
 }
 
 // 把一个元素放入Hash表中
-void add_athlete(AthHashMap map, int key, Athlete* value)
+void add_athlete(athlete_table map, int key, Athlete* value)
 {
 	//通过绑定的hash函数计算出Hash值
 	int i = index(key, map);
@@ -71,7 +71,7 @@ void add_athlete(AthHashMap map, int key, Athlete* value)
 }
 
 //根据键查找HashMap中的值
-Athlete* get_athlete(AthHashMap map, int key)
+Athlete* get_athlete(athlete_table map, int key)
 {
 	//计算并得到哈希链表的入口
 	int index = getHashIndex(key, map);
@@ -94,7 +94,7 @@ Athlete* get_athlete(AthHashMap map, int key)
 }
 
 //查看表中是否有对应的Key
-bool contains_athlete(AthHashMap map, int key)
+bool contains_athlete(athlete_table map, int key)
 {
 	int index = getHashIndex(key, map);
 
@@ -116,7 +116,7 @@ bool contains_athlete(AthHashMap map, int key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-Athlete* set_athlete(AthHashMap map, int key, Athlete* value)
+Athlete* set_athlete(athlete_table map, int key, Athlete* value)
 {
 	int index = getHashIndex(key, map);
 
@@ -142,7 +142,7 @@ Athlete* set_athlete(AthHashMap map, int key, Athlete* value)
 }
 
 //移除哈希表中的元素
-void remove_athlete(AthHashMap map, int key)
+void remove_athlete(athlete_table map, int key)
 {
 
 	int index = getHashIndex(key, map);

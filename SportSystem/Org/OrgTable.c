@@ -1,7 +1,7 @@
 //
 // Created by 黎钰晖 on 2019-02-23.
 //
-#include "../Org/OrgTable.h"
+#include "../Org/org_list.h"
 #include <memory.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -9,16 +9,16 @@
 #include <stdio.h>
 #include <string.h>
 
-OrgTable InitOrgTable(int capacity)
+org_list InitOrgTable(int capacity)
 {
-    OrgTable table = (OrgTable)malloc(sizeof(struct __OrgTable));
+    org_list table = (org_list)malloc(sizeof(struct __OrgTable));
 	table->size = 0;
 	table->capacity = capacity;
 	table->data = (Organization*)malloc(sizeof(Organization)*capacity);
     return table;
 }
 
-void DisposeOrgTable(OrgTable OrgTable)
+void DisposeOrgTable(org_list OrgTable)
 {
     free(OrgTable->data);
     OrgTable->data = NULL;
@@ -27,13 +27,13 @@ void DisposeOrgTable(OrgTable OrgTable)
 }
 
 //判断数组是否为空
-bool OrgTableEmpty(OrgTable OrgTable)
+bool OrgTableEmpty(org_list OrgTable)
 {
     return OrgTable->size == 0;
 }
 
 //数组扩容
-void org_resize(OrgTable OrgTable,int newCapacity)
+void org_resize(org_list OrgTable,int newCapacity)
 {
     //翻倍扩容
     Organization* newData =(Organization*)malloc(sizeof(Organization) * newCapacity);
@@ -46,13 +46,13 @@ void org_resize(OrgTable OrgTable,int newCapacity)
     free(oldData);
 }
 
-void internalRangeCheck(OrgTable table,int index)
+void internalRangeCheck(org_list table,int index)
 {
     assert(!(index < 0 || index > table->size));
 }
 
 //插入指定位置
-void OrgTableAddAt(OrgTable table, int index, Organization element)
+void OrgTableAddAt(org_list table, int index, Organization element)
 {
     internalRangeCheck(table,index);
     if(table->size == table->capacity)
@@ -67,26 +67,26 @@ void OrgTableAddAt(OrgTable table, int index, Organization element)
 }
 
 //末尾添加一个元素
-void OrgTableAddLast(OrgTable OrgTable,Organization element)
+void OrgTableAddLast(org_list OrgTable,Organization element)
 {
     OrgTableAddAt(OrgTable, OrgTable->size, element);
 }
 
 //在头部添加一个元素
-void OrgTableAddFirst(OrgTable OrgTable,Organization element)
+void OrgTableAddFirst(org_list OrgTable,Organization element)
 {
     OrgTableAddAt(OrgTable, 0, element);
 }
 
 //获取指定索引位置的元素
-Organization OrgTableGet(OrgTable OrgTable,int index)
+Organization OrgTableGet(org_list OrgTable,int index)
 {
     internalRangeCheck(OrgTable,index);
     return OrgTable->data[index];
 }
 
 //设置指定索引位置的元素,返回旧值
-Organization OrgTableSet(OrgTable OrgTable,int index,Organization element)
+Organization OrgTableSet(org_list OrgTable,int index,Organization element)
 {
     internalRangeCheck(OrgTable,index);
     Organization oldVal = OrgTable->data[index];
@@ -94,7 +94,7 @@ Organization OrgTableSet(OrgTable OrgTable,int index,Organization element)
     return oldVal;
 }
 
-int OrgTableFind(OrgTable table, Organization element)
+int OrgTableFind(org_list table, Organization element)
 {
 	for (size_t i = 0; i < table->size; i++)
 	{
@@ -107,7 +107,7 @@ int OrgTableFind(OrgTable table, Organization element)
 }
 
 //删除指定位置的存储对象
-void OrgTableRemoveAt(OrgTable OrgTable, int index)
+void OrgTableRemoveAt(org_list OrgTable, int index)
 {
     internalRangeCheck(OrgTable,index);
     for (int i = index + 1; i < OrgTable->size; ++i) {
@@ -117,7 +117,7 @@ void OrgTableRemoveAt(OrgTable OrgTable, int index)
 }
 
 //删除指定的元素
-void OrgTableRemove(OrgTable OrgTable,Organization element)
+void OrgTableRemove(org_list OrgTable,Organization element)
 {
     int index = OrgTableFind(OrgTable,element);
     if(index != -1)
@@ -125,13 +125,13 @@ void OrgTableRemove(OrgTable OrgTable,Organization element)
 }
 
 //删除OrgTable中第一个元素
-void OrgTableRemoveFirst(OrgTable OrgTable)
+void OrgTableRemoveFirst(org_list OrgTable)
 {
     OrgTableRemoveAt(OrgTable,0);
 }
 
 //删除OrgTable中最后一个元素
-void OrgTableRemoveLast(OrgTable OrgTable)
+void OrgTableRemoveLast(org_list OrgTable)
 {
     OrgTableRemoveAt(OrgTable,OrgTable->size - 1);
 }

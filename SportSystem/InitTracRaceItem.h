@@ -1,15 +1,15 @@
 #pragma once
 
-#include"TrackHashMap/TrackHashMap.h"
-#include"RaceHashMap/RaceHashMap.h"
+#include"TrackHashMap/track_item_map.h"
+#include"RaceHashMap/race_item_map.h"
 #include "AthHashMap/AthleteTable.h"
 #include "def.h"
 #include <stdio.h>
 #include <string.h>
 
-void init_Trackitem(TrackHashMap map)
+void init_Trackitem(track_item_map map)
 {
-	extern  TrackHashMap TrackItemTable;
+	extern  track_item_map TrackItemTable;
 	TrackItem * shotBall;
 	TrackItem * highJump;
 	TrackItem * broadJump;
@@ -21,21 +21,21 @@ void init_Trackitem(TrackHashMap map)
 	add_track(TrackItemTable, 203, broadJump);
 }
 
-void init_raceitem(RaceItemHashMap map)
+void init_raceitem(race_item_map map)
 {
-	extern RaceItemHashMap RaceItemTable;
+	extern race_item_map RaceItemTable;
 	RaceItem *fiftyM;
 	RaceItem *oHundredM;
 	RaceItem *oThousandM;
 	fiftyM->eventsID = 101;
 	oHundredM->eventsID = 102;
 	oThousandM->eventsID = 103;
-	add_raceitem_map(RaceItemTable, 101, fiftyM);
-	add_raceitem_map(RaceItemTable, 102, oHundredM);
-	add_raceitem_map(RaceItemTable, 103, oThousandM);
+	add_raceitem(RaceItemTable, 101, fiftyM);
+	add_raceitem(RaceItemTable, 102, oHundredM);
+	add_raceitem(RaceItemTable, 103, oThousandM);
 }
 
-void load_trackitem(TrackHashMap map,char* filename)
+void load_trackitem(track_item_map map,char* filename)
 {
 	FILE* fp;
 	int flag = fopen_s(&fp, filename, "r+");
@@ -67,7 +67,7 @@ void load_trackitem(TrackHashMap map,char* filename)
 	fclose(fp);
 }
 
-void load_raceitem(RaceItemHashMap map,char* filename)
+void load_raceitem(race_item_map map,char* filename)
 {
 	FILE* fp;
 	int flag = fopen_s(&fp, filename, "r+");
@@ -91,7 +91,7 @@ void load_raceitem(RaceItemHashMap map,char* filename)
 		raceitem->eventplace = eventplace;
 		raceitem->startime = starttime;
 		raceitem->endtime = endtime;
-		add_raceitem_map(map, raceitem->eventsID, raceitem);
+		add_raceitem(map, raceitem->eventsID, raceitem);
 		//(map, raceitem->eventsID, raceitem);
 	}
 

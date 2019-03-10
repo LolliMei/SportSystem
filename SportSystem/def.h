@@ -1,7 +1,7 @@
 #pragma once
 
-#include "AthleteMap/org_ath_map.h"
-#include "Vector_ath/AthVector.h"
+#include "AthleteMap/org_athlete.h"
+#include "Vector_ath/item_athlete.h"
 
 
 //define
@@ -15,7 +15,7 @@ typedef struct
 	char name[50];
 	int eventsID;
 	int Size;
-	AthVector Athelte;
+	item_athlete Athelte;
 	int raceturn;//区别是第几轮
 	int eventplace;//使用的场地
 	float startime;//开始时间
@@ -27,7 +27,7 @@ typedef struct
 	char name[50];
 	int eventsID;
 	int Size;
-	AthVector Athlete;
+	item_athlete Athlete;
 	int raceturn;//区别是第几轮
 	int eventplace;//使用的场地
 	float startime;//开始时间
@@ -51,16 +51,16 @@ typedef struct
 //田赛连接表
 typedef struct
 {
-	AthVector* raceitem1;
-	AthVector* raceitem2;
-	AthVector* raceitem3;
-	AthVector* raceitem4;
+	item_athlete* raceitem1;
+	item_athlete* raceitem2;
+	item_athlete* raceitem3;
+	item_athlete* raceitem4;
 }RaceList;
 
 typedef struct
 {
-	AthVector* raceitem1;
-	AthVector* raceitem2;
-	AthVector* raceitem3;
-	AthVector* raceitem4;
+	item_athlete* raceitem1;
+	item_athlete* raceitem2;
+	item_athlete* raceitem3;
+	item_athlete* raceitem4;
 }TrackList;

@@ -125,22 +125,22 @@
   <ItemGroup>
     <ClCompile Include="AthHashMap\AthleteTable.c" />
     <ClCompile Include="Athlete.c" />
-    <ClCompile Include="AthleteMap\org_ath_map.c" />
+    <ClCompile Include="AthleteMap\org_athlete.c" />
     <ClCompile Include="data.c" />
     <ClCompile Include="converge.c" />
     <ClCompile Include="def.c" />
     <ClCompile Include="file.c" />
     <ClCompile Include="forlogin.c" />
     <ClCompile Include="Interface.c" />
-    <ClCompile Include="Org\OrgTable.c" />
-    <ClCompile Include="RaceHashMap\RaceHashMap.c" />
-    <ClCompile Include="TrackHashMap\TrackHashMap.c" />
-    <ClCompile Include="Vector_ath\AthVector.c" />
+    <ClCompile Include="Org\org_list.c" />
+    <ClCompile Include="RaceHashMap\race_item_map.c" />
+    <ClCompile Include="TrackHashMap\track_item_map.c" />
+    <ClCompile Include="Vector_ath\item_athlete.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AthHashMap\AthleteTable.h" />
     <ClInclude Include="Athlete.h" />
-    <ClInclude Include="AthleteMap\org_ath_map.h" />
+    <ClInclude Include="AthleteMap\org_athlete.h" />
     <ClInclude Include="converger.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="def.h" />
@@ -148,10 +148,10 @@
     <ClInclude Include="forlogin.h" />
     <ClInclude Include="InitTracRaceItem.h" />
     <ClInclude Include="Interface.h" />
-    <ClInclude Include="Org\OrgTable.h" />
-    <ClInclude Include="RaceHashMap\RaceHashMap.h" />
-    <ClInclude Include="TrackHashMap\TrackHashMap.h" />
-    <ClInclude Include="Vector_ath\AthVector.h" />
+    <ClInclude Include="Org\org_list.h" />
+    <ClInclude Include="RaceHashMap\race_item_map.h" />
+    <ClInclude Include="TrackHashMap\track_item_map.h" />
+    <ClInclude Include="Vector_ath\item_athlete.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

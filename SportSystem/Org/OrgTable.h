@@ -14,70 +14,70 @@ typedef struct __OrgTable
     Organization* data;
     int size;
     int capacity;
-}*OrgTable;
+}*org_list;
 
-OrgTable InitOrgTable(int capacity);
+org_list InitOrgTable(int capacity);
 
 
-void DisposeOrgTable(OrgTable OrgTable);
+void DisposeOrgTable(org_list OrgTable);
 
 
 //判断数组是否为空
-bool OrgTableEmpty(OrgTable OrgTable);
+bool OrgTableEmpty(org_list OrgTable);
 
 
 //数组扩容
-void org_resize(OrgTable OrgTable,int newCapacity);
+void org_resize(org_list OrgTable,int newCapacity);
 
 
-void internalRangeCheck(OrgTable table,int index);
+void internalRangeCheck(org_list table,int index);
 
 
 //插入指定位置
-void OrgTableAddAt(OrgTable table, int index, Organization element);
+void OrgTableAddAt(org_list table, int index, Organization element);
 
 
 //末尾添加一个元素
-void OrgTableAddLast(OrgTable OrgTable,Organization element);
+void OrgTableAddLast(org_list OrgTable,Organization element);
 
 
 //在头部添加一个元素
-void OrgTableAddFirst(OrgTable OrgTable,Organization element);
+void OrgTableAddFirst(org_list OrgTable,Organization element);
 
 
 //获取指定索引位置的元素
-Organization OrgTableGet(OrgTable OrgTable,int index);
+Organization OrgTableGet(org_list OrgTable,int index);
 
 
 //设置指定索引位置的元素,返回旧值
-Organization OrgTableSet(OrgTable OrgTable,int index,Organization element);
+Organization OrgTableSet(org_list OrgTable,int index,Organization element);
 
 
 //查询是否含有指定的元素
-bool OrgTableContains(OrgTable OrgTable,Organization element);
+bool OrgTableContains(org_list OrgTable,Organization element);
 
 
 //查找指定元素下标，找不到则返回-1
-int OrgTableFind(OrgTable OrgTable,Organization element);
+int OrgTableFind(org_list OrgTable,Organization element);
 
 
 //删除指定位置的存储对象
-void OrgTableRemoveAt(OrgTable OrgTable, int index);
+void OrgTableRemoveAt(org_list OrgTable, int index);
 
 
 //删除指定的元素
-void OrgTableRemove(OrgTable OrgTable,Organization element);
+void OrgTableRemove(org_list OrgTable,Organization element);
 
 
 //删除OrgTable中第一个元素
-void OrgTableRemoveFirst(OrgTable OrgTable);
+void OrgTableRemoveFirst(org_list OrgTable);
 
 
 //删除OrgTable中最后一个元素
-void OrgTableRemoveLast(OrgTable OrgTable);
+void OrgTableRemoveLast(org_list OrgTable);
 
 
-void OrgTableToString(OrgTable OrgTable);
+void OrgTableToString(org_list OrgTable);
 
 
 

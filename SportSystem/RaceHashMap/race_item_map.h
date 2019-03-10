@@ -32,28 +32,28 @@ typedef struct __RHashMap
     //REntry** table;
     int size;
     int capacity;
-}*RaceItemHashMap;
+}*race_item_map;
 
 //获取指定数值后的最小2的幂
 int get_rcapacity(const int n);
 //得到对象在哈希表中的存储索引
-int getHashIndex(RaceItem* obj, RaceItemHashMap map);
+int getHashIndex(RaceItem* obj, race_item_map map);
 
 //初始化哈希表
-RaceItemHashMap init_raceitem_map(int capacity);
+race_item_map init_raceitem_map(int capacity);
 
 //创建存储节点
 REntry* create_race_entry(int hash, KeyType2 key, ValueType2 value);
 // 把一个元素放入Hash表中
-void add_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value);
+void add_raceitem(race_item_map map, KeyType2 key, ValueType2 value);
 
 //根据键查找HashMap中的值
-ValueType2 get_raceitem(RaceItemHashMap map, KeyType2 key);
+ValueType2 get_raceitem(race_item_map map, KeyType2 key);
 
 //查看表中是否有对应的Key
-bool contains_raceitem(RaceItemHashMap map, KeyType2 key);
+bool contains_raceitem(race_item_map map, KeyType2 key);
 
 //设置hash表中key的value，同时返回旧的value
-ValueType2 set_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value);
+ValueType2 set_raceitem(race_item_map map, KeyType2 key, ValueType2 value);
 
 #endif //INC_2019SPRINGDSA_LINKEDHASHMAP_H

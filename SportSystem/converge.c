@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "converger.h"
 #include <stdlib.h>
-#include "../SportSystem/Org/OrgTable.h"
-#include "../SportSystem/AthleteMap/org_ath_map.h"
+#include "../SportSystem/Org/org_list.h"
+#include "../SportSystem/AthleteMap/org_athlete.h"
 #include <string.h>
 
-extern OrgTable organization;
+extern org_list organization;
 
 
 

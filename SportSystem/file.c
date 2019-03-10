@@ -22,7 +22,7 @@ void save(FILE* vectorFile,Athlete ath)
 	fprintf_s(vectorFile, "\n");
 }
 
-void save_athlete(AthHashMap map, char* filename)
+void save_athlete(athlete_table map, char* filename)
 {
 	FILE* vectorFile;
 	int flag = fopen_s(&vectorFile, filename, "w+");
@@ -43,7 +43,7 @@ void save_athlete(AthHashMap map, char* filename)
 	fclose(vectorFile);
 }
 
-void load_athlete(AthHashMap map, char* filename)
+void load_athlete(athlete_table map, char* filename)
 {
 	FILE* vectorFile;
 	int flag = fopen_s(&vectorFile, filename, "r+");
@@ -77,7 +77,7 @@ void load_athlete(AthHashMap map, char* filename)
 	fclose(vectorFile);
 }
 
-void save_organization(OrgTable table, char* filename)
+void save_organization(org_list table, char* filename)
 {
 	FILE* fp = fopen(filename, "w+");
 	for (size_t i = 1; i <=8; i++)
@@ -87,7 +87,7 @@ void save_organization(OrgTable table, char* filename)
 	fclose(fp);
 }
 
-void load_organization(OrgTable table, char* filename)
+void load_organization(org_list table, char* filename)
 {
 	FILE* fp;
 	int flag = fopen_s(&fp,filename, "r+");

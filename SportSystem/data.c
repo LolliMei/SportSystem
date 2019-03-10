@@ -1,25 +1,25 @@
 
-#include "Org/OrgTable.h"
-#include "RaceHashMap/RaceHashMap.h"
-#include "TrackHashMap/TrackHashMap.h"
+#include "Org/org_list.h"
+#include "TrackHashMap/track_item_map.h"
 #include "AthHashMap/AthleteTable.h"
-#include "../SportSystem/AthleteMap/org_ath_map.h"
+#include "../SportSystem/AthleteMap/org_athlete.h"
 #include "file.h"
 #include "data.h"
 #include "InitTracRaceItem.h"
+#include "RaceHashMap/race_item_map.h"
 
-OrgTable organization;
+org_list organization;
 
-RaceItemHashMap RaceItemTable;
+race_item_map RaceItemTable;
 
-TrackHashMap TrackItemTable;
+track_item_map TrackItemTable;
 
-AthHashMap AthHashTable;
+athlete_table AthHashTable;
 
 
 void InitData()
 {
-	organization = InitOrgTable(20);
+	organization = init_org_list(20);
 	for (size_t i = 0; i < 20; i++)
 	{
 		organization->data[i].ath_map = InitAthMap();

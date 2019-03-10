@@ -8,8 +8,8 @@
 #include "file.h"
 #include "data.h"
 #include "AthHashMap/AthleteTable.h"
-#include "TrackHashMap/TrackHashMap.h"
-#include "RaceHashMap/RaceHashMap.h"
+#include "TrackHashMap/track_item_map.h"
+#include "RaceHashMap/race_item_map.h"
 FILE *fp;
 
 char ID[13];//账号
@@ -18,13 +18,13 @@ char Passwordb[13];//用于再次输入确认密码
 char thePermission;//权限等级
 int IDnums = 0;//用户个数
 
-extern OrgTable organization;
+extern org_list organization;
 
-extern RaceItemHashMap RaceItemTable;
+extern race_item_map RaceItemTable;
 
-extern TrackHashMap TrackItemTable;
+extern track_item_map TrackItemTable;
 
-extern AthHashMap AthHashTable;
+extern athlete_table AthHashTable;
 
 
 //函数返回值为1则代表格式正确。

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "forlogin.h"
 #include "Interface.h"
-#define CLEARCOMMAND "clear"
+#define CLEARCOMMAND "cls"
 
 void SuperAdministrator(void);
 void Administrator(void);
@@ -248,7 +248,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	int num, Item[3];
 	system(CLEARCOMMAND);
 	printf("请输入你的名字:");
-	scanf_s("%s", &name);
+	scanf_s("%s", &name,30);
 	printf("你需要参加几个项目:");
 	scanf_s("%d", &num);
 	printf("请输入你参加的项目的编号:");

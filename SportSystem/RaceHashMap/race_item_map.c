@@ -1,7 +1,7 @@
 //
 // Created by 黎钰晖 on 2019-02-18.
 //
-#include "RaceHashMap.h"
+#include "race_item_map.h"
 
 
 //获取指定数值后的最小2的幂
@@ -11,15 +11,15 @@ int get_rcapacity(const int n)
 }
 
 //得到对象在哈希表中的存储索引
-int getHashIndex(int key, RaceItemHashMap map)
+int getHashIndex(int key, race_item_map map)
 {
 	return key % map->capacity;
 }
 
 //初始化哈希表
-RaceItemHashMap init_raceitem_map(int capacity)
+race_item_map init_raceitem_map(int capacity)
 {
-	RaceItemHashMap map = (RaceItemHashMap)malloc(sizeof(struct __RHashMap));
+	race_item_map map = (race_item_map)malloc(sizeof(struct __RHashMap));
 	map->size = 0;
 	map->capacity = get_rcapacity(capacity);
 	//map->table = malloc(sizeof(REntry)*capacity);
@@ -42,7 +42,7 @@ REntry* create_race_entry(int hash, KeyType2 key, ValueType2 value)
 }
 
 // 把一个元素放入Hash表中
-void add_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
+void add_raceitem(race_item_map map, KeyType2 key, ValueType2 value)
 {
 	//通过绑定的hash函数计算出Hash值
 	int index = 0;
@@ -65,7 +65,7 @@ void add_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
 }
 
 //根据键查找HashMap中的值
-ValueType2 get_raceitem(RaceItemHashMap map, KeyType2 key)
+ValueType2 get_raceitem(race_item_map map, KeyType2 key)
 {
 	//计算并得到哈希链表的入口
 	int index = getHashIndex(key, map);
@@ -89,7 +89,7 @@ ValueType2 get_raceitem(RaceItemHashMap map, KeyType2 key)
 }
 
 //查看表中是否有对应的Key
-bool contains_raceitem(RaceItemHashMap map, KeyType2 key)
+bool contains_raceitem(race_item_map map, KeyType2 key)
 {
 	int index = getHashIndex(key, map);
 
@@ -111,7 +111,7 @@ bool contains_raceitem(RaceItemHashMap map, KeyType2 key)
 }
 
 //设置hash表中key的value，同时返回旧的value
-ValueType2 set_raceitem_map(RaceItemHashMap map, KeyType2 key, ValueType2 value)
+ValueType2 set_raceitem(race_item_map map, KeyType2 key, ValueType2 value)
 {
 	int index = getHashIndex(key, map);
 
