@@ -3,10 +3,11 @@
 #define ATHLETE_H
 #include"TrackHashMap/TrackHashMap.h"
 #include"RaceHashMap/RaceHashMap.h"
+#include "AthHashMap/AthleteTable.h"
 #include "def.h"
 void init_Trackitem(TrackHashMap map)
 {
-	extern  TrackItemTable;
+	extern  TrackHashMap TrackItemTable;
 	TrackItem * shotBall;
 	TrackItem * highJump;
 	TrackItem * broadJump;
@@ -20,7 +21,7 @@ void init_Trackitem(TrackHashMap map)
 
 void init_raceitem(RaceItemHashMap map)
 {
-	extern RaceItemTable;
+	extern RaceItemHashMap RaceItemTable;
 	RaceItem *fiftyM;
 	RaceItem *oHundredM;
 	RaceItem *oThousandM;
