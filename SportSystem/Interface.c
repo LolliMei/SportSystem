@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "forlogin.h"
 #include "Interface.h"
+#define CLEARCOMMAND "clear"
 
 void SuperAdministrator(void);
 void Administrator(void);
@@ -40,6 +41,7 @@ void SuperAdministrator() {
 	// 7.查看得分
 	// 8.系统设置
 	// 0.退出
+	system(CLEARCOMMAND);
 	int SAChoose;
 	printf("\n0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
 	printf("请输入你的选择:");
@@ -95,6 +97,7 @@ void Administrator() {
 	// 4.查看成绩
 	// 5.查看得分
 	// 0.退出
+	system(CLEARCOMMAND);
 	int AChoose;
 	printf("\n0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
 	printf("请输入你的选择:");
@@ -137,6 +140,7 @@ void Visitor() {
 	// 1.查看成绩
 	// 2.查看得分
 	// 0.退出
+	system(CLEARCOMMAND);
 	int VChoose;
 	printf("\n0.退出  1.查看成绩  2.查看得分\n");
 	printf("请输入你的选择:");
@@ -167,6 +171,7 @@ void Announcement() {
 	// 1.确认发布全部项目
 	// 2.比赛项目设置
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.确认发布全部项目  2.比赛项目设置\n");
 	printf("请输入你的选择:");
@@ -182,10 +187,12 @@ void Announcement() {
 		SuperAdministrator();
 		break;
 	case 1:
+		system(CLEARCOMMAND);
 		printf("已发布全部项目\n");
 		Announcement();
 		break;
 	case 2:
+		system(CLEARCOMMAND);
 		SetCompetition();
 		break;
 	default:
@@ -197,6 +204,7 @@ void Announcement() {
 int Apply(int flag) {
 	// 1.运动员报名
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.运动员报名\n");
 	printf("请输入你的选择:");
@@ -210,17 +218,21 @@ int Apply(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			SuperAdministrator();
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Administrator();
 		}
 		break;
 	case 1:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			AthleteApply(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			AthleteApply(2);
 		}
 		break;
@@ -234,7 +246,7 @@ int Apply(int flag) {
 int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	char org[30], name[20];
 	int num, Item[3];
-	
+	system(CLEARCOMMAND);
 	printf("请输入你的名字:");
 	scanf_s("%s", &name);
 	printf("你需要参加几个项目:");
@@ -244,7 +256,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 		scanf_s("%d", &Item[i]);
 	}
 	int choose;
-	printf("\n0.退出系统 1.返回主菜单\n");
+	printf("\n0.退出系统  1.返回主菜单  2.继续报名\n");
 	printf("输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -259,10 +271,22 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 		break;
 	case 1:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			SuperAdministrator();
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Administrator();
+		}
+		break;
+	case 2:
+		if (flag == 1) {
+			system(CLEARCOMMAND);
+			AthleteApply(1);
+		}
+		else if (flag == 2) {
+			system(CLEARCOMMAND);
+			AthleteApply(2);
 		}
 		break;
 	default:
@@ -275,6 +299,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 int Program(int flag) {
 	// 1.查看秩序册
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.查看测序册\n");
 	printf("请输入你的选择:");
@@ -288,15 +313,18 @@ int Program(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			SuperAdministrator();
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Administrator();
 		}
 		break;
 	case 1:
+		system(CLEARCOMMAND);
 		//打印出秩序册(函数)
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统  1.返回主界面\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -312,9 +340,11 @@ int Program(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				SuperAdministrator();
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				Administrator();
 			}
 			break;
@@ -335,6 +365,7 @@ int Information(int flag) {
 	// 2.查看运动员信息
 	// 3.查看比赛项目
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.查看参赛组织信息  2.查看运动员信息  3.查看比赛项目\n");
 	printf("请输入你的选择:");
@@ -348,32 +379,40 @@ int Information(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			SuperAdministrator();
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Administrator();
 		}
 	case 1:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			OrganizationInformation(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			OrganizationInformation(2);
 		}
 		break;
 	case 2:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			AthleteInformation(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			AthleteInformation(2);
 		}
 		break;
 	case 3:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CompetitionInformation(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CompetitionInformation(2);
 		}
 		break;
@@ -387,8 +426,9 @@ int Information(int flag) {
 int OrganizationInformation(int flag) {
 	// 1.排序输出
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看\n");
+	printf("\n0.返回上一层  1.查看参赛组织\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -400,15 +440,18 @@ int OrganizationInformation(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			Information(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Information(2);
 		}
 		break;
 	case 1:
+		system(CLEARCOMMAND);
 		// 打印文件
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统  1.返回信息查询\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -424,9 +467,11 @@ int OrganizationInformation(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				Information(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				Information(2);
 			}
 			break;
@@ -444,8 +489,9 @@ int OrganizationInformation(int flag) {
 int AthleteInformation(int flag) {
 	// 1.排序输出
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看\n");
+	printf("\n0.返回上一层  1.查看运动员信息\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -457,15 +503,21 @@ int AthleteInformation(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			Information(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Information(2);
 		}
 		break;
 	case 1:
+		system(CLEARCOMMAND);
+		int ID;
+		printf("请输入你要查询的运动员编号:");
+		scanf_s("%d",&ID);
 		// 通过哈希表查找
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统  1.返回信息查询\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -481,9 +533,11 @@ int AthleteInformation(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				Information(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				Information(2);
 			}
 			break;
@@ -503,8 +557,9 @@ int CompetitionInformation(int flag) {
 	// 2.查看田赛
 	// 3.查看竞赛
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看全部  2.查看田赛  3.查看竞赛\n");
+	printf("\n0.返回信息查询  1.查看全部  2.查看田赛  3.查看竞赛\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -516,20 +571,22 @@ int CompetitionInformation(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			Information(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Information(2);
 		}
 		break;
 	case 1:
 		// 打印文件
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统  1.返回比赛项目查询\n");
 		printf("请输入你的选择:");
 		int choice_1;
 		scanf_s("%d", &choice_1);
 		setbuf(stdin, NULL);
-		while (choice_1 < 0 || choice_1>1) {
+		while (choice_1 < 0 || choice_1 > 1) {
 			printf("输入错误，请重新输入:");
 			scanf_s("%d", &choice_1);
 			setbuf(stdin, NULL);
@@ -540,9 +597,11 @@ int CompetitionInformation(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CompetitionInformation(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CompetitionInformation(2);
 			}
 			break;
@@ -552,7 +611,7 @@ int CompetitionInformation(int flag) {
 		break;
 	case 2:
 		// 打印田赛项目
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统  1.返回比赛项目查询\n");
 		printf("请输入你的选择:");
 		int choice_2;
 		scanf_s("%d", &choice_2);
@@ -568,9 +627,11 @@ int CompetitionInformation(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CompetitionInformation(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CompetitionInformation(2);
 			}
 			break;
@@ -580,7 +641,7 @@ int CompetitionInformation(int flag) {
 		break;
 	case 3:
 		// 打印竞赛项目
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统  1.返回比赛项目查询\n");
 		printf("请输入你的选择:");
 		int choice_3;
 		scanf_s("%d", &choice_3);
@@ -596,9 +657,11 @@ int CompetitionInformation(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CompetitionInformation(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CompetitionInformation(2);
 			}
 			break;
@@ -617,6 +680,7 @@ int CheckScore(int flag) {
 	// 1.查看田赛成绩
 	// 2.查看竞赛成绩
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.查看田赛成绩  2.查看竞赛成绩\n");
 	printf("请输入你的选择:");
@@ -641,24 +705,30 @@ int CheckScore(int flag) {
 		break;
 	case 1:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			TrackItemScore(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			TrackItemScore(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			TrackItemScore(3);
 		}
 		break;
 		break;
 	case 2:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			RaceItemScore(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			RaceItemScore(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			RaceItemScore(3);
 		}
 		break;
@@ -674,12 +744,13 @@ int TrackItemScore(int flag) {
 	// 2.按参赛组织查看成绩
 	// 3.按运动员查看成绩
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose>3) {
+	while (choose < 1 || choose > 3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -687,23 +758,47 @@ int TrackItemScore(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CheckScore(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CheckScore(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			CheckScore(3);
 		}
 		break;
 	case 1:
 		// 输出比赛项目成绩
+		{
+			system(CLEARCOMMAND);
+			int itemID;
+			printf("请输入你要查询的比赛项目编号:");
+			scanf_s("%d",&itemID);
+
+		}
 		break;
 	case 2:
 		// 输出参赛组织成绩
+		{
+			system(CLEARCOMMAND);
+			int orgID;
+			printf("请输入你要查询的参赛组织编号:");
+			scanf_s("%d",&orgID);
+
+		}
 		break;
 	case 3:
 		// 通过哈希表查找输出运动员成绩
+		{
+			system(CLEARCOMMAND);
+			int athID;
+			printf("请输入你要查询的运动员编号:");
+			scanf_s("%d",&athID);
+
+		}
 		break;
 	default:
 		break;
@@ -717,6 +812,7 @@ int RaceItemScore(int flag) {
 	// 2.按参赛组织查看成绩
 	// 3.按运动员查看成绩
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
 	printf("请输入你的选择:");
@@ -730,23 +826,47 @@ int RaceItemScore(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CheckScore(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CheckScore(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			CheckScore(3);
 		}
 		break;
-	case 1:
+case 1:
 		// 输出比赛项目成绩
+		{
+			system(CLEARCOMMAND);
+			int itemID;
+			printf("请输入你要查询的比赛项目编号:");
+			scanf_s("%d",&itemID);
+
+		}
 		break;
 	case 2:
 		// 输出参赛组织成绩
+		{
+			system(CLEARCOMMAND);
+			int orgID;
+			printf("请输入你要查询的参赛组织编号:");
+			scanf_s("%d",&orgID);
+
+		}
 		break;
 	case 3:
 		// 通过哈希表查找输出运动员成绩
+		{
+			system(CLEARCOMMAND);
+			int athID;
+			printf("请输入你要查询的运动员编号:");
+			scanf_s("%d",&athID);
+
+		}
 		break;
 	default:
 		break;
@@ -759,12 +879,13 @@ int CheckGoal(int flag) {
 	// 1.查看组织得分情况
 	// 2.查看运动员得分
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看组织得分情况  2.查看运动员得分\n");
+	printf("\n0.返回上一层  1.查看组织得分  2.查看运动员得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose>3) {
+	while (choose < 1 || choose > 3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -772,34 +893,43 @@ int CheckGoal(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			SuperAdministrator();
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			Administrator();
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			Visitor();
 		}
 		break;
 	case 1:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CheckOrganizationGoal(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CheckOrganizationGoal(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			CheckOrganizationGoal(3);
 		}
 		break;
 	case 2:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CheckAthleteGoal(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CheckAthleteGoal(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			CheckAthleteGoal(3);
 		}
 		break;
@@ -814,6 +944,7 @@ int CheckOrganizationGoal(int flag) {
 	// 1.正序输出
 	// 2.倒序输出
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
 	printf("请输入你的选择:");
@@ -827,16 +958,20 @@ int CheckOrganizationGoal(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CheckScore(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CheckGoal(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			CheckGoal(3);
 		}
 		break;
 	case 1:
+		system(CLEARCOMMAND);
 		// 正序输出数据
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");
@@ -854,12 +989,15 @@ int CheckOrganizationGoal(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CheckOrganizationGoal(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CheckOrganizationGoal(2);
 			}
 			else if (flag == 3) {
+				system(CLEARCOMMAND);
 				CheckOrganizationGoal(3);
 			}
 			break;
@@ -868,6 +1006,7 @@ int CheckOrganizationGoal(int flag) {
 		}
 		break;
 	case 2:
+		system(CLEARCOMMAND);
 		// 倒序输出数据
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");
@@ -885,12 +1024,15 @@ int CheckOrganizationGoal(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CheckOrganizationGoal(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CheckOrganizationGoal(2);
 			}
 			else if (flag == 3) {
+				system(CLEARCOMMAND);
 				CheckOrganizationGoal(3);
 			}
 			break;
@@ -909,6 +1051,7 @@ int CheckAthleteGoal(int flag) {
 	// 1.正序输出
 	// 2.倒序输出
 	// 0.返回上一层
+	system(CLEARCOMMAND);
 	int choose;
 	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
 	printf("请输入你的选择:");
@@ -922,16 +1065,20 @@ int CheckAthleteGoal(int flag) {
 	switch (choose) {
 	case 0:
 		if (flag == 1) {
+			system(CLEARCOMMAND);
 			CheckScore(1);
 		}
 		else if (flag == 2) {
+			system(CLEARCOMMAND);
 			CheckGoal(2);
 		}
 		else if (flag == 3) {
+			system(CLEARCOMMAND);
 			CheckGoal(3);
 		}
 		break;
 	case 1:
+		system(CLEARCOMMAND);
 		// 正序输出数据
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");
@@ -949,12 +1096,15 @@ int CheckAthleteGoal(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CheckAthleteGoal(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CheckAthleteGoal(2);
 			}
 			else if (flag == 3) {
+				system(CLEARCOMMAND);
 				CheckAthleteGoal(3);
 			}
 			break;
@@ -963,6 +1113,7 @@ int CheckAthleteGoal(int flag) {
 		}
 		break;
 	case 2:
+		system(CLEARCOMMAND);
 		// 倒序输出数据
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");
@@ -980,12 +1131,15 @@ int CheckAthleteGoal(int flag) {
 			break;
 		case 1:
 			if (flag == 1) {
+				system(CLEARCOMMAND);
 				CheckAthleteGoal(1);
 			}
 			else if (flag == 2) {
+				system(CLEARCOMMAND);
 				CheckAthleteGoal(2);
 			}
 			else if (flag == 3) {
+				system(CLEARCOMMAND);
 				CheckAthleteGoal(3);
 			}
 			break;
