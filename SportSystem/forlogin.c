@@ -231,7 +231,7 @@ void printPrompt() {
 
 int main() {
 	InitData();
-	
+	save_athlete("athbackup.txt");
 	// char* orgpath = "organization.txt";
 	// load_organization(organization, orgpath);
 	// char* athletepath = "all.txt";
