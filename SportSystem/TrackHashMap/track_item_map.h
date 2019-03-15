@@ -23,7 +23,7 @@ typedef struct _TEntry
     long hash;
     KeyType1 key;
     ValueType1 value;
-    struct Entry* next;
+    struct _TEntry* next;
 }TEntry;
 
 typedef struct __THashMap

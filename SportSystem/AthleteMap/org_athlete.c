@@ -68,7 +68,7 @@ AthNode* rightRotate(struct AthNode* y)
 }
 
 //LLÐý×ª
-static inline AthNode* leftRotate(struct AthNode* y)
+static AthNode* leftRotate(struct AthNode* y)
 {
 	//×óÐý×ª
 	AthNode* x = y->right;

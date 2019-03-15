@@ -15,7 +15,7 @@ typedef struct
 	char name[50];
 	int eventsID;
 	int Size;
-	item_athlete Athelte;
+	item_athlete Athlete;
 	int raceturn;//区别是第几轮
 	int eventplace;//使用的场地
 	float startime;//开始时间

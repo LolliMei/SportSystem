@@ -22,7 +22,7 @@ typedef struct _REntry
     long hash;
     KeyType2 key;
     ValueType2 value;
-    struct REntry* next;
+    struct _REntry* next;
 }REntry;
 
 typedef struct __RHashMap

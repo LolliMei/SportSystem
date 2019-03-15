@@ -8,7 +8,21 @@
 #include <stdlib.h>
 #include "forlogin.h"
 #include "Interface.h"
+#include "Athlete.h"
+#include <string.h>
+#include "AthHashMap/AthleteTable.h"
+#include "TrackHashMap/track_item_map.h"
+#include "RaceHashMap/race_item_map.h"
+#include "Org/org_list.h"
 #define CLEARCOMMAND "cls"
+
+extern org_list organization;
+
+extern race_item_map RaceItemTable;
+
+extern track_item_map TrackItemTable;
+
+extern athlete_table AthHashTable;
 
 void SuperAdministrator(void);
 void Administrator(void);
@@ -244,17 +258,30 @@ int Apply(int flag) {
 
 // 运动员报名
 int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
-	char org[30], name[20];
+	char org[30], name[20],id[20];
 	int num, Item[3];
 	system(CLEARCOMMAND);
+	printf("请输入你的ID:");
+	scanf_s("%s", &id, 30);
 	printf("请输入你的名字:");
 	scanf_s("%s", &name,30);
 	printf("你需要参加几个项目:");
-	scanf_s("%d", &num);
-	printf("请输入你参加的项目的编号:");
+	scanf_s("%s", &num);
+	printf("请输入你参加的项目的编号:(-1为默认)");
+	Athlete* athlete = (Athlete*)malloc(sizeof(Athlete));
+	strcpy(athlete->id, id);
+	strcpy(athlete->name, name);
+	strcpy(athlete->organization, org);
+
 	for (int i = 0; i < num; i++) {
 		scanf_s("%d", &Item[i]);
+		athlete->events[i][0] = Item[i];
 	}
+	add_athlete(AthHashTable, atoi(id), athlete);
+	//TODO:添加运动员项目的处理
+	
+
+	
 	int choose;
 	printf("\n0.退出系统  1.返回主菜单  2.继续报名\n");
 	printf("输入你的选择:");
@@ -421,8 +448,31 @@ int Information(int flag) {
 	return 0;
 }
 
+//打印一个组织当中所有运动员的信息
+void print_node(AthNode* node)
+{
+	Athlete* ath = node->value;
+	printf("运动员姓名: %s\n", ath->name);
+	printf("运动员id: %s\n", ath->id);
+	printf("运动员组织: %s]\n", ath->organization);
+	for (int i = 0; i < 3; i++)
+	{
+		printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][i]);		
+	}
+	printf("----------------------------------------------");
+}
+
 // 查看参赛组织信息
 int OrganizationInformation(int flag) {
+
+	//获取书院组织编号
+	int index;
+	printf("输入需要查看的书院组织编号");
+	scanf("%d", index);
+
+	//显示书院中参赛运动员信息
+	for_all(organization->data[index].ath_map->root, print_node);
+
 	// 1.排序输出
 	// 0.返回上一层
 	system(CLEARCOMMAND);
@@ -486,6 +536,26 @@ int OrganizationInformation(int flag) {
 
 // 查看运动员信息
 int AthleteInformation(int flag) {
+
+	//输入运动员信息
+	int id;
+	printf("输入运动员id:");
+	scanf("%d", &id);
+	Athlete* ath = get_athlete(AthHashTable, id);
+
+	//输出运动员信息
+	printf("运动员姓名: %s\n", ath->name);
+	printf("运动员id: %s\n", ath->id);
+	printf("运动员组织: %s]\n", ath->organization);
+	for (int i = 0; i < 3; i++)
+	{
+		printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][i]);
+	}
+
+	printf("以上为运动员信息！\n");
+	//end
+
+
 	// 1.排序输出
 	// 0.返回上一层
 	system(CLEARCOMMAND);
@@ -550,11 +620,62 @@ int AthleteInformation(int flag) {
 	return 0;
 }
 
+//打印田赛的所有信息
+void view_raceitem()
+{
+	for (int i = 0; i < RaceItemTable->capacity; i++)
+	{
+		REntry* entry = RaceItemTable->table[i];
+		while(entry)
+		{
+			//raceitem in entrynode
+			RaceItem* race = entry->value;
+			printf("项目名称：%s", race->name);
+			printf("项目id：%d", race->eventsID);
+			printf("项目最大人数：%d", race->Size);
+			printf("比赛场地%d", race->eventplace);
+			printf("参赛人员信息（id，name）");
+			for (int j = 0; j < race->Athlete->size; j++)
+			{
+				printf("(%s,%s)\n", race->Athlete->data[j].id, race->Athlete->data[j].name);
+			}
+			entry = entry->next;
+		}
+	}
+}
+
+//打印径赛的所有信息
+void view_trackitem()
+{
+	for (int i = 0; i < TrackItemTable->capacity; i++)
+	{
+		TEntry* entry = TrackItemTable->table[i];
+		while (entry)
+		{
+			//raceitem in entrynode
+			TrackItem* track = entry->value;
+			printf("项目名称：%s", track->name);
+			printf("项目id：%d", track->eventsID);
+			printf("项目最大人数：%d", track->Size);
+			printf("比赛场地%d", track->eventplace);
+			printf("参赛人员信息（id，name）");
+			for (int j = 0; j < track->Athlete->size; j++)
+			{
+				printf("(%s,%s)\n", track->Athlete->data[j].id, track->Athlete->data[j].name);
+			}
+			entry = entry->next;
+		}
+	}
+}
+
 // 查看比赛项目(结束报名后的项目发布)
 int CompetitionInformation(int flag) {
 	// 1.查看全部
+
 	// 2.查看田赛
+	
 	// 3.查看竞赛
+
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
