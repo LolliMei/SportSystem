@@ -3,7 +3,6 @@
 #include "TrackHashMap/track_item_map.h"
 #include "AthHashMap/AthleteTable.h"
 #include "../SportSystem/AthleteMap/org_athlete.h"
-#include "file.h"
 #include "data.h"
 #include "InitTracRaceItem.h"
 #include "RaceHashMap/race_item_map.h"

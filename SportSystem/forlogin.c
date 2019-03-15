@@ -5,11 +5,11 @@
 #include <windows.h>
 #include "forlogin.h"
 #include "Interface.h"
-#include "file.h"
 #include "data.h"
 #include "AthHashMap/AthleteTable.h"
 #include "TrackHashMap/track_item_map.h"
 #include "RaceHashMap/race_item_map.h"
+#include "Org/org_list.h"
 FILE *fp;
 
 char ID[13];//ук╨е

@@ -6,7 +6,6 @@
     <ClCompile Include="data.c" />
     <ClCompile Include="converge.c" />
     <ClCompile Include="def.c" />
-    <ClCompile Include="file.c" />
     <ClCompile Include="forlogin.c" />
     <ClCompile Include="Interface.c" />
     <ClCompile Include="Org\org_list.c" />
@@ -21,7 +20,6 @@
     <ClInclude Include="converger.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="def.h" />
-    <ClInclude Include="file.h" />
     <ClInclude Include="forlogin.h" />
     <ClInclude Include="InitTracRaceItem.h" />
     <ClInclude Include="Interface.h" />

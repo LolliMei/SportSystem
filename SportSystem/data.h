@@ -6,8 +6,8 @@ void LoadData();
 
 void save_athlete(char*);
 
-void save_organization(org_list, char*);
+void save_organization (struct __OrgTable*, char* );
 
-void load_organization(org_list, char*);
+void load_organization(struct __OrgTable*, char* );
 
-void load_athlete(athlete_table, char*);
+void load_athlete(struct __AHashMap*, char* );
