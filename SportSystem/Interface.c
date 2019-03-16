@@ -43,7 +43,6 @@ int RaceItemScore(int flag);
 int CheckGoal(int flag);
 int CheckOrganizationGoal(int flag);
 int CheckAthleteGoal(int flag);
-void SetCompetition(void);
 void Settings(void);
 
 // 超级管理员界面
@@ -94,9 +93,6 @@ void SuperAdministrator() {
 		CheckGoal(1);
 		break;
 	case 8:
-		SetCompetition();
-		break;
-	case 9:
 		Settings();
 		break;
 	default:
@@ -189,11 +185,11 @@ void Announcement() {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.确认发布全部项目  2.比赛项目设置\n");
+	printf("\n0.返回上一层  1.确认发布全部项目\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 0 || choose>2) {
+	while (choose < 0 || choose>1) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -206,10 +202,6 @@ void Announcement() {
 		system(CLEARCOMMAND);
 		printf("已发布全部项目\n");
 		Announcement();
-		break;
-	case 2:
-		system(CLEARCOMMAND);
-		SetCompetition();
 		break;
 	default:
 		break;
@@ -463,23 +455,13 @@ void print_node(AthNode* node)
 	printf("运动员组织: %s]\n", ath->organization);
 	for (int i = 0; i < 3; i++)
 	{
-		printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][i]);		
+		printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);		
 	}
 	printf("----------------------------------------------");
 }
 
 // 查看参赛组织信息
 int OrganizationInformation(int flag) {
-
-	//获取书院组织编号
-	int index;
-	printf("输入需要查看的书院组织编号");
-	scanf_s("%d", &index);
-
-	//显示书院中参赛运动员信息
-	for_all(organization->data[index].ath_map->root, print_node);
-
-	// 1.排序输出
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
@@ -505,7 +487,14 @@ int OrganizationInformation(int flag) {
 		break;
 	case 1:
 		system(CLEARCOMMAND);
-		// 打印文件
+		//获取书院组织编号
+		int index;
+		printf("输入需要查看的书院组织编号");
+		scanf_s("%d", &index);
+
+		//显示书院中参赛运动员信息
+		for_all(organization->data[index].ath_map->root, print_node);
+
 		printf("\n0.退出系统  1.返回信息查询\n");
 		printf("请输入你的选择:");
 		int choice;
@@ -543,7 +532,6 @@ int OrganizationInformation(int flag) {
 // 查看运动员信息
 int AthleteInformation(int flag) {
 
-	// 1.排序输出
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
@@ -582,7 +570,7 @@ int AthleteInformation(int flag) {
 		printf("运动员组织: %s]\n", ath->organization);
 		for (int i = 0; i < 3; i++)
 		{
-			printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][i]);
+			printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
 		}
 
 		printf("以上为运动员信息！\n");
@@ -622,7 +610,7 @@ int AthleteInformation(int flag) {
 	return 0;
 }
 
-//打印田赛的所有信息
+//打印竞赛的所有信息
 void view_raceitem()
 {
 	for (int i = 0; i < RaceItemTable->capacity; i++)
@@ -652,7 +640,7 @@ void view_raceitem()
 	}
 }
 
-//打印径赛的所有信息
+//打印田赛的所有信息
 void view_trackitem()
 {
 	for (int i = 0; i < TrackItemTable->capacity; i++)
@@ -665,6 +653,11 @@ void view_trackitem()
 			
 			printf("项目名称：%s", track->name);
 			printf("项目id：%d", track->eventsID);
+			if(track->Athlete->size<setting.minimumNums)
+			{
+				printf("取消");
+			}
+			else{
 			printf("项目最大人数：%d", track->Size);
 			printf("比赛场地%d", track->eventplace);
 			printf("参赛人员信息（id，name）");
@@ -672,6 +665,7 @@ void view_trackitem()
 			for (int j = 0; j < track->Athlete->size; j++)
 			{
 				printf("(%s,%s)\n", track->Athlete->data[j].id, track->Athlete->data[j].name);
+			}
 			}
 			entry = entry->next;
 		}
@@ -710,7 +704,9 @@ int CompetitionInformation(int flag) {
 		}
 		break;
 	case 1:
-		// 打印文件
+		// 打印田赛和竞赛
+		view_trackitem();
+		view_raceitem();
 		printf("\n0.退出系统  1.返回比赛项目查询\n");
 		printf("请输入你的选择:");
 		int choice_1;
@@ -741,6 +737,8 @@ int CompetitionInformation(int flag) {
 		break;
 	case 2:
 		// 打印田赛项目
+		view_trackitem();
+		printf("\n");
 		printf("\n0.退出系统  1.返回比赛项目查询\n");
 		printf("请输入你的选择:");
 		int choice_2;
@@ -771,6 +769,8 @@ int CompetitionInformation(int flag) {
 		break;
 	case 3:
 		// 打印竞赛项目
+		view_raceitem();
+		printf("\n");
 		printf("\n0.退出系统  1.返回比赛项目查询\n");
 		printf("请输入你的选择:");
 		int choice_3;
@@ -816,7 +816,7 @@ int CheckScore(int flag) {
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose>3) {
+	while (choose < 0 || choose>3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -880,7 +880,7 @@ int TrackItemScore(int flag) {
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose > 3) {
+	while (choose < 0 || choose > 3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -948,7 +948,7 @@ int RaceItemScore(int flag) {
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose>3) {
+	while (choose < 0 || choose>3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -1015,7 +1015,7 @@ int CheckGoal(int flag) {
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose > 3) {
+	while (choose < 0 || choose > 3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -1080,7 +1080,7 @@ int CheckOrganizationGoal(int flag) {
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose>3) {
+	while (choose < 0 || choose>3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -1187,7 +1187,7 @@ int CheckAthleteGoal(int flag) {
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 1 || choose>3) {
+	while (choose < 0 || choose>3) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -1290,5 +1290,7 @@ void SetCompetition() {
 
 // 系统设置
 void Settings() {
-
+	FILE* fp;
+	int flag = fopen_s(fp,"Setting.txt","r+");
+	Setting s ;
 }
