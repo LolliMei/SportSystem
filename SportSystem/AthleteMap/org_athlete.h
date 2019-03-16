@@ -27,7 +27,7 @@ typedef struct __AMTree
 }*org_athlete;
 
 
-void AthMapPut(org_athlete tree, int key, Athlete* value);
+void put_org_ath(org_athlete tree, int key, Athlete* value);
 
 Athlete* get_org_ath(org_athlete tree, int key);
 

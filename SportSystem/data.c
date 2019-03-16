@@ -15,6 +15,8 @@ track_item_map TrackItemTable;
 
 athlete_table AthHashTable;
 
+Setting setting;
+
 void InitData()
 {
 	organization = init_org_list(20);
@@ -26,19 +28,19 @@ void InitData()
 	TrackItemTable = init_track_table(40);
 	AthHashTable = init_athlete_table(1000);
 
-	//´ÓÎÄ¼şÖĞ¼ÓÔØËùÓĞµÄÔË¶¯Ô±
+	//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½Ë¶ï¿½Ô±
 	load_athlete(AthHashTable, "all.txt");
 
-	//´ÓÎÄ¼şÖĞ¼ÓÔØ×éÖ¯
+	//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö¯
 	load_organization(organization, "organization.txt");
 
-	//¼ÓÔØÌïÈüÏîÄ¿
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 	load_raceitem(RaceItemTable, "raceitem.txt");
 
-	//¼ÓÔØ¾¶ÈüÏîÄ¿
+	//ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 	load_trackitem(TrackItemTable, "trackitem.txt");
 
-	//°ÑÔË¶¯Ô±·ÅÈë¶ÔÓ¦µÄ×éÖ¯ÖĞ
+	//ï¿½ï¿½ï¿½Ë¶ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ö¯ï¿½ï¿½
 	for (int i = 0; i < AthHashTable->capacity; i++)
 	{
 		Entry* node = AthHashTable->table[i];
@@ -46,10 +48,12 @@ void InitData()
 		{
 			Athlete* athlete = node->value;
 			int orgIndex = atoi(athlete->id) / 100;
-			AthMapPut(organization->data[orgIndex].ath_map, atoi(athlete->id), athlete);
+			put_org_ath(organization->data[orgIndex].ath_map, atoi(athlete->id), athlete);
 			node = node->next;
 		}
 	}
+
+	load_setting("Setting.txt");
 }
 
 void save_athlete(char* filename)
@@ -70,7 +74,7 @@ void save_athlete(char* filename)
 			{
 				for (int k = 0; k < 2; k++)
 				{
-					fprintf(file, "%d,", current->events[j][k]);
+					fprintf(file, "%d ", current->events[j][k]);
 				}
 			}
 			fprintf(file,"\n");
@@ -98,14 +102,14 @@ void load_athlete(athlete_table map, char* filename)
 		strcpy(ath->id, id);
 		strcpy(ath->name, name);
 		strcpy(ath->organization, org);
-		//¶ÁÈ¡id
-		for (int i = 0; i < 3; i++)
+		//ï¿½ï¿½È¡id
+		for (int k = 0; k < 3; k++)
 		{
 			for (int j = 0; j < 2; j++)
 			{
 				int val;
-				fscanf(vectorFile, "%d,", &val);
-				ath->events[i][j] = val;
+				fscanf(vectorFile, "%d", &val);
+				ath->events[k][j] = val;
 				//fprintf_s(vectorFile, "%d,", vector->data[i].events[i][j]);
 			}
 		}
@@ -134,12 +138,37 @@ void load_organization(org_list table, char* filename)
 		int next_id;
 		fscanf(fp, "%s %d\n", name,&next_id);
 		strcpy(table->data[i].name, name);
-		//TODO::ÏÂ±ê×ª»»£¬Éú³É×éÖ¯
+		//TODO::ï¿½Â±ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¯
 		table->data->next_id = next_id;
 	}
 	fclose(fp);
 }
 
+void load_setting(char* filename)
+{
+	FILE* fp;
+	int flag = fopen_s(&fp, filename, "r+");
+	assert(flag == 0);
+	fscanf(fp,"%d\n",&setting.minimumNums);
+	for(size_t i = 0; i < 6; i++)
+	{
+		fscanf(fp,"%d",&setting.Rankscores[i]) ;
+	}
+	fclose(fp);
 
+}
+
+void save_setting(char* filename)
+{
+	FILE* fp;
+	int flag = fopen_s(&fp, filename, "w+");
+	assert(flag == 0);
+	fprintf(fp,"%d\n",setting.minimumNums);
+	for(size_t i = 0; i < 6; i++)
+	{
+		fprintf(fp,"%d",setting.Rankscores[i]) ;
+	}
+	fclose(fp);
+}
 
  

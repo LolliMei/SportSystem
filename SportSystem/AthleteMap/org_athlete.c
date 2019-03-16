@@ -17,6 +17,7 @@ org_athlete InitAthMap()
 
 void for_all(AthNode* node, void (* Visit)(AthNode* visitnode))
 {
+	if (node == NULL) return;
 	Visit(node);
 	for_all(node->left, Visit);
 	for_all(node->right, Visit);
@@ -148,7 +149,7 @@ AthNode* add(const org_athlete tree, AthNode* node, int key, Athlete* value)
 }
 
 //向树中添加Key-Value对
-void AthMapPut(org_athlete tree, int key, Athlete* value) {
+void put_org_ath(org_athlete tree, int key, Athlete* value) {
 	tree->root = add(tree, tree->root, key, value);
 }
 
