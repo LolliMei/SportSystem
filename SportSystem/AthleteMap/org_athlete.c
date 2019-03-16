@@ -31,7 +31,7 @@ int __score(AthNode* node)
 int calc_total_score(AthNode* node)
 {
 	int sum = 0;
-	if (node == NULL) return;
+	if (node == NULL) return 0;
 	sum += __score(node);
 	sum += calc_total_score(node->left);
 	sum += calc_total_score(node->right);

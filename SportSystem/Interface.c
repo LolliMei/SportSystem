@@ -203,6 +203,7 @@ void Announcement() {
 	case 1:
 		system(CLEARCOMMAND);
 		printf("已发布全部项目\n");
+		system("pause");
 		Announcement();
 		break;
 	default:
@@ -350,7 +351,53 @@ int Program(int flag) {
 	case 1:
 		system(CLEARCOMMAND);
 		//打印出秩序册(函数)
+		printf("竞赛：\n");
+		for (int i = 0; i < RaceItemTable->capacity; i++)
+		{
+			REntry* entry = RaceItemTable->table[i];
+			while (entry)
+			{
+				//raceitem in entrynode
+				RaceItem* race = entry->value;
+				printf("项目名称：%s", race->name);
+				printf("    项目id：%d", race->eventsID);
+				if (race->Athlete->size < setting.minimumNums)
+				{
+					printf("    取消\n");
+				}
+				else {
+					printf("    项目最大人数：%d", race->Size);
+					printf("    比赛场地%d", race->eventplace);
+					printf("    比赛时间：%.2f-%.2f",race->startime,race->endtime);
+				}
+				entry = entry->next;
+			}
+		}
 
+		printf("田赛：\n");
+		for (int i = 0; i < TrackItemTable->capacity; i++)
+		{
+			TEntry* entry = TrackItemTable->table[i];
+			while (entry)
+			{
+				//raceitem in entrynode
+				TrackItem* track = entry->value;
+
+				printf("项目名称：%s", track->name);
+				printf("  项目id：%d", track->eventsID);
+				if (track->Athlete->size < setting.minimumNums)
+				{
+					printf("    取消\n");
+				}
+				else {
+					printf("    项目最大人数：%d", track->Size);
+					printf("    比赛场地%d", track->eventplace);
+					printf("    参赛人员信息（id，name）");
+					printf("    比赛时间：%.2f-%.2f", track->startime, track->endtime);
+				}
+				entry = entry->next;
+			}
+		}
 		printf("\n0.退出系统  1.返回主界面\n");
 		printf("请输入你的选择:");
 		int choice;
@@ -627,15 +674,15 @@ void view_raceitem()
 			//raceitem in entrynode
 			RaceItem* race = entry->value;
 			printf("项目名称：%s", race->name);
-			printf("项目id：%d", race->eventsID);
+			printf("    项目id：%d", race->eventsID);
 			if(race->Athlete->size<setting.minimumNums)
 			{
-				printf("取消");
+				printf("    取消\n");
 			}
 			else {
-				printf("项目最大人数：%d", race->Size);
-				printf("比赛场地%d", race->eventplace);
-				printf("参赛人员信息（id，name）");
+				printf("    项目最大人数：%d", race->Size);
+				printf("    比赛场地%d", race->eventplace);
+				printf("    参赛人员信息（id，name）");
 				for (int j = 0; j < race->Athlete->size; j++)
 				{
 					printf("(%s,%s)\n", race->Athlete->data[j]->id, race->Athlete->data[j]->name);
@@ -658,15 +705,15 @@ void view_trackitem()
 			TrackItem* track = entry->value;
 			
 			printf("项目名称：%s", track->name);
-			printf("项目id：%d", track->eventsID);
+			printf("  项目id：%d", track->eventsID);
 			if(track->Athlete->size<setting.minimumNums)
 			{
-				printf("取消");
+				printf("    取消\n");
 			}
 			else{
-			printf("项目最大人数：%d", track->Size);
-			printf("比赛场地%d", track->eventplace);
-			printf("参赛人员信息（id，name）");
+			printf("    项目最大人数：%d", track->Size);
+			printf("    比赛场地%d", track->eventplace);
+			printf("    参赛人员信息（id，name）");
 
 			for (int j = 0; j < track->Athlete->size; j++)
 			{
@@ -710,6 +757,7 @@ int CompetitionInformation(int flag) {
 		}
 		break;
 	case 1:
+		system(CLEARCOMMAND);
 		// 打印田赛和竞赛
 		view_trackitem();
 		view_raceitem();
@@ -742,6 +790,7 @@ int CompetitionInformation(int flag) {
 		}
 		break;
 	case 2:
+		system(CLEARCOMMAND);
 		// 打印田赛项目
 		view_trackitem();
 		printf("\n");
@@ -774,6 +823,7 @@ int CompetitionInformation(int flag) {
 		}
 		break;
 	case 3:
+		system(CLEARCOMMAND);
 		// 打印竞赛项目
 		view_raceitem();
 		printf("\n");
@@ -1082,7 +1132,11 @@ int CheckOrganizationGoal(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	int score[8][2];
+	int **score =(int**)malloc(sizeof(int*) * 8 );
+	for (int i = 0; i < 8; i++)
+	{
+		score[i] = (int*)malloc(sizeof(int) * 2);
+	}
 	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
@@ -1118,6 +1172,8 @@ int CheckOrganizationGoal(int flag) {
 		}
 
 		organization_rank(score, 8, -1);
+
+
 
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");

@@ -1,5 +1,6 @@
 #include "../SportSystem/RaceHashMap/race_item_map.h"
 #include "../SportSystem/TrackHashMap/track_item_map.h"
+#include <stdio.h>
 
 extern race_item_map RaceItemTable;
 extern track_item_map TrackItemTable;
@@ -167,7 +168,7 @@ void print_Rank(int eventID)
 {
 	TrackItem* trItem;
 	RaceItem* raItem;
-	Athlete athlete;
+	Athlete* athlete;
 	if (eventID<200)
 	{
 		raItem = get_raceitem(RaceItemTable, eventID);
@@ -178,7 +179,7 @@ void print_Rank(int eventID)
 			int min = score / 1000;
 			int seconds = (score / 100)%100;
 			int microseconds = score % 100;
-			printf("%s\t%s\t%s\t%dmin%ds%dms\n",athlete.id,athlete.name,athlete.organization,min,seconds,microseconds);
+			printf("%s\t%s\t%s\t%dmin%ds%dms\n",athlete->id,athlete->name,athlete->organization,min,seconds,microseconds);
 		}
 
 	}
@@ -191,7 +192,7 @@ void print_Rank(int eventID)
 			int score = get_Ath_Event_score(athlete, eventID);
 			int m = score / 100;
 			int cm = score % 100;
-			printf("%s\t%s\t%s\t%dm%dcm\n", athlete.id, athlete.name, athlete.organization, m,cm);
+			printf("%s\t%s\t%s\t%dm%dcm\n", athlete->id, athlete->name, athlete->organization, m,cm);
 		}
 		trItem = get_trackitem(TrackItemTable, eventID);
 	}

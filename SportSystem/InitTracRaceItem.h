@@ -14,8 +14,14 @@ void init_Trackitem(track_item_map map)
 	TrackItem * highJump;
 	TrackItem * broadJump;
 	shotBall->eventsID = 201;
+	shotBall->startime = 8;
+	shotBall->endtime = 8.3;
 	highJump->eventsID = 202;
+	highJump->startime = 9;
+	highJump->endtime = 9.3;
 	broadJump->eventsID = 203;
+	broadJump->startime = 10;
+	broadJump->endtime = 10.3;
 	add_track(TrackItemTable, 201, shotBall);
 	add_track(TrackItemTable, 202, highJump);
 	add_track(TrackItemTable, 203, broadJump);
@@ -28,8 +34,14 @@ void init_raceitem(race_item_map map)
 	RaceItem *oHundredM;
 	RaceItem *oThousandM;
 	fiftyM->eventsID = 101;
+	fiftyM->startime = 8;
+	fiftyM->endtime = 8.5;
 	oHundredM->eventsID = 102;
+	oHundredM->startime = 8.3;
+	oHundredM->endtime = 8.4;
 	oThousandM->eventsID = 103;
+	oThousandM->startime = 9;
+	oThousandM->endtime = 9.2;
 	add_raceitem(RaceItemTable, 101, fiftyM);
 	add_raceitem(RaceItemTable, 102, oHundredM);
 	add_raceitem(RaceItemTable, 103, oThousandM);
@@ -53,6 +65,7 @@ void load_trackitem(track_item_map map,char* filename)
 		fscanf(fp, "%f %f", &starttime, &endtime);
 		TrackItem* trackitem = (TrackItem*)malloc(sizeof(TrackItem));
 		strcpy(trackitem->name, name);
+		trackitem->Athlete = init_ath_vector(20);
 		trackitem->eventsID = eventsID;
 		trackitem->Size = Size;
 		trackitem->raceturn = raceturn;
@@ -85,6 +98,7 @@ void load_raceitem(race_item_map map,char* filename)
 		fscanf(fp, "%f %f", &starttime, &endtime);
 		RaceItem* raceitem = (RaceItem*)malloc(sizeof(RaceItem));
 		strcpy(raceitem->name, name);
+		raceitem->Athlete = init_ath_vector(20);
 		raceitem->eventsID = eventsID;
 		raceitem->Size = Size;
 		raceitem->raceturn = raceturn;
