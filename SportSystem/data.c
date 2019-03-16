@@ -52,6 +52,8 @@ void InitData()
 			node = node->next;
 		}
 	}
+
+	load_setting("Setting.txt");
 }
 
 void save_athlete(char* filename)
@@ -72,7 +74,7 @@ void save_athlete(char* filename)
 			{
 				for (int k = 0; k < 2; k++)
 				{
-					fprintf(file, "%d,", current->events[j][k]);
+					fprintf(file, "%d ", current->events[j][k]);
 				}
 			}
 			fprintf(file,"\n");
@@ -101,13 +103,13 @@ void load_athlete(athlete_table map, char* filename)
 		strcpy(ath->name, name);
 		strcpy(ath->organization, org);
 		//��ȡid
-		for (int i = 0; i < 3; i++)
+		for (int k = 0; k < 3; k++)
 		{
 			for (int j = 0; j < 2; j++)
 			{
 				int val;
-				fscanf(vectorFile, "%d,", &val);
-				ath->events[i][j] = val;
+				fscanf(vectorFile, "%d", &val);
+				ath->events[k][j] = val;
 				//fprintf_s(vectorFile, "%d,", vector->data[i].events[i][j]);
 			}
 		}

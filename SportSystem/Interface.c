@@ -1283,12 +1283,12 @@ int CheckAthleteGoal(int flag) {
 	return 0;
 }
 
+// 比赛项目设置
+void SetCompetition() {
+
+}
 
 // 系统设置
 void Settings() {
-	FILE* fp;
-	int flag = fopen_s(fp,"Setting.txt","r+");
-	Setting s ;
-	
 
 }

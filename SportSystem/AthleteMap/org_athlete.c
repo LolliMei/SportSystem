@@ -17,6 +17,7 @@ org_athlete InitAthMap()
 
 void for_all(AthNode* node, void (* Visit)(AthNode* visitnode))
 {
+	if (node == NULL) return;
 	Visit(node);
 	for_all(node->left, Visit);
 	for_all(node->right, Visit);
