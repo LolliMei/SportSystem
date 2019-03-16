@@ -13,6 +13,7 @@
     <ClCompile Include="TrackHashMap\track_item_map.c" />
     <ClCompile Include="RaceHashMap\race_item_map.c" />
     <ClCompile Include="AthHashMap\athlete_table.c" />
+    <ClCompile Include="scoreRank.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Athlete.h" />
