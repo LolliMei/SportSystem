@@ -276,7 +276,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	//加入组织运动员表
 	put_org_ath(organization->data->ath_map, atoi(id), athlete);
 	//TODO:添加运动员项目的处理
-	init_atl_eve(athlete->events, id);
+
 
 	
 	int choose;
@@ -1299,5 +1299,25 @@ void Settings() {
 		printf("第%d名得分：%d\n", i + 1, setting.Rankscores[i]);
 	}
 	system("pause");
+	int choice;
+	printf("请输入需要修改的栏目：\n");
+	scanf_s("%d", &choice);
+	switch (choice)
+	{
+		case 1:
+			printf("请输入修改后的最小参赛人数:");
+			scanf_s("%d", &setting.minimumNums);
+		break;
+		case 2:
+			printf("请依次输入1-6名的得分权重:\n");
+			for (int i = 0; i < 6; i++)
+			{
+				scanf_s("%d", &setting.Rankscores[i]);
+			}
+		break;
+		default:
+
+		break;
+	}
 	SuperAdministrator();
 }

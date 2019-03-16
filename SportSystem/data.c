@@ -28,17 +28,21 @@ void InitData()
 	TrackItemTable = init_track_table(40);
 	AthHashTable = init_athlete_table(1000);
 
-	//���ļ��м������е��˶�Ա
-	load_athlete(AthHashTable, "all.txt");
-
-	//���ļ��м�����֯
-	load_organization(organization, "organization.txt");
-
 	//����������Ŀ
 	load_raceitem(RaceItemTable, "raceitem.txt");
 
 	//���ؾ�����Ŀ
 	load_trackitem(TrackItemTable, "trackitem.txt");
+
+	//���ļ��м�����֯
+	load_organization(organization, "organization.txt");
+
+	//���ļ��м������е��˶�Ա
+	load_athlete(AthHashTable, "all.txt");
+
+
+
+
 
 	//���˶�Ա�����Ӧ����֯��
 	for (int i = 0; i < AthHashTable->capacity; i++)
@@ -108,12 +112,14 @@ void load_athlete(athlete_table map, char* filename)
 			for (int j = 0; j < 2; j++)
 			{
 				int val;
-				fscanf(vectorFile, "%d", &val);
+				fscanf_s(vectorFile, "%d", &val);
 				ath->events[k][j] = val;
 				//fprintf_s(vectorFile, "%d,", vector->data[i].events[i][j]);
 			}
 		}
 		add_athlete(map, atoi(ath->id), ath);
+
+
 	}
 	fclose(vectorFile);
 }
