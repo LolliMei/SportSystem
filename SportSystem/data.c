@@ -15,6 +15,8 @@ track_item_map TrackItemTable;
 
 athlete_table AthHashTable;
 
+Setting setting;
+
 void InitData()
 {
 	organization = init_org_list(20);
@@ -26,19 +28,19 @@ void InitData()
 	TrackItemTable = init_track_table(40);
 	AthHashTable = init_athlete_table(1000);
 
-	//╢снд╪Чжп╪стькЫсп╣дтк╤╞т╠
+	//О©╫О©╫О©╫д╪О©╫О©╫п╪О©╫О©╫О©╫О©╫О©╫О©╫п╣О©╫О©╫к╤О©╫т╠
 	load_athlete(AthHashTable, "all.txt");
 
-	//╢снд╪Чжп╪стьвИж╞
+	//О©╫О©╫О©╫д╪О©╫О©╫п╪О©╫О©╫О©╫О©╫О©╫ж╞
 	load_organization(organization, "organization.txt");
 
-	//╪стьлОхЭоНд©
+	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
 	load_raceitem(RaceItemTable, "raceitem.txt");
 
-	//╪сть╬╤хЭоНд©
+	//О©╫О©╫О©╫ь╬О©╫О©╫О©╫О©╫О©╫д©
 	load_trackitem(TrackItemTable, "trackitem.txt");
 
-	//╟ятк╤╞т╠╥ехК╤тс╕╣двИж╞жп
+	//О©╫О©╫О©╫к╤О©╫т╠О©╫О©╫О©╫О©╫О©╫с╕О©╫О©╫О©╫О©╫ж╞О©╫О©╫
 	for (int i = 0; i < AthHashTable->capacity; i++)
 	{
 		Entry* node = AthHashTable->table[i];
@@ -98,7 +100,7 @@ void load_athlete(athlete_table map, char* filename)
 		strcpy(ath->id, id);
 		strcpy(ath->name, name);
 		strcpy(ath->organization, org);
-		//╤ах║id
+		//О©╫О©╫х║id
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 2; j++)
@@ -134,12 +136,37 @@ void load_organization(org_list table, char* filename)
 		int next_id;
 		fscanf(fp, "%s %d\n", name,&next_id);
 		strcpy(table->data[i].name, name);
-		//TODO::об╠Йв╙╩╩ё╛иЗЁивИж╞
+		//TODO::О©╫б╠О©╫в╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╞
 		table->data->next_id = next_id;
 	}
 	fclose(fp);
 }
 
+void load_setting(char* filename)
+{
+	FILE* fp;
+	int flag = fopen_s(&fp, filename, "r+");
+	assert(flag == 0);
+	fscanf(fp,"%d\n",&setting.minimumNums);
+	for(size_t i = 0; i < 6; i++)
+	{
+		fscanf(fp,"%d",&setting.Rankscores[i]) ;
+	}
+	fclose(fp);
 
+}
+
+void save_setting(char* filename)
+{
+	FILE* fp;
+	int flag = fopen_s(&fp, filename, "w+");
+	assert(flag == 0);
+	fprintf(fp,"%d\n",setting.minimumNums);
+	for(size_t i = 0; i < 6; i++)
+	{
+		fprintf(fp,"%d",setting.Rankscores[i]) ;
+	}
+	fclose(fp);
+}
 
  
