@@ -44,6 +44,7 @@ typedef struct
 typedef struct
 {
 	char name[50];
+	int next_id;
 	struct __AMTree* ath_map;
 
 }Organization;

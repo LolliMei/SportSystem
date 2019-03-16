@@ -7,7 +7,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "AthleteTable.h"
+#include "athlete_table.h"
 #include <stdio.h>
 
 
@@ -74,8 +74,8 @@ void add_athlete(athlete_table map, int key, Athlete* value)
 Athlete* get_athlete(athlete_table map, int key)
 {
 	//计算并得到哈希链表的入口
-	int index = getHashIndex(key, map);
-	Entry* entryList = map->table[index];
+	int i = index(key, map);
+	Entry* entryList = map->table[i];
 	//在链表中寻找
 	while (entryList != NULL)
 	{
@@ -96,9 +96,9 @@ Athlete* get_athlete(athlete_table map, int key)
 //查看表中是否有对应的Key
 bool contains_athlete(athlete_table map, int key)
 {
-	int index = getHashIndex(key, map);
+	int i = index(key, map);
 
-	Entry* node = map->table[index];
+	Entry* node = map->table[i];
 	while (node != NULL)
 	{
 		if (key == node->key)
@@ -118,11 +118,11 @@ bool contains_athlete(athlete_table map, int key)
 //设置hash表中key的value，同时返回旧的value
 Athlete* set_athlete(athlete_table map, int key, Athlete* value)
 {
-	int index = getHashIndex(key, map);
+	int i = index(key, map);
 
 	//创建虚拟头节点
 	Entry* dummyHead = (Entry*)malloc(sizeof(Entry));
-	dummyHead->next = map->table[index];
+	dummyHead->next = map->table[i];
 	Entry* node = dummyHead;
 	while (node != NULL)
 	{
@@ -144,9 +144,8 @@ Athlete* set_athlete(athlete_table map, int key, Athlete* value)
 //移除哈希表中的元素
 void remove_athlete(athlete_table map, int key)
 {
-
-	int index = getHashIndex(key, map);
-	Entry* list = map->table[index];
+	int i = index(key, map);
+	Entry* list = map->table[i];
 	Entry* dummyHead = (Entry*)malloc(sizeof(struct __Entry));
 	dummyHead->next = list;
 	struct __Entry* node = dummyHead;
@@ -165,7 +164,7 @@ void remove_athlete(athlete_table map, int key)
 		}
 		node = node->next;
 	}
-	map->table[index] = dummyHead->next;
+	map->table[i] = dummyHead->next;
 	free(dummyHead);
 
 }

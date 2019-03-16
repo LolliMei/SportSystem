@@ -1,11 +1,11 @@
 
 #include "Org/org_list.h"
 #include "TrackHashMap/track_item_map.h"
-#include "AthHashMap/AthleteTable.h"
 #include "../SportSystem/AthleteMap/org_athlete.h"
 #include "data.h"
 #include "InitTracRaceItem.h"
 #include "RaceHashMap/race_item_map.h"
+#include "AthHashMap/athlete_table.h"
 
 org_list organization;
 
@@ -119,7 +119,7 @@ void save_organization(org_list table, char* filename)
 	FILE* fp = fopen(filename, "w+");
 	for (size_t i = 1; i <= 8; i++)
 	{
-		fprintf(fp, "%s\n", table->data[i].name);
+		fprintf(fp, "%s %d\n", table->data[i].name,table->data[i].next_id);
 	}
 	fclose(fp);
 }
@@ -128,12 +128,14 @@ void load_organization(org_list table, char* filename)
 {
 	FILE* fp;
 	int flag = fopen_s(&fp, filename, "r+");
-
 	for (size_t i = 1; i <= 8; i++)
 	{
 		char name[50];
-		fscanf(fp, "%s\n", name);
+		int next_id;
+		fscanf(fp, "%s %d\n", name,&next_id);
 		strcpy(table->data[i].name, name);
+		//TODO::下标转换，生成组织
+		table->data->next_id = next_id;
 	}
 	fclose(fp);
 }

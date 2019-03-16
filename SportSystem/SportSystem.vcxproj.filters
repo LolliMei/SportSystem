@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="AthHashMap\AthleteTable.c" />
     <ClCompile Include="Athlete.c" />
     <ClCompile Include="data.c" />
     <ClCompile Include="converge.c" />
@@ -13,9 +12,9 @@
     <ClCompile Include="Vector_ath\item_athlete.c" />
     <ClCompile Include="TrackHashMap\track_item_map.c" />
     <ClCompile Include="RaceHashMap\race_item_map.c" />
+    <ClCompile Include="AthHashMap\athlete_table.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AthHashMap\AthleteTable.h" />
     <ClInclude Include="Athlete.h" />
     <ClInclude Include="converger.h" />
     <ClInclude Include="data.h" />
@@ -28,5 +27,6 @@
     <ClInclude Include="Vector_ath\item_athlete.h" />
     <ClInclude Include="TrackHashMap\track_item_map.h" />
     <ClInclude Include="RaceHashMap\race_item_map.h" />
+    <ClInclude Include="AthHashMap\athlete_table.h" />
   </ItemGroup>
 </Project>

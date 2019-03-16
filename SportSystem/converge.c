@@ -7,8 +7,6 @@
 
 extern org_list organization;
 
-
-
 void InitAthlete(int ID){
 	char id[20], name[30];
 	int i;
@@ -67,5 +65,5 @@ void InitAthlete(int ID){
 			break;
 	}
 
-	return 0;
 }
+

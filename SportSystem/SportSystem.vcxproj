@@ -123,7 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AthHashMap\AthleteTable.c" />
+    <ClCompile Include="AthHashMap\athlete_table.c" />
     <ClCompile Include="Athlete.c" />
     <ClCompile Include="AthleteMap\org_athlete.c" />
     <ClCompile Include="data.c" />
@@ -137,7 +137,7 @@
     <ClCompile Include="Vector_ath\item_athlete.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AthHashMap\AthleteTable.h" />
+    <ClInclude Include="AthHashMap\athlete_table.h" />
     <ClInclude Include="Athlete.h" />
     <ClInclude Include="AthleteMap\org_athlete.h" />
     <ClInclude Include="converger.h" />
