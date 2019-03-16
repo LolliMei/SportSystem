@@ -118,8 +118,7 @@ void load_athlete(athlete_table map, char* filename)
 			}
 		}
 		add_athlete(map, atoi(ath->id), ath);
-
-
+		init_atl_eve(ath->events, ath);
 	}
 	fclose(vectorFile);
 }
