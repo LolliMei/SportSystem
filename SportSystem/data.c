@@ -46,7 +46,7 @@ void InitData()
 		{
 			Athlete* athlete = node->value;
 			int orgIndex = atoi(athlete->id) / 100;
-			AthMapPut(organization->data[orgIndex].ath_map, atoi(athlete->id), athlete);
+			put_org_ath(organization->data[orgIndex].ath_map, atoi(athlete->id), athlete);
 			node = node->next;
 		}
 	}
