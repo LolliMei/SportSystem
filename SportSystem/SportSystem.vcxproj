@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{65C51167-DE6E-407A-B040-BA2163384074}</ProjectGuid>
     <RootNamespace>SportSystem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -133,6 +133,7 @@
     <ClCompile Include="Interface.c" />
     <ClCompile Include="Org\org_list.c" />
     <ClCompile Include="RaceHashMap\race_item_map.c" />
+    <ClCompile Include="scoreRank.c" />
     <ClCompile Include="TrackHashMap\track_item_map.c" />
     <ClCompile Include="Vector_ath\item_athlete.c" />
   </ItemGroup>

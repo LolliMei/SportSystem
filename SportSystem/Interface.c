@@ -279,7 +279,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	}
 	add_athlete(AthHashTable, atoi(id), athlete);
 	//TODO:添加运动员项目的处理
-	
+	init_atl_eve(athlete->events, id);
 
 	
 	int choose;
