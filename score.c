@@ -44,7 +44,7 @@ int athlete_getscore(){
 		break;
 	}
 
-	//针对同一个项目全部运动员
+	//针对同一个竞赛项目全部运动员
     for(int i=0;i<setting.getScoreOrder;i++){
 		
 		race->Athlete[i].data[i]->score += setting.Rankscores[i];

@@ -1200,7 +1200,7 @@ int CheckOrganizationGoal(int flag) {
 	return 0;
 }
 
-// 查看运动员得分
+// 查看全部运动员得分
 int CheckAthleteGoal(int flag) {
 	// 1.正序输出
 	// 2.倒序输出
