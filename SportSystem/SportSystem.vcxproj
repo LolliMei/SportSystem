@@ -149,6 +149,7 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Org\org_list.h" />
     <ClInclude Include="RaceHashMap\race_item_map.h" />
+    <ClInclude Include="scoreRank.h" />
     <ClInclude Include="TrackHashMap\track_item_map.h" />
     <ClInclude Include="Vector_ath\item_athlete.h" />
   </ItemGroup>

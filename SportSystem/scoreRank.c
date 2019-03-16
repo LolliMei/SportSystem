@@ -55,7 +55,8 @@ int TrackScoreRank()
 				set_ath_vector_index(boardJump->Athlete, j + 1, Athlete1);
 			}
 		}
-	}	
+	}
+	return 1;
 } 
 
 int RaceScoreRank()
@@ -66,9 +67,9 @@ int RaceScoreRank()
 	Athlete temp;
 	Athlete Athlete1;
 	Athlete Athlete2;
-	fiftyM = get_trackitem(TrackItemTable, 101);
-	oHundredM = get_trackitem(TrackItemTable, 102);
-	oThousandM = get_trackitem(TrackItemTable, 103);
+	fiftyM = get_raceitem(RaceItemTable, 101);
+	oHundredM = get_raceitem(RaceItemTable, 102);
+	oThousandM = get_raceitem(RaceItemTable, 103);
 	for (size_t i = 0; i < fiftyM->Athlete->size - 1; i++)
 	{
 		for (size_t j = 0; j <fiftyM->Athlete->size - 1 - i; j++)
@@ -114,6 +115,7 @@ int RaceScoreRank()
 			}
 		}
 	}
+	return 1;
 }
 
 int get_Ath_Event_score(Athlete ath, int eveID)
@@ -123,4 +125,41 @@ int get_Ath_Event_score(Athlete ath, int eveID)
 		if (ath.events[i][0] == eveID)
 			return ath.events[i][1];
 	}
+	return 1;
 }
+
+//成绩为六位，12位为分钟，34位为秒，56位为微秒
+void print_Rank(int eventID)
+{
+	TrackItem* trItem;
+	RaceItem* raItem;
+	Athlete athlete;
+	if (eventID<200)
+	{
+		raItem = get_raceitem(RaceItemTable, eventID);
+		for (size_t i = 0; i < raItem->Athlete->size; i++)
+		{
+			athlete = get_ath_vector_index(raItem->Athlete, i);
+			int score = get_Ath_Event_score(athlete, eventID);
+			int min = score / 1000;
+			int seconds = (score / 100)%100;
+			int microseconds = score % 100;
+			printf("%s\t%s\t%s\t%dmin%ds%dms\n",athlete.id,athlete.name,athlete.organization,min,seconds,microseconds);
+		}
+
+	}
+	else
+	{
+		trItem = get_trackitem(TrackItemTable, eventID);
+		for (size_t i = 0; i < raItem->Athlete->size; i++)
+		{
+			athlete = get_ath_vector_index(trItem->Athlete, i);
+			int score = get_Ath_Event_score(athlete, eventID);
+			int m = score / 100;
+			int cm = score % 100;
+			printf("%s\t%s\t%s\t%dm%dcm\n", athlete.id, athlete.name, athlete.organization, m,cm);
+		}
+		trItem = get_trackitem(TrackItemTable, eventID);
+	}
+}
+
