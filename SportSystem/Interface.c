@@ -10,7 +10,7 @@
 #include "Interface.h"
 #include "Athlete.h"
 #include <string.h>
-#include "AthHashMap/AthleteTable.h"
+#include "AthHashMap/athlete_table.h"
 #include "TrackHashMap/track_item_map.h"
 #include "RaceHashMap/race_item_map.h"
 #include "Org/org_list.h"

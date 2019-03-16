@@ -6,7 +6,7 @@
 #include "forlogin.h"
 #include "Interface.h"
 #include "data.h"
-#include "AthHashMap/AthleteTable.h"
+#include "AthHashMap/athlete_table.h"
 #include "TrackHashMap/track_item_map.h"
 #include "RaceHashMap/race_item_map.h"
 #include "Org/org_list.h"

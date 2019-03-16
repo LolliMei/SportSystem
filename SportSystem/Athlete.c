@@ -1,7 +1,7 @@
 #include "Athlete.h"
 #include <stdlib.h>
 #include <string.h>
-#include "../SportSystem/AthHashMap/AthleteTable.h"
+#include "../SportSystem/AthHashMap/athlete_table.h"
 #include "../SportSystem/RaceHashMap/race_item_map.h"
 #include "../SportSystem/TrackHashMap/track_item_map.h"
 #include "../SportSystem/Vector_ath/item_athlete.h"
@@ -43,7 +43,7 @@ void init_atl_eve(int * eventarray,int athID)
 		else if (eventarray[i] / 100 == 2)
 		{
 			track = get_trackitem(TrackItemTable, eventarray);
-			push_front_ath_vector(track->Athelte, *ath);
+			push_front_ath_vector(track->Athlete, *ath);
 		}
 	}
 }
