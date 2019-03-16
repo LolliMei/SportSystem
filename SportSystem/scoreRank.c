@@ -116,7 +116,7 @@ int RaceScoreRank()
 	}
 }
 
-int get_Ath_Event_score(Athlete ath, int eveID)
+int get_Ath_Event_score(Athlete ath, int eveID)					
 {
 	for (size_t i = 0; i < 3; i++)
 	{

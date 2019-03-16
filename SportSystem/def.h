@@ -16,10 +16,10 @@ typedef struct
 	int eventsID;
 	int Size;
 	item_athlete Athlete;
-	int raceturn;//Çø±ğÊÇµÚ¼¸ÂÖ
-	int eventplace;//Ê¹ÓÃµÄ³¡µØ
-	float startime;//¿ªÊ¼Ê±¼ä
-	float endtime;//½áÊøÊ±¼ä
+	int raceturn;//ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÚ¼ï¿½ï¿½ï¿½
+	int eventplace;//Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½
+	float startime;//ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	float endtime;//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 }TrackItem;
 
 typedef struct
@@ -28,19 +28,20 @@ typedef struct
 	int eventsID;
 	int Size;
 	item_athlete Athlete;
-	int raceturn;//Çø±ğÊÇµÚ¼¸ÂÖ
-	int eventplace;//Ê¹ÓÃµÄ³¡µØ
-	float startime;//¿ªÊ¼Ê±¼ä
-	float endtime;//½áÊøÊ±¼ä
+	int raceturn;//ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÚ¼ï¿½ï¿½ï¿½
+	int eventplace;//Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½
+	float startime;//ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	float endtime;//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 }RaceItem;
 
 typedef struct
 {
-	int minimumNums;//×îĞ¡²ÎÈüÈËÊı£¬µÍÓÚÕâ¸ö»á±»È¡ÏûÏîÄ¿
-	int Rankscores[6];//²»Í¬ÅÅÃû»ñµÃµÄ·ÖÊı
+	int minimumNums;//ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á±»È¡ï¿½ï¿½ï¿½ï¿½Ä¿
+	int Rankscores[6];//ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ·ï¿½ï¿½ï¿½
+	int getScoreOrder;
 }Setting;
 
-//×éÖ¯µÄ½á¹¹Ìå
+//ï¿½ï¿½Ö¯ï¿½Ä½á¹¹ï¿½ï¿½
 typedef struct
 {
 	char name[50];
@@ -49,7 +50,7 @@ typedef struct
 
 }Organization;
 
-//ÌïÈüÁ¬½Ó±í
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½
 typedef struct
 {
 	item_athlete* raceitem1;

@@ -9,11 +9,12 @@ typedef struct __Athlete
 	char name[20];
 	char organization[30];//departments or colleges
 	int events[3][2];//fill in with eventsID and rank
+	int score;      // Get score
 }Athlete;
 
-//根据id，name，org创建一个运动员实例
+//锟斤拷锟斤拷id锟斤拷name锟斤拷org锟斤拷锟斤拷一锟斤拷锟剿讹拷员实锟斤拷
 Athlete* init_athlete(char* id, char* name, char* org);
-//将报名项目同步到运动员的eventID，将对应的运动员添加到race/track结构体的vector中
+//锟斤拷锟斤拷锟斤拷锟斤拷目同锟斤拷锟斤拷锟剿讹拷员锟斤拷eventID锟斤拷锟斤拷锟斤拷应锟斤拷锟剿讹拷员锟斤拷锟接碉拷race/track锟结构锟斤拷锟絭ector锟斤拷
 void init_atl_eve(int * eventarray, int athID);
 
 #endif // ATHLETE_H
