@@ -47,3 +47,21 @@ void init_atl_eve(int * eventarray,int athID)
 		}
 	}
 }
+Athlete* init_events(int athID, int eventsID, int rank)
+{
+	Athlete * ath;
+	ath = get_athlete(AthHashTable, athID);
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < 2 - 1; j++)
+		{
+			if (ath->events[i][j] == -1) {
+				ath->events[i][j] = eventsID;
+				ath->events[i][j + 1] = rank;
+			}
+		}
+	}
+	return ath;
+
+}
