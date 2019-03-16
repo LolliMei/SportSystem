@@ -4,14 +4,23 @@
 extern race_item_map RaceItemTable;
 extern track_item_map TrackItemTable;
 
+int get_Ath_Event_score(Athlete* ath, int eveID)
+{
+	for (size_t i = 0; i < 3; i++)
+	{
+		if (ath->events[i][0] == eveID)
+			return ath->events[i][1];
+	}
+}
+
 int TrackScoreRank()
 {
 	TrackItem* shotBall;
 	TrackItem* highJump;
 	TrackItem* boardJump;
 	Athlete temp;
-	Athlete Athlete1;
-	Athlete Athlete2;
+	Athlete* Athlete1;
+	Athlete* Athlete2;
 	shotBall = get_trackitem(TrackItemTable, 201);
 	highJump = get_trackitem(TrackItemTable, 202);
 	boardJump = get_trackitem(TrackItemTable, 203);
@@ -64,8 +73,8 @@ int RaceScoreRank()
 	RaceItem *oHundredM;
 	RaceItem *oThousandM;
 	Athlete temp;
-	Athlete Athlete1;
-	Athlete Athlete2;
+	Athlete* Athlete1;
+	Athlete* Athlete2;
 	fiftyM = get_trackitem(TrackItemTable, 101);
 	oHundredM = get_trackitem(TrackItemTable, 102);
 	oThousandM = get_trackitem(TrackItemTable, 103);
@@ -116,11 +125,36 @@ int RaceScoreRank()
 	}
 }
 
-int get_Ath_Event_score(Athlete ath, int eveID)					
+void swap(int* a,int*b)
 {
-	for (size_t i = 0; i < 3; i++)
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
+int organization_rank(int** arr,int size,int dir)
+{
+	for (size_t i = 0; i < size  - 1; i++)
 	{
-		if (ath.events[i][0] == eveID)
-			return ath.events[i][1];
+		for (size_t j = 0; j < size - i - 1; j++)
+		{
+			switch (dir)
+			{
+			case -1:
+				{
+					if (arr[j][1] < arr[j + 1][1])
+						swap(&arr[j][1], &arr[j + 1][1]);
+				}
+				break;
+
+			case 1:
+			{
+				if (arr[j][1] > arr[j + 1][1])
+					swap(&arr[j][1], &arr[j + 1][1]);
+			}
+			break;
+			}
+			
+		}
 	}
 }

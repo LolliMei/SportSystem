@@ -39,5 +39,7 @@ org_athlete InitAthMap();
 
 void for_all(AthNode* node, void (*Visit)(AthNode* visitnode));
 
+int calc_total_score(AthNode* node);
+
 
 #endif //INC_2019SPRINGDSA_AthMap_H

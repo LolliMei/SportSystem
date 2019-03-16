@@ -25,6 +25,7 @@ Athlete* init_athlete(char* id,char* name,char* org)
 extern athlete_table AthHashTable;
 extern race_item_map RaceItemTable;
 extern track_item_map TrackItemTable;
+
 void init_atl_eve(int * eventarray,int athID)
 {
 	Athlete * ath;
@@ -32,18 +33,19 @@ void init_atl_eve(int * eventarray,int athID)
 	TrackItem* track;
 	int i = 0;
 	ath= get_athlete(AthHashTable, athID);
+	
 	for (i = 0; i < 3; i++)
 	{
 		ath->events[i][0] = eventarray[i];
 		if (eventarray[i]/100==1)
 		{
 			race=get_raceitem(RaceItemTable, eventarray);
-			push_front_ath_vector(race->Athlete, *ath);
+			push_front_ath_vector(race->Athlete, ath);
 		}
 		else if (eventarray[i] / 100 == 2)
 		{
 			track = get_trackitem(TrackItemTable, eventarray);
-			push_front_ath_vector(track->Athlete, *ath);
+			push_front_ath_vector(track->Athlete, ath);
 		}
 	}
 }

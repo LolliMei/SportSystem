@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\score.c" />
     <ClCompile Include="AthHashMap\athlete_table.c" />
     <ClCompile Include="Athlete.c" />
     <ClCompile Include="AthleteMap\org_athlete.c" />
@@ -138,6 +139,8 @@
     <ClCompile Include="Vector_ath\item_athlete.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\score.h" />
+    <ClInclude Include="..\scoreRank.h" />
     <ClInclude Include="AthHashMap\athlete_table.h" />
     <ClInclude Include="Athlete.h" />
     <ClInclude Include="AthleteMap\org_athlete.h" />

@@ -14,6 +14,8 @@
 #include "TrackHashMap/track_item_map.h"
 #include "RaceHashMap/race_item_map.h"
 #include "Org/org_list.h"
+#include "data.h"
+#include "../scoreRank.h"
 #define CLEARCOMMAND "cls"
 
 extern org_list organization;
@@ -636,7 +638,7 @@ void view_raceitem()
 				printf("参赛人员信息（id，name）");
 				for (int j = 0; j < race->Athlete->size; j++)
 				{
-					printf("(%s,%s)\n", race->Athlete->data[j].id, race->Athlete->data[j].name);
+					printf("(%s,%s)\n", race->Athlete->data[j]->id, race->Athlete->data[j]->name);
 				}
 			}
 			entry = entry->next;
@@ -668,7 +670,7 @@ void view_trackitem()
 
 			for (int j = 0; j < track->Athlete->size; j++)
 			{
-				printf("(%s,%s)\n", track->Athlete->data[j].id, track->Athlete->data[j].name);
+				printf("(%s,%s)\n", track->Athlete->data[j]->id, track->Athlete->data[j]->name);
 			}
 			}
 			entry = entry->next;
@@ -1080,6 +1082,7 @@ int CheckOrganizationGoal(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
+	int score[8][2];
 	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
@@ -1107,6 +1110,15 @@ int CheckOrganizationGoal(int flag) {
 	case 1:
 		system(CLEARCOMMAND);
 		// 正序输出数据
+		//TODO::计算组织得分
+		for (size_t i = 0; i < 8; i++)
+		{
+			score[i][0] = i + 1;
+			score[i][1] = calc_total_score(organization->data[i + 1].ath_map->root);
+		}
+
+		organization_rank(score, 8, -1);
+
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");
 		int choice_1;
@@ -1142,6 +1154,14 @@ int CheckOrganizationGoal(int flag) {
 	case 2:
 		system(CLEARCOMMAND);
 		// 倒序输出数据
+		for (size_t i = 0; i < 8; i++)
+		{
+			score[i][0] = i + 1;
+			score[i][1] = calc_total_score(organization->data[i + 1].ath_map->root);
+		}
+
+		organization_rank(score, 8, 1);
+
 		printf("\n0.退出系统  1.返回\n");
 		printf("请输入你的选择:");
 		int choice_2;
@@ -1300,7 +1320,7 @@ void Settings() {
 	}
 	system("pause");
 	int choice;
-	printf("请输入需要修改的栏目：\n");
+	printf("请输入需要修改的栏目\n");
 	scanf_s("%d", &choice);
 	switch (choice)
 	{
@@ -1319,5 +1339,6 @@ void Settings() {
 
 		break;
 	}
+	save_setting("Setting.txt");
 	SuperAdministrator();
 }

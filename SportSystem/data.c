@@ -40,10 +40,6 @@ void InitData()
 	//���ļ��м������е��˶�Ա
 	load_athlete(AthHashTable, "all.txt");
 
-
-
-
-
 	//���˶�Ա�����Ӧ����֯��
 	for (int i = 0; i < AthHashTable->capacity; i++)
 	{
@@ -81,6 +77,7 @@ void save_athlete(char* filename)
 					fprintf(file, "%d ", current->events[j][k]);
 				}
 			}
+			fprintf_s(file, "%d", current->score);
 			fprintf(file,"\n");
 			entry = entry->next;
 		}
@@ -117,8 +114,9 @@ void load_athlete(athlete_table map, char* filename)
 				//fprintf_s(vectorFile, "%d,", vector->data[i].events[i][j]);
 			}
 		}
+		fscanf_s(vectorFile, "%d", &ath->score);
 		add_athlete(map, atoi(ath->id), ath);
-		init_atl_eve(ath->events, ath);
+		init_atl_eve(ath->events[0], atoi(ath->id));
 	}
 	fclose(vectorFile);
 }
