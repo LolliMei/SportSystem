@@ -39,14 +39,14 @@ void init_atl_eve(int * eventarray,int athID)
 		ath->events[i][0] = eventarray[i];
 		if (eventarray[i]/100==1)
 		{
-			race=get_raceitem(RaceItemTable, eventarray);
+			race=get_raceitem(RaceItemTable, eventarray[i]);
 			if (race == NULL) continue;
 
 			push_front_ath_vector(race->Athlete, ath);
 		}
 		else if (eventarray[i] / 100 == 2)
 		{
-			track = get_trackitem(TrackItemTable, eventarray);
+			track = get_trackitem(TrackItemTable, eventarray[i]);
 			if (track == NULL) continue;
 			push_front_ath_vector(track->Athlete, ath);
 		}

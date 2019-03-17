@@ -35,13 +35,13 @@ void init_raceitem(race_item_map map)
 	RaceItem *oThousandM;
 	fiftyM->eventsID = 101;
 	fiftyM->startime = 8;
-	fiftyM->endtime = 8.5;
+	fiftyM->endtime = 8.1;
 	oHundredM->eventsID = 102;
 	oHundredM->startime = 8.3;
-	oHundredM->endtime = 8.4;
+	oHundredM->endtime = 8.5;
 	oThousandM->eventsID = 103;
 	oThousandM->startime = 9;
-	oThousandM->endtime = 9.2;
+	oThousandM->endtime = 9.3;
 	add_raceitem(RaceItemTable, 101, fiftyM);
 	add_raceitem(RaceItemTable, 102, oHundredM);
 	add_raceitem(RaceItemTable, 103, oThousandM);

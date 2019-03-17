@@ -299,7 +299,8 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	put_org_ath(organization->data->ath_map, atoi(id), athlete);
 	//TODO:添加运动员项目的处理
 	save_athlete("all.txt");
-
+	//
+	init_atl_eve(athlete->events, atoi(id));
 	
 	int choose;
 	printf("\n0.退出系统  1.返回主菜单  2.继续报名\n");
