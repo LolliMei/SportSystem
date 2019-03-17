@@ -322,6 +322,17 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	return 0;
 }
 
+
+// Time transform
+void transform_time(float time){
+	int a=0,b=0;
+	a=((int)(time)*100)/100;
+	b=time*100-(a*100);
+	printf("%d:%d",a,b);
+}
+
+
+
 // 查看秩序册
 int Program(int flag) {
 	// 1.查看秩序册
@@ -368,7 +379,10 @@ int Program(int flag) {
 				else {
 					printf("    项目最大人数：%d", race->Size);
 					printf("    比赛场地%d", race->eventplace);
-					printf("    比赛时间：%.2f-%.2f",race->startime,race->endtime);
+					printf("    比赛时间:");
+					transform_time(race->startime);
+					printf("-");
+					transform_time(race->endtime);
 				}
 				entry = entry->next;
 			}
@@ -393,7 +407,10 @@ int Program(int flag) {
 					printf("    项目最大人数：%d", track->Size);
 					printf("    比赛场地%d", track->eventplace);
 					printf("    参赛人员信息（id，name）");
-					printf("    比赛时间：%.2f-%.2f", track->startime, track->endtime);
+					printf("    比赛时间：:");
+					transform_time(track->startime);
+					printf("-");
+					transform_time(track->endtime);
 				}
 				entry = entry->next;
 			}
