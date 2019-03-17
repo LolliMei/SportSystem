@@ -46,6 +46,7 @@ int RaceItemScore(int flag);
 int CheckGoal(int flag);
 int CheckOrganizationGoal(int flag);
 int CheckAthleteGoal(int flag);
+void scoreInput(void);
 void Settings(void);
 
 // 超级管理员界面
@@ -61,7 +62,7 @@ void SuperAdministrator() {
 	// 0.退出
 	system(CLEARCOMMAND);
 	int SAChoose;
-	printf("\n0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.系统设置\n");
+	printf("\n0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.录入成绩  9.系统设置\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &SAChoose);
 	setbuf(stdin, NULL);
@@ -96,6 +97,8 @@ void SuperAdministrator() {
 		CheckGoal(1);
 		break;
 	case 8:
+		scoreInput();
+	case 9:
 		Settings();
 		break;
 	default:
@@ -1381,6 +1384,11 @@ int CheckAthleteGoal(int flag) {
 		break;
 	}
 	return 0;
+}
+
+// ScoreInput
+void scoreInput(){
+
 }
 
 // 查看系统设置
