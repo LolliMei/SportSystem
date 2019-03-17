@@ -114,7 +114,7 @@ int inputscore(int eventID)
 	else
 	{
 		trItem = get_trackitem(TrackItemTable, eventID);
-		for (size_t i = 0; i < raItem->Athlete->size; i++)
+		for (size_t i = 0; i < trItem->Athlete->size; i++)
 		{
 			athlete = get_ath_vector_index(trItem->Athlete, i);
 			printf("%s %s %s，请输入该运动员的成绩\n", athlete->id, athlete->name, athlete->organization);

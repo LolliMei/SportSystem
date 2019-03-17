@@ -142,7 +142,7 @@ void initFileData() {
 	{
 		int i, j, k;
 		fgets(strLine, MAXLENGTH_PER_LINE, fp);
-		printf("%s", strLine);
+		//printf("%s", strLine);
 
 		memset(temp, '\0', sizeof(temp));
 		memset(loginInformation[IDnums].login_ID, '\0', sizeof(loginInformation[IDnums].login_ID));
@@ -151,7 +151,7 @@ void initFileData() {
 			temp[i] = strLine[i];
 		}
 		strcpy(loginInformation[IDnums].login_ID, temp);
-		printf("’À∫≈£∫%s\n", loginInformation[IDnums].login_ID);
+	//	printf("’À∫≈£∫%s\n", loginInformation[IDnums].login_ID);
 
 
 		memset(temp, '\0', sizeof(temp));
@@ -164,8 +164,8 @@ void initFileData() {
 		strcpy(loginInformation[IDnums].login_Password, temp);
 		thePermission = strLine[j + 1];
 		loginInformation[IDnums].login_Permission = thePermission;
-		printf("√‹¬Î£∫%s\n", loginInformation[IDnums].login_Password);
-		printf("»®œﬁ£∫%c\n", loginInformation[IDnums].login_Permission);
+		//printf("√‹¬Î£∫%s\n", loginInformation[IDnums].login_Password);
+		//printf("»®œﬁ£∫%c\n", loginInformation[IDnums].login_Permission);
 
 		IDnums++;
 	}

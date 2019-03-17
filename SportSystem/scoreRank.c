@@ -226,10 +226,10 @@ void print_Rank(int eventID)
 	}
 	else
 	{
-		trItem = get_trackitem(TrackItemTable, eventID);
-		for (size_t i = 0; i < raItem->Athlete->size; i++)
+		raItem = get_trackitem(TrackItemTable, eventID);
+		for (int i = 0; i < raItem->Athlete->size; i++)
 		{
-			athlete = get_ath_vector_index(trItem->Athlete, i);
+			athlete = get_ath_vector_index(raItem->Athlete, i);
 			int score = get_Ath_Event_score(athlete, eventID);
 			int m = score / 100;
 			int cm = score % 100;
