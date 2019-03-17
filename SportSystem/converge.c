@@ -67,3 +67,66 @@ void InitAthlete(int ID){
 
 }
 
+char* get_org_name_by_id(int id)
+{
+	char* org = (char*)malloc(sizeof(char) * 20);
+	switch (id / 100) {
+	case 1:
+	{
+		strcpy(org, "AB");
+		return org;
+	}
+	break;
+	case 2:
+	{
+		strcpy(org, "CD");
+		return org ;
+	}
+	break;
+	case 3:
+	{
+		strcpy(org, "EF");
+		
+		return org;
+	}
+	break;
+	case 4:
+	{
+		strcpy(org, "G");
+
+		return org;
+	}
+	break;
+	case 5:
+	{
+		strcpy(org, "至诚");
+
+		return org;
+	}
+	break;
+	case 6:
+	{
+		strcpy(org, "知行");
+
+		return org;
+	}
+	break;
+	case 7:
+	{
+		strcpy(org, "思源");
+
+		return org;
+	}
+	break;
+	case 8:
+	{
+		strcpy(org, "弘毅");
+		return org;
+	}
+	break;
+	default:
+		break;
+	}
+	return NULL;
+}
+

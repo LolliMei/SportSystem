@@ -16,6 +16,7 @@
 #include "Org/org_list.h"
 #include "data.h"
 #include "../scoreRank.h"
+#include "converger.h"
 #define CLEARCOMMAND "cls"
 
 extern org_list organization;
@@ -263,7 +264,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 
 	printf("请输入你的名字:");
 	setbuf(stdin, NULL);
-	scanf("%10s", &name);
+	scanf_s("%s", name,20);
 
 	printf("请输入你的ID:");
 	setbuf(stdin, NULL);
@@ -277,7 +278,15 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	Athlete* athlete = (Athlete*)malloc(sizeof(Athlete));
 	strcpy(athlete->id, id);
 	strcpy(athlete->name, name);
-	strcpy(athlete->organization, org);
+	strcpy(athlete->organization, get_org_name_by_id(atoi(id)));
+	athlete->score = 0;
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < 2; j++)
+		{
+			athlete->events[i][j] = -1;
+		}
+	}
 
 	for (int i = 0; i < num; i++) {
 		scanf_s("%d", &Item[i]);
@@ -332,17 +341,6 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	return 0;
 }
 
-
-// Time transform
-void transform_time(float time){
-	int a=0,b=0;
-	a=((int)(time)*100)/100;
-	b=time*100-(a*100);
-	printf("%d:%d",a,b);
-}
-
-
-
 // 查看秩序册
 int Program(int flag) {
 	// 1.查看秩序册
@@ -389,10 +387,7 @@ int Program(int flag) {
 				else {
 					printf("    项目最大人数：%d", race->Size);
 					printf("    比赛场地%d", race->eventplace);
-					printf("    比赛时间:");
-					transform_time(race->startime);
-					printf("-");
-					transform_time(race->endtime);
+					printf("    比赛时间：%.2f-%.2f",race->startime,race->endtime);
 				}
 				entry = entry->next;
 			}
@@ -417,10 +412,7 @@ int Program(int flag) {
 					printf("    项目最大人数：%d", track->Size);
 					printf("    比赛场地%d", track->eventplace);
 					printf("    参赛人员信息（id，name）");
-					printf("    比赛时间：:");
-					transform_time(track->startime);
-					printf("-");
-					transform_time(track->endtime);
+					printf("    比赛时间：%.2f-%.2f", track->startime, track->endtime);
 				}
 				entry = entry->next;
 			}
@@ -525,10 +517,11 @@ int Information(int flag) {
 //打印一个组织当中所有运动员的信息
 void print_node(AthNode* node)
 {
+	printf("\n");
 	Athlete* ath = node->value;
 	printf("运动员姓名: %s\n", ath->name);
 	printf("运动员id: %s\n", ath->id);
-	printf("运动员组织: %s]\n", ath->organization);
+	printf("运动员组织: %s\n", ath->organization);
 	for (int i = 0; i < 3; i++)
 	{
 		printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);		
@@ -647,7 +640,7 @@ int AthleteInformation(int flag) {
 		//输出运动员信息
 		printf("运动员姓名: %s\n", ath->name);
 		printf("运动员id: %s\n", ath->id);
-		printf("运动员组织: %s]\n", ath->organization);
+		printf("运动员组织: %s\n", ath->organization);
 		for (int i = 0; i < 3; i++)
 		{
 			printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
@@ -951,75 +944,6 @@ int CheckScore(int flag) {
 	return 0;
 }
 
-
-// After checking Score
-int afterCheckTrackItemScore(int flag){
-	printf("\n");
-		printf("\n0.退出系统  1.返回上一层\n");
-		printf("请输入你的选择:");
-		int choice;
-		scanf_s("%d", &choice);
-		setbuf(stdin, NULL);
-		while (choice < 0 || choice>1) {
-			printf("输入错误，请重新输入:");
-			scanf_s("%d", &choice);
-			setbuf(stdin, NULL);
-		}
-		switch (choice)
-		{
-			case 0:
-				exit(0);
-				break;
-			case 1:
-				if(flag==1){
-					TrackItemScore(flag);	
-				}
-				else if(flag==2){
-					TrackItemScore(flag);
-				}
-				else if(flag==3){
-					TrackItemScore(flag);
-				}
-			default:
-				break;
-		}
-		return 0;
-}
-
-int afterCheckRaceItemScore(int flag){
-	printf("\n");
-		printf("\n0.退出系统  1.返回上一层\n");
-		printf("请输入你的选择:");
-		int choice;
-		scanf_s("%d", &choice);
-		setbuf(stdin, NULL);
-		while (choice < 0 || choice>1) {
-			printf("输入错误，请重新输入:");
-			scanf_s("%d", &choice);
-			setbuf(stdin, NULL);
-		}
-		switch (choice)
-		{
-			case 0:
-				exit(0);
-				break;
-			case 1:
-				if(flag==1){
-					RaceItemScore(flag);	
-				}
-				else if(flag==2){
-					RaceItemScore(flag);
-				}
-				else if(flag==3){
-					RaceItemScore(flag);
-				}
-			default:
-				break;
-		}
-		return 0;
-}
-
-
 // 查看田赛成绩
 int TrackItemScore(int flag) {
 	// 1.按比赛项目查看成绩
@@ -1059,7 +983,7 @@ int TrackItemScore(int flag) {
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
-			afterCheckTrackItemScore(flag);
+
 		}
 		break;
 	case 2:
@@ -1069,38 +993,17 @@ int TrackItemScore(int flag) {
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
-			afterCheckTrackItemScore(flag);
+
 		}
 		break;
 	case 3:
 		// 通过哈希表查找输出运动员成绩
 		{
 			system(CLEARCOMMAND);
-			int id;
-			printf("输入运动员id:");
-			scanf_s("%d", &id);
-			Athlete* ath = get_athlete(AthHashTable, id);
-			if (ath == NULL)
-			{
-				printf("找不到运动员");
-				break;
-			}
-			//输出运动员信息
-			printf("运动员姓名: %s\n", ath->name);
-			printf("运动员id: %s\n", ath->id);
-			printf("运动员组织: %s]\n", ath->organization);
-			for (int i = 0; i < 3; i++)
-			{
-				if(ath->events[i][0]/100==1)
-					continue;
-				else{
-					printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
-				}
-			}
+			int athID;
+			printf("请输入你要查询的运动员编号:");
+			scanf_s("%d",&athID);
 
-			printf("以上为运动员信息！\n");
-			//end
-			afterCheckTrackItemScore(flag);
 		}
 		break;
 	default:
@@ -1148,7 +1051,7 @@ case 1:
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
-			afterCheckRaceItemScore(flag);
+
 		}
 		break;
 	case 2:
@@ -1158,39 +1061,17 @@ case 1:
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
-			afterCheckRaceItemScore(flag);
+
 		}
 		break;
 	case 3:
 		// 通过哈希表查找输出运动员成绩
 		{
 			system(CLEARCOMMAND);
-			int id;
-			printf("输入运动员id:");
-			scanf_s("%d", &id);
-			Athlete* ath = get_athlete(AthHashTable, id);
-			if (ath == NULL)
-			{
-				printf("找不到运动员");
-				break;
-			}
-			//输出运动员信息
-			printf("运动员姓名: %s\n", ath->name);
-			printf("运动员id: %s\n", ath->id);
-			printf("运动员组织: %s]\n", ath->organization);
-			for (int i = 0; i < 3; i++)
-			{
-				if(ath->events[i][0]/100 == 2){
-					continue;
-				}
-				else{
-					printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
-				}
-			}
+			int athID;
+			printf("请输入你要查询的运动员编号:");
+			scanf_s("%d",&athID);
 
-			printf("以上为运动员信息！\n");
-		//end
-			afterCheckRaceItemScore(flag);
 		}
 		break;
 	default:
