@@ -1514,7 +1514,10 @@ int CheckAthleteGoal(int flag) {
 
 // ScoreInput
 void scoreInput(){
-
+	system(CLEARCOMMAND);
+	int id;
+	printf("");
+	scanf_s("%d",&id);
 }
 
 // 查看系统设置
