@@ -941,6 +941,75 @@ int CheckScore(int flag) {
 	return 0;
 }
 
+
+// After checking Score
+int afterCheckTrackItemScore(int flag){
+	printf("\n");
+		printf("\n0.退出系统  1.返回上一层\n");
+		printf("请输入你的选择:");
+		int choice;
+		scanf_s("%d", &choice);
+		setbuf(stdin, NULL);
+		while (choice < 0 || choice>1) {
+			printf("输入错误，请重新输入:");
+			scanf_s("%d", &choice);
+			setbuf(stdin, NULL);
+		}
+		switch (choice)
+		{
+			case 0:
+				exit(0);
+				break;
+			case 1:
+				if(flag==1){
+					TrackItemScore(flag);	
+				}
+				else if(flag==2){
+					TrackItemScore(flag);
+				}
+				else if(flag==3){
+					TrackItemScore(flag);
+				}
+			default:
+				break;
+		}
+		return 0;
+}
+
+int afterCheckRaceItemScore(int flag){
+	printf("\n");
+		printf("\n0.退出系统  1.返回上一层\n");
+		printf("请输入你的选择:");
+		int choice;
+		scanf_s("%d", &choice);
+		setbuf(stdin, NULL);
+		while (choice < 0 || choice>1) {
+			printf("输入错误，请重新输入:");
+			scanf_s("%d", &choice);
+			setbuf(stdin, NULL);
+		}
+		switch (choice)
+		{
+			case 0:
+				exit(0);
+				break;
+			case 1:
+				if(flag==1){
+					RaceItemScore(flag);	
+				}
+				else if(flag==2){
+					RaceItemScore(flag);
+				}
+				else if(flag==3){
+					RaceItemScore(flag);
+				}
+			default:
+				break;
+		}
+		return 0;
+}
+
+
 // 查看田赛成绩
 int TrackItemScore(int flag) {
 	// 1.按比赛项目查看成绩
@@ -980,7 +1049,7 @@ int TrackItemScore(int flag) {
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
-
+			afterCheckTrackItemScore(flag);
 		}
 		break;
 	case 2:
@@ -990,7 +1059,7 @@ int TrackItemScore(int flag) {
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
-
+			afterCheckTrackItemScore(flag);
 		}
 		break;
 	case 3:
@@ -1021,7 +1090,7 @@ int TrackItemScore(int flag) {
 
 			printf("以上为运动员信息！\n");
 			//end
-
+			afterCheckTrackItemScore(flag);
 		}
 		break;
 	default:
@@ -1069,7 +1138,7 @@ case 1:
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
-
+			afterCheckRaceItemScore(flag);
 		}
 		break;
 	case 2:
@@ -1079,7 +1148,7 @@ case 1:
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
-
+			afterCheckRaceItemScore(flag);
 		}
 		break;
 	case 3:
@@ -1111,7 +1180,7 @@ case 1:
 
 			printf("以上为运动员信息！\n");
 		//end
-
+			afterCheckRaceItemScore(flag);
 		}
 		break;
 	default:
