@@ -16,5 +16,6 @@ typedef struct __Athlete
 Athlete* init_athlete(char* id, char* name, char* org);
 //��������Ŀͬ�����˶�Ա��eventID������Ӧ���˶�Ա���ӵ�race/track�ṹ���vector��
 void init_atl_eve(int * eventarray, int athID);
+int inputscore(int eventID);//input event record
 
 #endif // ATHLETE_H
