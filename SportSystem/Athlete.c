@@ -70,3 +70,62 @@ Athlete* init_events(int athID, int eventsID, int rank)
 	return ath;
 
 }
+
+//输入对应的项目和运动员，返回项目ID在evnetsID数组里的下标
+int eventIndex(Athlete* athlete, int eventID)
+{
+	for (size_t i = 0; i < 3; i++)
+	{
+		if (athlete->events[i][0] == eventID)
+			return i;
+	}
+}
+
+int inputscore(int eventID)
+{
+	TrackItem* trItem;
+	RaceItem* raItem;
+	Athlete athlete;
+	int record = -1;
+	int index = -1;
+	if (eventID<200)
+	{
+		raItem = get_raceitem(RaceItemTable, eventID);
+		for (size_t i = 0; i < raItem->Athlete->size; i++)
+		{
+			athlete = get_ath_vector_index(raItem->Athlete, i);
+			printf("%s %s %s，请输入该运动员的成绩\n", athlete.id, athlete.name, athlete.organization);
+			scanf_s("%d", &record);
+			index = eventIndex(&athlete, eventID);
+			if (index != -1)
+			{
+				athlete.events[index][1] = record;
+			}
+			else
+			{
+				printf("该运动员没有参加此项目");
+			}
+		}
+
+	}
+	else
+	{
+		trItem = get_trackitem(TrackItemTable, eventID);
+		for (size_t i = 0; i < raItem->Athlete->size; i++)
+		{
+			athlete = get_ath_vector_index(trItem->Athlete, i);
+			printf("%s %s %s，请输入该运动员的成绩\n", athlete.id, athlete.name, athlete.organization);
+			scanf_s("%d", &record);
+			index = eventIndex(&athlete, eventID);
+			if (index != -1)
+			{
+				athlete.events[index][1] = record;
+			}
+			else
+			{
+				printf("该运动员没有参加此项目");
+			}
+		}
+	}
+
+}

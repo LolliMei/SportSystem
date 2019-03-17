@@ -194,7 +194,6 @@ void print_Rank(int eventID)
 			int cm = score % 100;
 			printf("%s\t%s\t%s\t%dm%dcm\n", athlete->id, athlete->name, athlete->organization, m,cm);
 		}
-		trItem = get_trackitem(TrackItemTable, eventID);
 	}
 }
 
