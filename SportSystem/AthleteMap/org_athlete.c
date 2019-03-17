@@ -31,10 +31,24 @@ int __score(AthNode* node)
 int calc_total_score(AthNode* node)
 {
 	int sum = 0;
-	if (node == NULL) return 0;
-	sum += __score(node);
-	sum += calc_total_score(node->left);
-	sum += calc_total_score(node->right);
+	
+	AthNode** s = (AthNode**)malloc(sizeof(AthNode*) * 10);
+	int top = -1;
+	s[++top] = node;
+	AthNode* p = NULL;
+
+		
+		while (top != -1) {
+			p = s[top--];
+			//p = s.pop();
+			if (p != NULL) {
+				sum += p->value->score;
+				s[++top] = p->left;
+				s[++top] = p->right;
+				
+			}
+		
+	}
 	return sum ;
 }
 

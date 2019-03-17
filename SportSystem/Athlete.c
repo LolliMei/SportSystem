@@ -5,6 +5,9 @@
 #include "../SportSystem/RaceHashMap/race_item_map.h"
 #include "../SportSystem/TrackHashMap/track_item_map.h"
 #include "../SportSystem/Vector_ath/item_athlete.h"
+#include <stdio.h>
+#include "data.h"
+
 Athlete* init_athlete(char* id,char* name,char* org)
 {
 	Athlete* ath = (Athlete*)malloc(sizeof(Athlete));
@@ -36,7 +39,7 @@ void init_atl_eve(int * eventarray,int athID)
 	
 	for (i = 0; i < 3; i++)
 	{
-		ath->events[i][0] = eventarray[i];
+		//ath->events[i][0] = eventarray[i];
 		if (eventarray[i]/100==1)
 		{
 			race=get_raceitem(RaceItemTable, eventarray[i]);
@@ -96,14 +99,14 @@ int inputscore(int eventID)
 			athlete = get_ath_vector_index(raItem->Athlete, i);
 			printf("%s %s %s，请输入该运动员的成绩\n", athlete->id, athlete->name, athlete->organization);
 			scanf_s("%d", &record);
-			index = eventIndex(&athlete, eventID);
+			index = eventIndex(athlete, eventID);
 			if (index != -1)
 			{
 				athlete->events[index][1] = record;
 			}
 			else
 			{
-				printf("该运动员没有参加此项目");
+				printf("该运动员没有参加此项目\n");
 			}
 		}
 
@@ -123,9 +126,9 @@ int inputscore(int eventID)
 			}
 			else
 			{
-				printf("该运动员没有参加此项目");
+				printf("该运动员没有参加此项目\n");
 			}
 		}
 	}
-
+	save_athlete("all.txt");
 }

@@ -17,6 +17,7 @@
 #include "data.h"
 #include "../scoreRank.h"
 #include "converger.h"
+#include"scoreRank.h"
 #define CLEARCOMMAND "cls"
 
 extern org_list organization;
@@ -1070,7 +1071,8 @@ int TrackItemScore(int flag) {
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
-			
+			TrackScoreRank();
+			print_Rank(itemID);
 			after_checkTrackItemScore(flag);
 		}
 		break;
@@ -1081,7 +1083,7 @@ int TrackItemScore(int flag) {
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
-
+			for_all(organization->data[orgID].ath_map->root, print_node);
 			after_checkTrackItemScore(flag);
 		}
 		break;
@@ -1160,7 +1162,6 @@ case 1:
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
 			
-			TrackScoreRank();
 			RaceScoreRank();
 			print_Rank(itemID);
 
@@ -1174,7 +1175,7 @@ case 1:
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
-
+			for_all(organization->data[orgID].ath_map->root, print_node);
 			after_checkRaceItemScore(flag);
 
 		}
@@ -1321,15 +1322,35 @@ int CheckOrganizationGoal(int flag) {
 	case 1:
 		system(CLEARCOMMAND);
 		// 正序输出数据
+		RaceScoreRank();
+		TrackScoreRank();
+
 		//TODO::计算组织得分
 		for (size_t i = 0; i < 8; i++)
 		{
+			//下标0是组织id
 			score[i][0] = i + 1;
+			//这个是总分
 			score[i][1] = calc_total_score(organization->data[i + 1].ath_map->root);
+		}
+
+		for (size_t i = 0; i < 8; i++)
+		{
+			for (size_t j = 0; j < 2; j++)
+			{
+				printf("%d", score[i][j]);
+			}
+			printf("\n");
 		}
 
 		organization_rank(score, 8, -1);
 
+		for (int i = 0; i < 8; i++)
+		{
+			char* org_name = organization->data[i + 1].name;
+			printf("第%d名：%s书院，得分：%d\n", i + 1, org_name, score[i][1]);
+
+		}
 
 
 		printf("\n0.退出系统  1.返回\n");
@@ -1524,8 +1545,32 @@ int CheckAthleteGoal(int flag) {
 void scoreInput(){
 	system(CLEARCOMMAND);
 	int id;
-	printf("");
+	int choose;
+	printf("输入增加成绩的项目id:");
 	scanf_s("%d",&id);
+	inputscore(id);
+	printf("\n0.退出系统  1.返回\n");
+	printf("请输入你的选择:");
+	scanf_s("%d", &choose);
+	setbuf(stdin, NULL);
+	while (choose < 0 || choose>1) {
+		printf("输入错误，请重新输入:");
+		scanf_s("%d", &choose);
+		setbuf(stdin, NULL);
+	}
+	switch (choose)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		system(CLEARCOMMAND);
+		SuperAdministrator();
+		break;
+	default:
+		break;
+	}
+
 }
 
 // 查看系统设置

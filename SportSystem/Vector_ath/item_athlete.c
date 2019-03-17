@@ -47,7 +47,12 @@ void _resize(item_athlete vector,int newCapacity)
 
 void _range_check(item_athlete vector,int index)
 {
-    assert(!(index < 0 || index > vector->size));
+	//printf("%d\n", index);
+    if((index < 0 || index > vector->size))
+    {
+		printf("fuck:%d\n", index);
+		//printf("fuck!!");
+    }
 }
 
 //插入指定位置

@@ -118,7 +118,7 @@ void load_athlete(athlete_table map, char* filename)
 		}
 		fscanf_s(vectorFile, "%d", &ath->score);
 		add_athlete(map, atoi(ath->id), ath);
-		init_atl_eve(ath->events[0], atoi(ath->id));
+		init_atl_eve(ath->events, atoi(ath->id));
 	}
 	fclose(vectorFile);
 }
