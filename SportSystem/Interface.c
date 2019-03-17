@@ -403,6 +403,7 @@ int Program(int flag) {
 					time_tranfform(race->startime);
 					printf("-");
 					time_tranfform(race->endtime);
+					printf("\n");
 				}
 				entry = entry->next;
 			}
@@ -431,6 +432,7 @@ int Program(int flag) {
 					time_tranfform(track->startime);
 					printf("-");
 					time_tranfform(track->endtime);
+					printf("\n");
 				}
 				entry = entry->next;
 			}

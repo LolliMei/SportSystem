@@ -85,7 +85,7 @@ int inputscore(int eventID)
 {
 	TrackItem* trItem;
 	RaceItem* raItem;
-	Athlete athlete;
+	Athlete *athlete;
 	int record = -1;
 	int index = -1;
 	if (eventID<200)
@@ -94,12 +94,12 @@ int inputscore(int eventID)
 		for (size_t i = 0; i < raItem->Athlete->size; i++)
 		{
 			athlete = get_ath_vector_index(raItem->Athlete, i);
-			printf("%s %s %s，请输入该运动员的成绩\n", athlete.id, athlete.name, athlete.organization);
+			printf("%s %s %s，请输入该运动员的成绩\n", athlete->id, athlete->name, athlete->organization);
 			scanf_s("%d", &record);
 			index = eventIndex(&athlete, eventID);
 			if (index != -1)
 			{
-				athlete.events[index][1] = record;
+				athlete->events[index][1] = record;
 			}
 			else
 			{
@@ -114,12 +114,12 @@ int inputscore(int eventID)
 		for (size_t i = 0; i < raItem->Athlete->size; i++)
 		{
 			athlete = get_ath_vector_index(trItem->Athlete, i);
-			printf("%s %s %s，请输入该运动员的成绩\n", athlete.id, athlete.name, athlete.organization);
+			printf("%s %s %s，请输入该运动员的成绩\n", athlete->id, athlete->name, athlete->organization);
 			scanf_s("%d", &record);
-			index = eventIndex(&athlete, eventID);
+			index = eventIndex(athlete, eventID);
 			if (index != -1)
 			{
-				athlete.events[index][1] = record;
+				athlete->events[index][1] = record;
 			}
 			else
 			{
