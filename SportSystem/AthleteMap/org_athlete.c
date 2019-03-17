@@ -23,6 +23,21 @@ void for_all(AthNode* node, void (* Visit)(AthNode* visitnode))
 	for_all(node->right, Visit);
 }
 
+int __score(AthNode* node)
+{
+	return node->value->score;
+}
+
+int calc_total_score(AthNode* node)
+{
+	int sum = 0;
+	if (node == NULL) return 0;
+	sum += __score(node);
+	sum += calc_total_score(node->left);
+	sum += calc_total_score(node->right);
+	return sum ;
+}
+
 //创建一个节点
 AthNode* CreateNode(int key, Athlete* value) {
 

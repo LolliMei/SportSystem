@@ -1,8 +1,18 @@
 #include "../SportSystem/RaceHashMap/race_item_map.h"
 #include "../SportSystem/TrackHashMap/track_item_map.h"
+#include <stdio.h>
 
 extern race_item_map RaceItemTable;
 extern track_item_map TrackItemTable;
+
+int get_Ath_Event_score(Athlete* ath, int eveID)
+{
+	for (size_t i = 0; i < 3; i++)
+	{
+		if (ath->events[i][0] == eveID)
+			return ath->events[i][1];
+	}
+}
 
 int TrackScoreRank()
 {
@@ -10,8 +20,8 @@ int TrackScoreRank()
 	TrackItem* highJump;
 	TrackItem* boardJump;
 	Athlete temp;
-	Athlete Athlete1;
-	Athlete Athlete2;
+	Athlete* Athlete1;
+	Athlete* Athlete2;
 	shotBall = get_trackitem(TrackItemTable, 201);
 	highJump = get_trackitem(TrackItemTable, 202);
 	boardJump = get_trackitem(TrackItemTable, 203);
@@ -65,11 +75,11 @@ int RaceScoreRank()
 	RaceItem *oHundredM;
 	RaceItem *oThousandM;
 	Athlete temp;
-	Athlete Athlete1;
-	Athlete Athlete2;
-	fiftyM = get_raceitem(RaceItemTable, 101);
-	oHundredM = get_raceitem(RaceItemTable, 102);
-	oThousandM = get_raceitem(RaceItemTable, 103);
+	Athlete* Athlete1;
+	Athlete* Athlete2;
+	fiftyM = get_trackitem(TrackItemTable, 101);
+	oHundredM = get_trackitem(TrackItemTable, 102);
+	oThousandM = get_trackitem(TrackItemTable, 103);
 	for (size_t i = 0; i < fiftyM->Athlete->size - 1; i++)
 	{
 		for (size_t j = 0; j <fiftyM->Athlete->size - 1 - i; j++)
@@ -118,12 +128,37 @@ int RaceScoreRank()
 	return 1;
 }
 
-int get_Ath_Event_score(Athlete ath, int eveID)					
+void swap(int* a,int*b)
 {
-	for (size_t i = 0; i < 3; i++)
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
+int organization_rank(int** arr,int size,int dir)
+{
+	for (size_t i = 0; i < size  - 1; i++)
 	{
-		if (ath.events[i][0] == eveID)
-			return ath.events[i][1];
+		for (size_t j = 0; j < size - i - 1; j++)
+		{
+			switch (dir)
+			{
+			case -1:
+				{
+					if (arr[j][1] < arr[j + 1][1])
+						swap(&arr[j][1], &arr[j + 1][1]);
+				}
+				break;
+
+			case 1:
+			{
+				if (arr[j][1] > arr[j + 1][1])
+					swap(&arr[j][1], &arr[j + 1][1]);
+			}
+			break;
+			}
+			
+		}
 	}
 	return 1;
 }
@@ -133,7 +168,7 @@ void print_Rank(int eventID)
 {
 	TrackItem* trItem;
 	RaceItem* raItem;
-	Athlete athlete;
+	Athlete* athlete;
 	if (eventID<200)
 	{
 		raItem = get_raceitem(RaceItemTable, eventID);
@@ -144,7 +179,7 @@ void print_Rank(int eventID)
 			int min = score / 1000;
 			int seconds = (score / 100)%100;
 			int microseconds = score % 100;
-			printf("%s\t%s\t%s\t%dmin%ds%dms\n",athlete.id,athlete.name,athlete.organization,min,seconds,microseconds);
+			printf("%s\t%s\t%s\t%dmin%ds%dms\n",athlete->id,athlete->name,athlete->organization,min,seconds,microseconds);
 		}
 
 	}
@@ -157,7 +192,7 @@ void print_Rank(int eventID)
 			int score = get_Ath_Event_score(athlete, eventID);
 			int m = score / 100;
 			int cm = score % 100;
-			printf("%s\t%s\t%s\t%dm%dcm\n", athlete.id, athlete.name, athlete.organization, m,cm);
+			printf("%s\t%s\t%s\t%dm%dcm\n", athlete->id, athlete->name, athlete->organization, m,cm);
 		}
 	}
 }

@@ -14,6 +14,7 @@
     <ClCompile Include="RaceHashMap\race_item_map.c" />
     <ClCompile Include="AthHashMap\athlete_table.c" />
     <ClCompile Include="scoreRank.c" />
+    <ClCompile Include="..\score.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Athlete.h" />
@@ -29,6 +30,8 @@
     <ClInclude Include="TrackHashMap\track_item_map.h" />
     <ClInclude Include="RaceHashMap\race_item_map.h" />
     <ClInclude Include="AthHashMap\athlete_table.h" />
+    <ClInclude Include="..\score.h" />
+    <ClInclude Include="..\scoreRank.h" />
     <ClInclude Include="scoreRank.h" />
   </ItemGroup>
 </Project>

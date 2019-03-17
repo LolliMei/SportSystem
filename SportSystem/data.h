@@ -13,3 +13,5 @@ void load_organization(struct __OrgTable*, char* );
 void load_athlete(struct __AHashMap*, char* );
 
 void load_setting(char*);
+
+void save_setting(char* filename);

@@ -69,7 +69,7 @@ ValueType2 get_raceitem(race_item_map map, KeyType2 key)
 {
 	//计算并得到哈希链表的入口
 	int index = getHashIndex(key, map);
-
+	if (index < 0 || index >= map->capacity)  return NULL;
 	REntry* entryList = map->table[index];
 	//在链表中寻找
 	while (entryList != NULL)
