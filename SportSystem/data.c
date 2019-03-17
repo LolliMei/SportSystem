@@ -6,6 +6,8 @@
 #include "InitTracRaceItem.h"
 #include "RaceHashMap/race_item_map.h"
 #include "AthHashMap/athlete_table.h"
+#include <stdlib.h>
+#include <assert.h>
 
 org_list organization;
 
@@ -88,7 +90,7 @@ void save_athlete(char* filename)
 void load_athlete(athlete_table map, char* filename)
 {
 	FILE* vectorFile;
-	int flag = fopen_s(&vectorFile, filename, "r+");
+	int flag = fopen_s(&vectorFile, filename, "r");
 	assert(flag == 0);
 	int size;
 	fscanf(vectorFile, "%d#\n", &size);

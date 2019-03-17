@@ -32,5 +32,6 @@
     <ClInclude Include="AthHashMap\athlete_table.h" />
     <ClInclude Include="..\score.h" />
     <ClInclude Include="..\scoreRank.h" />
+    <ClInclude Include="scoreRank.h" />
   </ItemGroup>
 </Project>

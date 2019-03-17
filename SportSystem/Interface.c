@@ -255,15 +255,24 @@ int Apply(int flag) {
 
 // 运动员报名
 int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
-	char org[30], name[20],id[20];
-	int num, Item[3];
+	char name[20], id[20],org[30];
+	memset(name, '\0', sizeof(name));
+	memset(id, '\0', sizeof(id));
+	int num, Item[3]={-1,-1,-1};
 	system(CLEARCOMMAND);
-	printf("请输入你的ID:");
-	scanf_s("%s", &id, 30);
+
 	printf("请输入你的名字:");
-	scanf_s("%s", &name,30);
+	setbuf(stdin, NULL);
+	scanf("%10s", &name);
+
+	printf("请输入你的ID:");
+	setbuf(stdin, NULL);
+	scanf_s("%s", &id, 30);
+	
 	printf("你需要参加几个项目:");
-	scanf_s("%s", &num);
+	setbuf(stdin, NULL);
+	scanf_s("%d", &num);
+
 	printf("请输入你参加的项目的编号:(-1为默认)");
 	Athlete* athlete = (Athlete*)malloc(sizeof(Athlete));
 	strcpy(athlete->id, id);
@@ -272,6 +281,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 
 	for (int i = 0; i < num; i++) {
 		scanf_s("%d", &Item[i]);
+		setbuf(stdin, NULL);
 		athlete->events[i][0] = Item[i];
 	}
 	//加入运动员总表
@@ -279,7 +289,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	//加入组织运动员表
 	put_org_ath(organization->data->ath_map, atoi(id), athlete);
 	//TODO:添加运动员项目的处理
-
+	save_athlete("all.txt");
 
 	
 	int choose;
