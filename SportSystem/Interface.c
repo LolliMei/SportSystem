@@ -997,9 +997,30 @@ int TrackItemScore(int flag) {
 		// 通过哈希表查找输出运动员成绩
 		{
 			system(CLEARCOMMAND);
-			int athID;
-			printf("请输入你要查询的运动员编号:");
-			scanf_s("%d",&athID);
+			int id;
+			printf("输入运动员id:");
+			scanf_s("%d", &id);
+			Athlete* ath = get_athlete(AthHashTable, id);
+			if (ath == NULL)
+			{
+				printf("找不到运动员");
+				break;
+			}
+			//输出运动员信息
+			printf("运动员姓名: %s\n", ath->name);
+			printf("运动员id: %s\n", ath->id);
+			printf("运动员组织: %s]\n", ath->organization);
+			for (int i = 0; i < 3; i++)
+			{
+				if(ath->events[i][0]/100==1)
+					continue;
+				else{
+					printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
+				}
+			}
+
+			printf("以上为运动员信息！\n");
+			//end
 
 		}
 		break;
@@ -1065,9 +1086,31 @@ case 1:
 		// 通过哈希表查找输出运动员成绩
 		{
 			system(CLEARCOMMAND);
-			int athID;
-			printf("请输入你要查询的运动员编号:");
-			scanf_s("%d",&athID);
+			int id;
+			printf("输入运动员id:");
+			scanf_s("%d", &id);
+			Athlete* ath = get_athlete(AthHashTable, id);
+			if (ath == NULL)
+			{
+				printf("找不到运动员");
+				break;
+			}
+			//输出运动员信息
+			printf("运动员姓名: %s\n", ath->name);
+			printf("运动员id: %s\n", ath->id);
+			printf("运动员组织: %s]\n", ath->organization);
+			for (int i = 0; i < 3; i++)
+			{
+				if(ath->events[i][0]/100 == 2){
+					continue;
+				}
+				else{
+					printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
+				}
+			}
+
+			printf("以上为运动员信息！\n");
+		//end
 
 		}
 		break;
