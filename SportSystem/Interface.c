@@ -1067,6 +1067,7 @@ int TrackItemScore(int flag) {
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
+			
 			after_checkTrackItemScore(flag);
 		}
 		break;
@@ -1077,6 +1078,7 @@ int TrackItemScore(int flag) {
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
+
 			after_checkTrackItemScore(flag);
 		}
 		break;
@@ -1084,9 +1086,6 @@ int TrackItemScore(int flag) {
 		// 通过哈希表查找输出运动员成绩
 		{
 			system(CLEARCOMMAND);
-			int athID;
-			printf("请输入你要查询的运动员编号:");
-			scanf_s("%d",&athID);
 			int id;
 			printf("输入运动员id:");
 			scanf_s("%d", &id);
@@ -1157,6 +1156,11 @@ case 1:
 			int itemID;
 			printf("请输入你要查询的比赛项目编号:");
 			scanf_s("%d",&itemID);
+			
+			TrackScoreRank();
+			RaceScoreRank();
+			print_Rank(itemID);
+
 			after_checkRaceItemScore(flag);
 		}
 		break;
@@ -1167,6 +1171,7 @@ case 1:
 			int orgID;
 			printf("请输入你要查询的参赛组织编号:");
 			scanf_s("%d",&orgID);
+
 			after_checkRaceItemScore(flag);
 
 		}
