@@ -1,8 +1,9 @@
 
 // 界面
-// 查看田赛成绩和竞赛成绩未完成
 // 比赛项目设置以及系统设置未完成
 // 比赛项目设置由人工输入项目，通过SuperAdmin发布查看
+
+// ^^ It means the word need to alter.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +64,7 @@ void SuperAdministrator() {
 	// 0.退出
 	system(CLEARCOMMAND);
 	int SAChoose;
-	printf("\n0.退出  1.参赛项目发布(全部项目发布)  2.参赛信息查询  3.运动员报名  4.查看秩序册  5.查看比赛项目  6.查看成绩  7.查看得分  8.录入成绩  9.系统设置\n");
+	printf("\n0.退出\n1.参赛项目发布(全部项目发布)\n2.参赛信息查询\n3.运动员报名\n4.查看秩序册\n5.录入成绩\n6.查看成绩\n7.查看得分\n8.系统设置\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &SAChoose);
 	setbuf(stdin, NULL);
@@ -83,14 +84,13 @@ void SuperAdministrator() {
 		Information(1);
 		break;
 	case 3:
-		Apply(1);
+		AthleteApply(1);
 		break;
 	case 4:
 		Program(1);
 		break;
 	case 5:
-		CompetitionInformation(1);
-		break;
+		scoreInput();
 	case 6:
 		CheckScore(1);
 		break;
@@ -98,8 +98,6 @@ void SuperAdministrator() {
 		CheckGoal(1);
 		break;
 	case 8:
-		scoreInput();
-	case 9:
 		Settings();
 		break;
 	default:
@@ -118,7 +116,7 @@ void Administrator() {
 	// 0.退出
 	system(CLEARCOMMAND);
 	int AChoose;
-	printf("\n0.退出  1.运动员报名  2.查看秩序册  3.查看比赛项目  4.参赛信息查询  5.查看成绩  6.查看得分\n");
+	printf("\n0.退出\n1.运动员报名\n2.查看秩序册\n3.参赛信息查询\n5.查看成绩\n6.查看得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &AChoose);
 	setbuf(stdin, NULL);
@@ -132,7 +130,7 @@ void Administrator() {
 		exit(0);
 		break;
 	case 1:
-		Apply(2);
+		AthleteApply(2);
 		break;
 	case 2:
 		Program(2);
@@ -141,12 +139,9 @@ void Administrator() {
 		Information(2);
 		break;
 	case 4:
-		CompetitionInformation(2);
-		break;
-	case 5:
 		CheckScore(2);
 		break;
-	case 6:
+	case 5:
 		CheckGoal(2);
 		break;
 	default:
@@ -161,7 +156,7 @@ void Visitor() {
 	// 0.退出
 	system(CLEARCOMMAND);
 	int VChoose;
-	printf("\n0.退出  1.查看成绩  2.查看得分\n");
+	printf("\n0.退出\n1.查看成绩\n2.查看得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &VChoose);
 	setbuf(stdin, NULL);
@@ -187,16 +182,16 @@ void Visitor() {
 
 // 参赛项目发布(全部项目发布)
 void Announcement() {
-	// 1.确认发布全部项目
-	// 2.比赛项目设置
+	// 1.项目
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.确认发布全部项目\n");
+	// TODO::打印出所有项目
+	printf("\n0.返回\n1.修改项目\n2.发布项目");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 0 || choose>1) {
+	while (choose < 0 || choose>2) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
@@ -206,10 +201,13 @@ void Announcement() {
 		SuperAdministrator();
 		break;
 	case 1:
-		system(CLEARCOMMAND);
-		printf("已发布全部项目\n");
+		printf("你需要修改的项目:");
+		//TODO::修改项目或者增添项目
+		break;
+	case 2:
+		printf("成功发布\n");
 		system("pause");
-		Announcement();
+		SuperAdministrator();
 		break;
 	default:
 		break;
@@ -217,49 +215,35 @@ void Announcement() {
 }
 
 // 运动员报名界面
-int Apply(int flag) {
-	// 1.运动员报名
-	// 0.返回上一层
-	system(CLEARCOMMAND);
-	int choose;
-	printf("\n0.返回上一层  1.运动员报名\n");
-	printf("请输入你的选择:");
-	scanf_s("%d", &choose);
-	setbuf(stdin, NULL);
-	while (choose < 0 || choose>1) {
-		printf("输入错误，请重新输入:");
-		scanf_s("%d", &choose);
-		setbuf(stdin, NULL);
-	}
-	switch (choose) {
-	case 0:
-		if (flag == 1) {
-			system(CLEARCOMMAND);
-			SuperAdministrator();
-		}
-		else if (flag == 2) {
-			system(CLEARCOMMAND);
-			Administrator();
-		}
-		break;
-	case 1:
-		if (flag == 1) {
-			system(CLEARCOMMAND);
-			AthleteApply(1);
-		}
-		else if (flag == 2) {
-			system(CLEARCOMMAND);
-			AthleteApply(2);
-		}
-		break;
-	default:
-		break;
-	}
-	return 0;
-}
-
-// 运动员报名
 int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
+	printf("运动员报名\n");
+	//  TODO::比赛项目显示
+	printf("竞赛\n");
+	for (int i = 0; i < RaceItemTable->capacity; i++)				// ^^打印竞赛
+	{
+		REntry* entry = RaceItemTable->table[i];
+		while(entry)
+		{
+			//raceitem in entrynode
+			RaceItem* race = entry->value;
+			printf("项目名称：%s", race->name);
+			printf("    项目id：%d", race->eventsID);
+		}
+	}
+
+	printf("\n田赛\n");
+	for (int i = 0; i < TrackItemTable->capacity; i++)				// ^^打印田赛
+	{
+		TEntry* entry = TrackItemTable->table[i];
+		while (entry)
+		{
+			//tracktem in entrynode
+			TrackItem* track = entry->value;
+			
+			printf("项目名称：%s", track->name);
+			printf("  项目id：%d", track->eventsID);
+		}
+	}
 	char name[20], id[20],org[30];
 	memset(name, '\0', sizeof(name));
 	memset(id, '\0', sizeof(id));
@@ -307,7 +291,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 	init_atl_eve(athlete->events, atoi(id));
 	
 	int choose;
-	printf("\n0.退出系统  1.返回主菜单  2.继续报名\n");
+	printf("\n0.退出系统\n1.返回主菜单\n2.继续报名\n");
 	printf("输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -356,35 +340,11 @@ void time_tranfform(float time){
 
 // 查看秩序册
 int Program(int flag) {
-	// 1.查看秩序册
-	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看测序册\n");
-	printf("请输入你的选择:");
-	scanf_s("%d", &choose);
-	setbuf(stdin, NULL);
-	while (choose < 0 || choose>1) {
-		printf("输入错误，请重新输入:");
-		scanf_s("%d", &choose);
-		setbuf(stdin, NULL);
-	}
-	switch (choose) {
-	case 0:
-		if (flag == 1) {
-			system(CLEARCOMMAND);
-			SuperAdministrator();
-		}
-		else if (flag == 2) {
-			system(CLEARCOMMAND);
-			Administrator();
-		}
-		break;
-	case 1:
-		system(CLEARCOMMAND);
-		//打印出秩序册(函数)
-		printf("竞赛：\n");
-		for (int i = 0; i < RaceItemTable->capacity; i++)
+	printf("秩序册\n");
+	printf("竞赛：\n");
+	for (int i = 0; i < RaceItemTable->capacity; i++)
 		{
 			REntry* entry = RaceItemTable->table[i];
 			while (entry)
@@ -428,7 +388,6 @@ int Program(int flag) {
 				else {
 					printf("    项目最大人数：%d", track->Size);
 					printf("    比赛场地%d", track->eventplace);
-					printf("    参赛人员信息（id，name）");
 					printf("    比赛时间:");
 					time_tranfform(track->startime);
 					printf("-");
@@ -438,7 +397,7 @@ int Program(int flag) {
 				entry = entry->next;
 			}
 		}
-		printf("\n0.退出系统  1.返回主界面\n");
+		printf("\n0.退出系统\n1.返回主界面\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -465,10 +424,6 @@ int Program(int flag) {
 		default:
 			break;
 		}
-		break;
-	default:
-		break;
-	}
 	return 0;
 }
 
@@ -480,7 +435,7 @@ int Information(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看参赛组织信息  2.查看运动员信息  3.查看比赛项目\n");
+	printf("\n0.返回上一层\n1.查看参赛组织信息\n2.查看运动员信息\n3.查看比赛项目\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -552,40 +507,40 @@ void print_node(AthNode* node)
 
 // 查看参赛组织信息
 int OrganizationInformation(int flag) {
-	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看参赛组织\n");
+	//TODO:: 输出所有参赛书院
+	printf("\n1.返回\n2.查看书院\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 0 || choose>1) {
+	while (choose < 1 || choose>2) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
 	}
-	switch (choose) {
-	case 0:
-		if (flag == 1) {
-			system(CLEARCOMMAND);
-			Information(1);
-		}
-		else if (flag == 2) {
-			system(CLEARCOMMAND);
-			Information(2);
-		}
-		break;
-	case 1:
-		system(CLEARCOMMAND);
-		//获取书院组织编号
+	switch (choose)
+	{
 		int index;
+		case 1:
+			if (flag == 1) {
+				system(CLEARCOMMAND);
+				Information(1);
+			}
+			else if (flag == 2) {
+				system(CLEARCOMMAND);
+				Information(2);
+			}
+			break;
+		case 2:
+		//获取书院组织编号
 		printf("输入需要查看的书院组织编号");
 		scanf_s("%d", &index);
-
+		system(CLEARCOMMAND);
 		//显示书院中参赛运动员信息
 		for_all(organization->data[index].ath_map->root, print_node);
 
-		printf("\n0.退出系统  1.返回信息查询\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -613,8 +568,8 @@ int OrganizationInformation(int flag) {
 			break;
 		}
 		break;
-	default:
-		break;
+		default:
+			break;
 	}
 	return 0;
 }
@@ -622,10 +577,10 @@ int OrganizationInformation(int flag) {
 // 查看运动员信息
 int AthleteInformation(int flag) {
 
-	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看运动员信息\n");
+	//TODO::输出所有运动员信息
+	printf("\n0.返回\n1.查看运动员\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -648,10 +603,12 @@ int AthleteInformation(int flag) {
 	case 1:
 		system(CLEARCOMMAND);
 		// 通过哈希表查找
-		//输入运动员信息
-		int id;
+		// 输入运动员信息
+		{
+			int id;
 		printf("输入运动员id:");
 		scanf_s("%d", &id);
+		system(CLEARCOMMAND);
 		Athlete* ath = get_athlete(AthHashTable, id);
 		if (ath == NULL)
 		{
@@ -668,9 +625,10 @@ int AthleteInformation(int flag) {
 		}
 
 		printf("以上为运动员信息！\n");
+		}
 		//end
 
-		printf("\n0.退出系统  1.返回信息查询\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -707,6 +665,7 @@ int AthleteInformation(int flag) {
 //打印竞赛的所有信息
 void view_raceitem()
 {
+	int count = 0;												// ^^统计人数
 	for (int i = 0; i < RaceItemTable->capacity; i++)
 	{
 		REntry* entry = RaceItemTable->table[i];
@@ -723,11 +682,14 @@ void view_raceitem()
 			else {
 				printf("    项目最大人数：%d", race->Size);
 				printf("    比赛场地%d", race->eventplace);
-				printf("    参赛人员信息（id，name）");
+				//printf("    参赛人员信息（id，name）");
 				for (int j = 0; j < race->Athlete->size; j++)
 				{
-					printf("(%s,%s)\n", race->Athlete->data[j]->id, race->Athlete->data[j]->name);
+					//printf("(%s,%s)\n", race->Athlete->data[j]->id, race->Athlete->data[j]->name);
+					count++;
 				}
+				printf("参赛人数:%d",count);
+				count = 0;
 			}
 			entry = entry->next;
 		}
@@ -737,6 +699,7 @@ void view_raceitem()
 //打印田赛的所有信息
 void view_trackitem()
 {
+	int count=0;													// ^^统计人数
 	for (int i = 0; i < TrackItemTable->capacity; i++)
 	{
 		TEntry* entry = TrackItemTable->table[i];
@@ -754,12 +717,14 @@ void view_trackitem()
 			else{
 			printf("    项目最大人数：%d", track->Size);
 			printf("    比赛场地%d", track->eventplace);
-			printf("    参赛人员信息（id，name）");
-
+			//printf("    参赛人员信息（id，name）");
 			for (int j = 0; j < track->Athlete->size; j++)
 			{
-				printf("(%s,%s)\n", track->Athlete->data[j]->id, track->Athlete->data[j]->name);
+				//printf("(%s,%s)\n", track->Athlete->data[j]->id, track->Athlete->data[j]->name);
+				count++;
 			}
+			printf("参赛人数:%d",count);
+			count = 0 ;
 			}
 			entry = entry->next;
 		}
@@ -768,16 +733,17 @@ void view_trackitem()
 
 // 查看比赛项目(结束报名后的项目发布)
 int CompetitionInformation(int flag) {
-	// 1.查看全部
-
-	// 2.查看田赛
+	// 1.查看田赛
 	
-	// 3.查看竞赛
+	// 2.查看竞赛
 
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回信息查询  1.查看全部  2.查看田赛  3.查看竞赛\n");
+	//TODO::打印全部比赛项目
+	view_raceitem();
+	view_trackitem();
+	printf("\n0.返回\n1.查看田赛\n2.查看竞赛\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -799,43 +765,11 @@ int CompetitionInformation(int flag) {
 		break;
 	case 1:
 		system(CLEARCOMMAND);
-		// 打印田赛和竞赛
-		view_trackitem();
-		view_raceitem();
-		printf("\n0.退出系统  1.返回比赛项目查询\n");
-		printf("请输入你的选择:");
-		int choice_1;
-		scanf_s("%d", &choice_1);
-		setbuf(stdin, NULL);
-		while (choice_1 < 0 || choice_1 > 1) {
-			printf("输入错误，请重新输入:");
-			scanf_s("%d", &choice_1);
-			setbuf(stdin, NULL);
-		}
-		switch (choice_1) {
-		case 0:
-			exit(0);
-			break;
-		case 1:
-			if (flag == 1) {
-				system(CLEARCOMMAND);
-				CompetitionInformation(1);
-			}
-			else if (flag == 2) {
-				system(CLEARCOMMAND);
-				CompetitionInformation(2);
-			}
-			break;
-		default:
-			break;
-		}
-		break;
-	case 2:
-		system(CLEARCOMMAND);
 		// 打印田赛项目
+		printf("^^田赛");
 		view_trackitem();
 		printf("\n");
-		printf("\n0.退出系统  1.返回比赛项目查询\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice_2;
 		scanf_s("%d", &choice_2);
@@ -863,12 +797,13 @@ int CompetitionInformation(int flag) {
 			break;
 		}
 		break;
-	case 3:
+	case 2:
 		system(CLEARCOMMAND);
 		// 打印竞赛项目
+		printf("^^竞赛");
 		view_raceitem();
 		printf("\n");
-		printf("\n0.退出系统  1.返回比赛项目查询\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice_3;
 		scanf_s("%d", &choice_3);
@@ -909,7 +844,7 @@ int CheckScore(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看田赛成绩  2.查看竞赛成绩\n");
+	printf("\n0.返回\n1.查看田赛成绩\n2.查看竞赛成绩\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -968,7 +903,7 @@ int CheckScore(int flag) {
 // After Check score
 int after_checkTrackItemScore(int flag){
 	printf("\n");
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -1001,7 +936,7 @@ int after_checkTrackItemScore(int flag){
 
 int after_checkRaceItemScore(int flag){
 	printf("\n");
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice;
 		scanf_s("%d", &choice);
@@ -1040,7 +975,8 @@ int TrackItemScore(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
+	// TODO::打印全部田赛成绩????????????????
+	printf("\n0.返回\n1.按比赛项目查看\n2.按参赛组织查看\n3.按运动员查看\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -1114,8 +1050,8 @@ int TrackItemScore(int flag) {
 				}
 			}
 		}
-		break;
 		after_checkTrackItemScore(flag);
+		break;
 	default:
 		break;
 	}
@@ -1130,7 +1066,8 @@ int RaceItemScore(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.按比赛项目查看成绩  2.按参赛组织查看成绩  3.按运动员查看成绩\n");
+	//TODO::打印全部竞赛成绩???????????????????????????
+	printf("\n0.返回\n1.按比赛项目查看\n2.按参赛组织查看\n3.按运动员查看\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -1208,7 +1145,7 @@ case 1:
 				else{
 					printf("参赛项目编号：%d,成绩%d\n", ath->events[i][0], ath->events[i][1]);
 				}
-			}
+			}		
 		}
 		after_checkRaceItemScore(flag);
 		break;
@@ -1225,7 +1162,7 @@ int CheckGoal(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.查看组织得分  2.查看运动员得分\n");
+	printf("\n0.返回\n1.查看组织得分\n2.查看运动员得分\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -1289,13 +1226,14 @@ int CheckOrganizationGoal(int flag) {
 	// 2.倒序输出
 	// 0.返回上一层
 	system(CLEARCOMMAND);
+	//TODO::打印出每个组织的得分
 	int choose;
 	int **score =(int**)malloc(sizeof(int*) * 8 );
 	for (int i = 0; i < 8; i++)
 	{
 		score[i] = (int*)malloc(sizeof(int) * 2);
 	}
-	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
+	printf("\n0.返回\n1.正序输出\n2.倒序输出\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -1353,7 +1291,7 @@ int CheckOrganizationGoal(int flag) {
 		}
 
 
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice_1;
 		scanf_s("%d", &choice_1);
@@ -1418,7 +1356,7 @@ int CheckOrganizationGoal(int flag) {
 
 		}
 
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice_2;
 		scanf_s("%d", &choice_2);
@@ -1463,7 +1401,8 @@ int CheckAthleteGoal(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
-	printf("\n0.返回上一层  1.正序输出  2.倒序输出\n");
+	//TODO::打印出每个运动员的得分
+	printf("\n0.返回上一层\n1.正序输出\n2.倒序输出\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -1490,7 +1429,7 @@ int CheckAthleteGoal(int flag) {
 	case 1:
 		system(CLEARCOMMAND);
 		// 正序输出数据
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice_1;
 		scanf_s("%d", &choice_1);
@@ -1525,7 +1464,7 @@ int CheckAthleteGoal(int flag) {
 	case 2:
 		system(CLEARCOMMAND);
 		// 倒序输出数据
-		printf("\n0.退出系统  1.返回\n");
+		printf("\n0.退出系统\n1.返回\n");
 		printf("请输入你的选择:");
 		int choice_2;
 		scanf_s("%d", &choice_2);
@@ -1571,7 +1510,7 @@ void scoreInput(){
 	printf("输入增加成绩的项目id:");
 	scanf_s("%d",&id);
 	inputscore(id);
-	printf("\n0.退出系统  1.返回\n");
+	printf("\n0.退出系统\n1.返回\n2.^^继续录入\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
@@ -1588,6 +1527,9 @@ void scoreInput(){
 	case 1:
 		system(CLEARCOMMAND);
 		SuperAdministrator();
+		break;
+	case 2:
+		scoreInput();
 		break;
 	default:
 		break;
