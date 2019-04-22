@@ -187,24 +187,110 @@ void Announcement() {
 	system(CLEARCOMMAND);
 	int choose;
 	// TODO::打印出所有项目
-	printf("\n0.返回\n1.修改项目\n2.发布项目");
+
+	printf("竞赛：\n");
+	for (int i = 0; i < RaceItemTable->capacity; i++)
+		{
+			REntry* entry = RaceItemTable->table[i];
+			while (entry)
+			{
+				// raceitem in entrynode
+				RaceItem* race = entry->value;
+				printf("项目名称：%s", race->name);
+				printf("    项目id：%d", race->eventsID);
+				entry = entry->next;
+			}
+		}
+
+		printf("田赛：\n");
+	for (int i = 0; i < TrackItemTable->capacity; i++)
+		{
+			TEntry* entry = TrackItemTable->table[i];
+			while (entry)
+			{
+				// trackitem in entrynode
+				TrackItem* track = entry->value;
+
+				printf("项目名称：%s", track->name);
+				printf("  项目id：%d", track->eventsID);
+				entry = entry->next;
+			}
+		}
+
+	printf("\n0.返回\n1.修改项目\n2.增加项目\n3.删除项目\n4.发布项目\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
 	setbuf(stdin, NULL);
-	while (choose < 0 || choose>2) {
+	while (choose < 0 || choose>4) {
 		printf("输入错误，请重新输入:");
 		scanf_s("%d", &choose);
 		setbuf(stdin, NULL);
 	}
+	int id;
+	char proname[20];
 	switch (choose) {
 	case 0:
 		SuperAdministrator();
 		break;
 	case 1:
-		printf("你需要修改的项目:");
-		//TODO::修改项目或者增添项目
+		printf("你需要修改的项目编号:");
+		scanf_s("%d",&id);
+
+		//TODO::显示该项目信息
+
+		printf("1.修改编号");
+		printf("2.修改名字");
+		printf("请输入你的选择:");
+		scanf_s("%d", &choose);
+		setbuf(stdin, NULL);
+		while (choose < 0 || choose>2) {
+			printf("输入错误，请重新输入:");
+			scanf_s("%d", &choose);
+			setbuf(stdin, NULL);
+		}
+		switch(choose){
+			case 1:
+				printf("输入修改后的编号:");
+				scanf_s("%d",&id);
+
+				//TODO::在表中修改该项目编号
+
+				printf("修改成功!");
+				Announcement();
+				break;
+			case 2:
+				printf("输入修改后的名字:");
+				scanf_s("%s",&proname,20);
+
+				//TODO::在表中修改该项目的名字
+
+				printf("修改成功!");
+				Announcement();
+				break;
+			default:  break;
+		}
 		break;
 	case 2:
+		printf("增加项目的编号:");
+		scanf_s("%d",&id);
+		printf("增加项目的名称:");
+		scanf_s("%d",&proname,20);
+
+		//TODO::将增加的项目加入到表中
+
+		printf("增加成功!");
+		Announcement();
+		break;
+	case 3:
+		printf("删除项目的编号:");
+		scanf_s("%d",&id);
+
+		//TODO::从表中删去该项目
+
+		printf("删除成功!");
+		Announcement();
+		break;
+	case 4:
 		printf("成功发布\n");
 		system("pause");
 		SuperAdministrator();
@@ -228,6 +314,7 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 			RaceItem* race = entry->value;
 			printf("项目名称：%s", race->name);
 			printf("    项目id：%d", race->eventsID);
+			entry = entry->next;
 		}
 	}
 
@@ -237,11 +324,12 @@ int AthleteApply(int flag) {                     // 传入flag值从而确认跳回界面
 		TEntry* entry = TrackItemTable->table[i];
 		while (entry)
 		{
-			//tracktem in entrynode
+			// tracktem in entrynode
 			TrackItem* track = entry->value;
 			
 			printf("项目名称：%s", track->name);
 			printf("  项目id：%d", track->eventsID);
+			entry = entry -> next;
 		}
 	}
 	char name[20], id[20],org[30];
@@ -376,7 +464,7 @@ int Program(int flag) {
 			TEntry* entry = TrackItemTable->table[i];
 			while (entry)
 			{
-				//raceitem in entrynode
+				// trackitem in entrynode
 				TrackItem* track = entry->value;
 
 				printf("项目名称：%s", track->name);
@@ -509,7 +597,9 @@ void print_node(AthNode* node)
 int OrganizationInformation(int flag) {
 	system(CLEARCOMMAND);
 	int choose;
+
 	//TODO:: 输出所有参赛书院
+
 	printf("\n1.返回\n2.查看书院\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
@@ -579,7 +669,9 @@ int AthleteInformation(int flag) {
 
 	system(CLEARCOMMAND);
 	int choose;
+
 	//TODO::输出所有运动员信息
+
 	printf("\n0.返回\n1.查看运动员\n");
 	printf("请输入你的选择:");
 	scanf_s("%d", &choose);
@@ -688,7 +780,7 @@ void view_raceitem()
 					//printf("(%s,%s)\n", race->Athlete->data[j]->id, race->Athlete->data[j]->name);
 					count++;
 				}
-				printf("参赛人数:%d",count);
+				printf("参赛人数:%d\n",count);
 				count = 0;
 			}
 			entry = entry->next;
@@ -723,7 +815,7 @@ void view_trackitem()
 				//printf("(%s,%s)\n", track->Athlete->data[j]->id, track->Athlete->data[j]->name);
 				count++;
 			}
-			printf("参赛人数:%d",count);
+			printf("参赛人数:%d\n",count);
 			count = 0 ;
 			}
 			entry = entry->next;
@@ -740,7 +832,9 @@ int CompetitionInformation(int flag) {
 	// 0.返回上一层
 	system(CLEARCOMMAND);
 	int choose;
+
 	//TODO::打印全部比赛项目
+	
 	view_raceitem();
 	view_trackitem();
 	printf("\n0.返回\n1.查看田赛\n2.查看竞赛\n");
